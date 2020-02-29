@@ -1,10 +1,18 @@
 <template>
   <div class="home">
+    <v-text-field
+      clearable
+      label="Regular"
+      placeholder="Placeholder"
+      v-model="search"
+      @keydown.enter="searchName"
+    ></v-text-field>
+    {{search}}
     <div v-if="data">
       <ul>
         <li v-for="item in data" :key="item.id">
           <img :src="item.coverImgUrl" :alt="item.name">
-          <div @click="goToList(item)">{{item.name}}</div>
+          <div @click="goToPlaylist(item)">{{item.name}}</div>
           </li>
       </ul>
     </div>
@@ -24,7 +32,8 @@ export default {
   // },
   data () {
     return {
-      data: []
+      data: [],
+      search: ''
     }
   },
   mounted () {
@@ -42,8 +51,14 @@ export default {
       })
   },
   methods: {
-    goToList (item) {
-      this.$router.push(`/list?id=${item.id}`)
+    goToPlaylist (item) {
+      this.$router.push(`/playlist?id=${item.id}`)
+    },
+    goToSearchName (item) {
+      this.$router.push(`/search?keywords=${this.search}`)
+    },
+    searchName () {
+      this.goToSearchName()
     }
   }
 }

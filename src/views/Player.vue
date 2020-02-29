@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <v-row class="text-center">
-      <v-col cols="12">
+      <v-col cols="12" v-if="song">
         <a :href="song.url">play</a>
+        <!-- <audio src="https://music.163.com/song/media/outer/url?id=498139.mp3"></audio> -->
       </v-col>
     </v-row>
   </v-container>
