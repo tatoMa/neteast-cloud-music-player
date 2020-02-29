@@ -15,6 +15,7 @@
           width="40"
           @click="$router.push('/')"
         />
+        <p class="headline ma-auto">TT Music</p>
       </div>
 
       <v-spacer></v-spacer>
