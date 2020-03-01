@@ -1,7 +1,13 @@
 <template>
-  <div class="home">
+  <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-col
+          justify="center"
+        >
 
-    // Search field
+    <!-- Search field -->
     <v-text-field
       clearable
       label="Regular"
@@ -11,7 +17,7 @@
     ></v-text-field>
     {{search}}
 
-    // Loading progress bar
+    <!-- Loading progress bar -->
     <v-container style="height: 400px;" v-if="data.length === 0">
       <v-row
         class="fill-height"
@@ -26,7 +32,7 @@
         </v-col>
         <v-col cols="6">
           <v-progress-linear
-            color="deep-purple accent-4"
+            color="primary accent-4"
             indeterminate
             rounded
             height="6"
@@ -35,7 +41,7 @@
       </v-row>
     </v-container>
 
-    // main container
+    <!-- main container -->
     <v-container fluid>
       <v-row dense>
         <v-col
@@ -46,10 +52,10 @@
           md="3"
           class="pa-2"
         >
-          <v-card>
+          <v-card class="card-hover">
             <v-img
               :src="item.coverImgUrl"
-              class="white--text align-end"
+              class="white--text align-end image"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
               @click="goToPlaylist(item)"
@@ -76,16 +82,8 @@
       </v-row>
     </v-container>
 
-    <!-- <div v-if="data">
-      <ul>
-        <li v-for="item in data" :key="item.id">
-          <img :src="item.coverImgUrl" :alt="item.name">
-          <div @click="goToPlaylist(item)">{{item.name}}</div>
-          </li>
-      </ul>
-    </div> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-  </div>
+  </v-col>
+      </v-container>
 </template>
 
 <script>
@@ -134,5 +132,12 @@ export default {
 <style lang="scss" scoped>
 img{
   max-width : 60px;
+}
+.image{
+  opacity: 0.8;
+  transition: 200ms ease-in-out;
+}
+.card-hover:hover .image{
+  opacity: 1;
 }
 </style>

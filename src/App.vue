@@ -50,3 +50,12 @@ export default {
   })
 }
 </script>
+
+<style lang="scss" scoped>
+// todo:center item
+.maxwidth{
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+}
+</style>
