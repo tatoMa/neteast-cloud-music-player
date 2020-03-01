@@ -6,17 +6,6 @@
         <v-col
           justify="center"
         >
-
-    <!-- Search field -->
-    <v-text-field
-      clearable
-      label="Regular"
-      placeholder="Placeholder"
-      v-model="search"
-      @keydown.enter="searchName"
-    ></v-text-field>
-    {{search}}
-
     <!-- Loading progress bar -->
     <v-container style="height: 400px;" v-if="data.length === 0">
       <v-row
@@ -89,8 +78,8 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import axios from 'axios'
-
+// import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   // components: {
@@ -98,9 +87,15 @@ export default {
   // },
   data () {
     return {
-      data: [],
+      // data: [],
       search: ''
     }
+  },
+  computed: {
+    ...mapGetters({
+      // map `this.doneCount` to `this.$store.getters.doneTodosCount`
+      data: 'getPlayLists'
+    })
   },
   mounted () {
     // const instance = axios.create({
@@ -110,21 +105,16 @@ export default {
     // })
     // console.log(process.env.VUE_APP_baseURL)
 
-    axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`)
-      .then((response) => {
-        console.log(response.data.playlists)
-        this.data = response.data.playlists
-      })
+    // axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`)
+    //   .then((response) => {
+    //     console.log(response.data.playlists)
+    //     this.data = response.data.playlists
+    //   })
+    this.$store.commit('setPlayLists')
   },
   methods: {
     goToPlaylist (item) {
       this.$router.push(`/playlist?id=${item.id}`)
-    },
-    goToSearchName (item) {
-      this.$router.push(`/search?keywords=${this.search}`)
-    },
-    searchName () {
-      this.goToSearchName()
     }
   }
 }

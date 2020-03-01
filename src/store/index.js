@@ -1,28 +1,33 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import player from './modules/player'
+import { getPlayLists } from '../utils/api'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    appDrawer: false
+    appDrawer: false,
+    playLists: []
   },
   mutations: {
-    mutateAppDrawer (state) {
+    toggleAppDrawer (state) {
       state.appDrawer = !state.appDrawer
-      console.log('mutation')
+    },
+    setPlayLists (state) {
+      getPlayLists.then(res => { state.playLists = res }
+      )
     }
   },
   actions: {
-    toggleAppDrawer ({ commit }) {
-      commit('mutateAppDrawer')
-      console.log('action')
-    }
+
   },
   getters: {
     appDrawer: (state) => {
       return state.appDrawer
+    },
+    getPlayLists: (state) => {
+      return state.playLists
     }
   },
   modules: {
