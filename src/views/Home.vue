@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+
+    // Search field
     <v-text-field
       clearable
       label="Regular"
@@ -9,6 +11,31 @@
     ></v-text-field>
     {{search}}
 
+    // Loading progress bar
+    <v-container style="height: 400px;" v-if="data.length === 0">
+      <v-row
+        class="fill-height"
+        align-content="center"
+        justify="center"
+      >
+        <v-col
+          class="subtitle-1 text-center"
+          cols="12"
+        >
+          Getting ready...
+        </v-col>
+        <v-col cols="6">
+          <v-progress-linear
+            color="deep-purple accent-4"
+            indeterminate
+            rounded
+            height="6"
+          ></v-progress-linear>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    // main container
     <v-container fluid>
       <v-row dense>
         <v-col
