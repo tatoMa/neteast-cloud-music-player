@@ -134,10 +134,11 @@ img{
   max-width : 60px;
 }
 .image{
-  opacity: 0.8;
+  cursor: pointer;
+  zoom: 1;
   transition: 200ms ease-in-out;
 }
 .card-hover:hover .image{
-  opacity: 1;
+  opacity: 0.8;
 }
 </style>

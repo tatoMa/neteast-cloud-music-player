@@ -2,13 +2,73 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        {{id}}
-        {{name}}
-        {{description}}
-        <img :src="coverImgUrl" alt="">
+        <!-- Loading progress bar -->
+        <v-container style="height: 400px;" v-if="tracks.length === 0">
+          <v-row
+            class="fill-height"
+            align-content="center"
+            justify="center"
+          >
+            <v-col
+              class="subtitle-1 text-center"
+              cols="12"
+            >
+              Getting ready...
+            </v-col>
+            <v-col cols="6">
+              <v-progress-linear
+                color="primary accent-4"
+                indeterminate
+                rounded
+                height="6"
+              ></v-progress-linear>
+            </v-col>
+          </v-row>
+        </v-container>
+        <!-- {{name}}
+        {{description}} -->
+        <v-card
+          v-if="tracks.length !== 0"
+          class="mx-auto"
+          max-width="800"
+          tile
+        >
+          <v-img
+            class="white--text align-end"
+            height="330px"
+            :src="coverImgUrl"
+          >
+          </v-img>
+          <v-card-title>{{name}}</v-card-title>
+          <v-card-subtitle>{{description}}</v-card-subtitle>
+        </v-card>
+        <v-card
+        v-if="tracks.length !== 0"
+        class="mx-auto"
+        max-width="800"
+        tile
+        >
+          <v-list>
+            <v-list-item-group v-model="item" color="primary">
+              <v-list-item
+                v-for="track in tracks"
+                :key="track.id"
+                @click="goToSong(track)"
+              >
+                <!-- <v-list-item-icon>
+                  <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon> -->
+                <v-list-item-content>
+                  <v-list-item-title v-text="track.name"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-card>
+        <!-- <img :src="coverImgUrl" alt="">
         <div v-for="track in tracks" :key="track.id">
           <p @click="goToSong(track)">{{track.name}} - {{track.id}}</p>
-        </div>
+        </div> -->
       </v-col>
     </v-row>
   </v-container>
@@ -21,6 +81,7 @@ export default {
   name: 'List',
   data () {
     return {
+      item: -1,
       id: '',
       name: '',
       description: '',
