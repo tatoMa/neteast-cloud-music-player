@@ -1,8 +1,8 @@
 export default {
-  id: 1417862065,
-  url: '"http://m8.music.126.net/20200301183638/70f75f8e81236b0aaf268a9efd0f59ba/ymusic/0359/0f0e/055c/4309333fff8dd8dc144626b41a8713ba.mp3"',
+  id: 1411805205,
+  url: 'http://m7.music.126.net/20200302133310/b4ee255406404dd4e90bfa28817e8dd6/ymusic/020b/5152/025f/5ac315620bf8ceb0b67b5586c14c8f82.mp3',
   br: 128000,
-  size: 4256685,
+  size: 4241709,
   expi: 1200,
   type: 'mp3',
   gain: 0,

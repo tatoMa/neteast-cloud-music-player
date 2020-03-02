@@ -3,7 +3,6 @@
   <v-app-bar
     app
     color="secondary"
-    dark
     clipped-left
     class="px-5"
   >
