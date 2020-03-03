@@ -4,7 +4,10 @@
         <!-- player -->
           <v-row
             no-gutters
+            align="center"
           >
+
+          <!-- cover image section -->
             <v-col
               cols="3"
               align-self="center"
@@ -14,7 +17,7 @@
                 class="ma-0 pa-0"
                 :src="getPlayerPlayList[0].al.picUrl"
                 max-width="250"
-                max-height="104"
+                max-height="92"
               >
               </v-img>
               <v-img
@@ -22,10 +25,12 @@
                 class="ma-0 pa-0"
                 src="../assets/default_cover.png"
                 max-width="250"
-                max-height="104"
+                max-height="92"
               >
               </v-img>
             </v-col>
+
+            <!-- information and controllers section -->
             <v-col
               cols="9"
               class="pl-5 text-center"
@@ -33,34 +38,50 @@
             >
             <!-- {{getPlayerUrlAndInfoList}} -->
               <!-- <h2 class="title" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2> -->
-              <h2 class="subtitle-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2>
-              <h2 class="subtitle-2" v-else> NetEast </h2>
-              <!-- <span class="body-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span> -->
-              <span class="caption" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span>
-              <span class="caption" v-else> Cloud Music player </span>
+              <div class="max-ch mx-auto">
+                <span
+                  class="subtitle-2 d-sm-block"
+                  v-if="getPlayerPlayList[0]"
+                >
+                  {{getPlayerPlayList[0].name}}
+                </span>
+                <span
+                  class="subtitle-2 d-sm-block"
+                  v-else
+                >
+                  NetEast
+                </span>
+                <!-- <span class="body-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span> -->
+                <span class="caption d-sm-block" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span>
+                <span class="caption d-sm-block" v-else> Cloud Music player </span>
+              </div>
               <v-slider
                 v-if="currentTime"
+                inverse-label
+                :label="currentTime?Math.round(currentTime).toString():'0'"
                 dense
-                v-model="currentTime"
+                v-model="currentTimeComputed"
                 min="0"
                 :max="duration"
                 color="primary"
                 height="3"
                 background-color="secondary"
-                :messages="currentTimeSecond"
               ></v-slider>
               <v-slider
                 class="mt-1"
                 dense
                 v-else
-                v-model="currentTime"
+                v-model="currentTimeComputed"
                 min="0"
                 max="100"
                 color="primary"
                 height="0"
                 background-color="secondary"
               ></v-slider>
-              <v-row justify="space-between" no-gutters class="mb-1">
+
+              <!-- buttons section -->
+              <v-row justify="space-between" no-gutters class="my-1">
+                <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
                   <audio
                     v-show="getPlayerUrlAndInfoList.length > 0"
@@ -78,10 +99,10 @@
                   </v-btn>
                   <v-btn icon v-if="!playing" @click="togglePlaying" :disabled="getPlayerUrlAndInfoList.length === 0">
                     <div v-if="getPlayerUrlAndInfoList[0]">
-                      <v-icon color="primary" v-if="getPlayerUrlAndInfoList[0].url">mdi-play</v-icon>
-                      <v-icon v-else>mdi-play</v-icon>
+                      <v-icon large color="primary" v-if="getPlayerUrlAndInfoList[0].url">mdi-play</v-icon>
+                      <v-icon large v-else>mdi-play</v-icon>
                     </div>
-                      <v-icon v-else>mdi-play</v-icon>
+                      <v-icon large v-else>mdi-play</v-icon>
                   </v-btn>
                   <v-btn icon v-if="playing" @click="togglePlaying" :disabled="getPlayerUrlAndInfoList.length === 0">
                     <v-icon color="primary">mdi-pause</v-icon>
@@ -93,6 +114,8 @@
                     <v-icon>mdi-sync</v-icon>
                   </v-btn>
                 </v-row>
+
+                <!-- volume controller -->
                 <v-col cols="3" class="ma-0 pa-0 d-none d-sm-flex">
                   <v-slider
                     class="ml-9 pa-0 ma-0 margin10"
@@ -109,6 +132,7 @@
                     style="margin:20px"
                   ></v-slider>
                 </v-col>
+
               </v-row>
             </v-col>
           </v-row>
@@ -139,8 +163,15 @@ export default {
       getPlayerPlayList: 'player/getPlayerPlayList',
       getPlayerUrlAndInfoList: 'player/getPlayerUrlAndInfoList'
     }),
-    currentTimeSecond () {
-      return Math.round(this.currentTime) + 's'
+    currentTimeComputed: {
+    // getter
+      get: function () {
+        return this.currentTime
+      },
+      // setter
+      set: function (newValue) {
+        // this.$refs.player.currentTime = newValue
+      }
     },
     song () {
       // return this.getPlayerUrlAndInfoList[0] ? this.getPlayerUrlAndInfoList[0] : ''
@@ -185,10 +216,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.footer {
-  background-color: #fc5185;
-}
-.margin10{
-  margin: 10px
+.max-ch{
+  max-width: 26ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

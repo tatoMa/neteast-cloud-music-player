@@ -30,4 +30,7 @@ export default {
 .cursor-pointer{
   cursor: pointer;
 }
+.v-messages{
+  min-height: 0px !important
+}
 </style>

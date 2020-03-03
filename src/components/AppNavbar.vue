@@ -4,7 +4,7 @@
     app
     color="secondary"
     clipped-left
-    class="px-5"
+    class="px-xs-0 px-sm-5"
   >
     <v-app-bar-nav-icon @click.stop="toggleAppDrawer" />
     <div class="d-flex align-center cursor-pointer" @click="goToHomePage">
@@ -30,7 +30,7 @@
         @keydown.enter="searchName"
       />
       <v-spacer class="d-flex d-sm-none"></v-spacer>
-      <v-icon class="d-flex d-sm-none">mdi-magnify</v-icon>
+      <v-icon class="d-flex d-sm-none mr-3">mdi-magnify</v-icon>
     </v-row>
   </v-app-bar>
 </template>

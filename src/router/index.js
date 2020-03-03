@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import HotPlayLists from '../views/HotPlayLists.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'HotPlayLists',
+    component: HotPlayLists
   },
   {
     path: '/Song',
@@ -16,14 +16,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Song.vue')
   },
   {
+    path: '/hotplaylists',
+    name: 'HotPlayLists',
+    component: () => import(/* webpackChunkName: "about" */ '../views/HotPlayLists.vue')
+  },
+  {
     path: '/playlist',
     name: 'Playlist',
     component: () => import(/* webpackChunkName: "about" */ '../views/Playlist.vue')
-  },
-  {
-    path: '/player',
-    name: 'Player',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Player.vue')
   },
   {
     path: '/search',

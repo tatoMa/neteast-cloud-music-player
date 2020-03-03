@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pt-0">
     <v-row class="text-center">
       <v-col cols="12">
         <!-- Loading progress bar -->

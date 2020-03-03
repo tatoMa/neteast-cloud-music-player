@@ -1,10 +1,11 @@
 <template>
   <v-container
-        class="fill-height"
+        class="fill-height pa-0 pa-sm-3 ma-0"
         fluid
       >
         <v-col
           justify="center"
+          class="pa-0 pa-sm-3"
         >
     <!-- Loading progress bar -->
     <v-container style="height: 400px;" v-if="data.length === 0">
@@ -41,12 +42,12 @@
           md="3"
           class="pa-2"
         >
-          <v-card class="card-hover">
+          <v-card class="card-hover" color="secondary">
             <v-img
               :src="item.coverImgUrl"
               class="white--text align-end image"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
+              height="20vh"
               @click="goToPlaylist(item)"
             >
               <v-card-title class="subtitle-1" v-text="item.name"></v-card-title>
@@ -129,6 +130,6 @@ img{
   transition: 200ms ease-in-out;
 }
 .card-hover:hover .image{
-  opacity: 0.8;
+  transform: translateY(-8px)
 }
 </style>
