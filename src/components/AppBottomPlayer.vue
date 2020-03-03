@@ -62,9 +62,9 @@
               <v-row justify="space-between" no-gutters class="mb-1">
                 <v-row justify="space-between" no-gutters>
                   <audio
-                    v-if="getPlayerUrlAndInfoList.length > 0"
+                    v-show="getPlayerUrlAndInfoList.length > 0"
                     ref="player"
-                    :src="getPlayerUrlAndInfoList[0].url"
+                    :src="getPlayerUrlAndInfoList.length > 0 ? getPlayerUrlAndInfoList[0].url : ''"
                     preload="auto"
                     type="audio/mp3"
                     @timeupdate="getMusicInfo($event.target)"
@@ -94,15 +94,18 @@
                 </v-row>
                 <v-col cols="3" class="ma-0 pa-0">
                   <v-slider
-                  class="ml-9 pa-0 ma-0"
+                    class="ml-9 pa-0 ma-0 margin10"
                     dense
-                    v-model="currentTime"
+                    v-model="volume"
                     min="0"
-                    max="100"
+                    max="1"
                     color="primary"
                     background-color="secondary"
                     append-icon="mdi-volume-high"
+                    @click:append="toggleVolumeMute"
                     hide-details
+                    step=0.05
+                    style="margin:20px"
                   ></v-slider>
                 </v-col>
               </v-row>
@@ -119,6 +122,9 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      player: null,
+      volume: 1,
+      storedLastVolume: 0,
       currentTime: 0,
       duration: 0,
       paused: true,
@@ -141,8 +147,15 @@ export default {
       return ''
     }
   },
+  watch: {
+    volume: function (val) {
+      this.$refs.player.volume = val
+      // console.log(this.player)
+    }
+  },
   // mounted () {
-  //   getSongDetail(this.songUrl.id).then(res => { this.song = res })
+  //   this.player = this.$refs.player
+  //   console.log(this.player)
   // },
   methods: {
     togglePlaying () {
@@ -157,6 +170,16 @@ export default {
       this.currentTime = audio.currentTime
       this.duration = audio.duration
       this.paused = audio.paused
+    },
+    toggleVolumeMute () {
+      if (this.$refs.player.volume > 0) {
+        this.storedLastVolume = this.$refs.player.volume
+        this.volume = 0
+        this.$refs.player.volume = 0
+      } else {
+        this.$refs.player.volume = this.storedLastVolume
+        this.volume = this.storedLastVolume
+      }
     }
   }
 }
@@ -164,5 +187,8 @@ export default {
 <style lang="scss" scoped>
 .footer {
   background-color: #fc5185;
+}
+.margin10{
+  margin: 10px
 }
 </style>
