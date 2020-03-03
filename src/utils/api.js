@@ -1,6 +1,13 @@
 import axios from 'axios'
 
-const getPlayLists = axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`)
+const getPlayLists = axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`,
+  {
+    mode: 'no-cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    }
+  })
   .then((response) => response.data.playlists
   )
 const getSongDetail = (id) => axios.get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${id}`)
