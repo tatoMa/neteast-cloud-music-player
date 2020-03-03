@@ -17,7 +17,7 @@
           class="subtitle-1 text-center"
           cols="12"
         >
-          Getting ready...
+          Wait a second...
         </v-col>
         <v-col cols="6">
           <v-progress-linear

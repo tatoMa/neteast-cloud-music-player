@@ -48,21 +48,27 @@
         max-width="800"
         tile
         >
-          <v-list>
-            <v-list-item-group v-model="item" color="primary">
+          <v-list
+            v-for="track in tracks"
+            :key="track.id"
+            class="ma-0 pa-0"
+          >
+            <v-list-item-group color="primary">
               <v-list-item
-                v-for="track in tracks"
-                :key="track.id"
-                @click="goToSong(track)"
+                @click="addToPlayList(track)"
               >
-                <!-- <v-list-item-icon>
-                  <v-icon v-text="item.icon"></v-icon>
-                </v-list-item-icon> -->
+                <v-list-item-icon>
+                  <v-icon color="pink">mdi-star</v-icon>
+                </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title v-text="track.name"></v-list-item-title>
                 </v-list-item-content>
+                <v-list-item-avatar>
+                  <v-icon >mdi-play</v-icon>
+                </v-list-item-avatar>
               </v-list-item>
             </v-list-item-group>
+          <v-divider/>
           </v-list>
         </v-card>
         <!-- <img :src="coverImgUrl" alt="">
@@ -102,8 +108,12 @@ export default {
       })
   },
   methods: {
-    goToSong (item) {
-      this.$router.push(`/song?id=${item.id}`)
+    // goToSong (item) {
+    //   this.$router.push(`/song?id=${item.id}`)
+    // },
+    async addToPlayList (item) {
+      await this.$store.commit('player/addToPlayList', item)
+      this.$store.commit('player/setPlayerUrlAndInfoList')
     }
   }
 }

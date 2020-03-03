@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     appDrawer: false,
     playLists: []
+
   },
   mutations: {
     toggleAppDrawer (state) {
@@ -18,6 +19,7 @@ export default new Vuex.Store({
       getPlayLists.then(res => { state.playLists = res }
       )
     }
+
   },
   actions: {
 
@@ -29,6 +31,7 @@ export default new Vuex.Store({
     getPlayLists: (state) => {
       return state.playLists
     }
+
   },
   modules: {
     player
