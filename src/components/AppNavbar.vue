@@ -25,10 +25,12 @@
         append-icon="mdi-magnify"
         color="white"
         hide-details
-        class="mr-5"
+        class="mr-5 d-none d-sm-flex"
         v-model="search"
         @keydown.enter="searchName"
       />
+      <v-spacer class="d-flex d-sm-none"></v-spacer>
+      <v-icon class="d-flex d-sm-none">mdi-magnify</v-icon>
     </v-row>
   </v-app-bar>
 </template>

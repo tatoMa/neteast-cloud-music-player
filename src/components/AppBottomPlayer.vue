@@ -1,11 +1,9 @@
 <template>
-  <v-card height="150">
     <v-footer fixed class="pa-0 ma-0" color="secondary">
-      <v-col class="text-center py-0 px-9 ma-0" cols="12">
+      <v-col class="py-0 px-sm-9 ma-0" cols="12">
         <!-- player -->
           <v-row
             no-gutters
-            justify="space-between"
           >
             <v-col
               cols="3"
@@ -16,7 +14,7 @@
                 class="ma-0 pa-0"
                 :src="getPlayerPlayList[0].al.picUrl"
                 max-width="250"
-                max-height="112"
+                max-height="104"
               >
               </v-img>
               <v-img
@@ -24,19 +22,22 @@
                 class="ma-0 pa-0"
                 src="../assets/default_cover.png"
                 max-width="250"
-                max-height="112"
+                max-height="104"
               >
               </v-img>
             </v-col>
             <v-col
               cols="9"
-              class="pl-5"
+              class="pl-5 text-center"
+              style="max-width:900px"
             >
             <!-- {{getPlayerUrlAndInfoList}} -->
-              <h2 class="title" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2>
-              <h2 class="title" v-else> NetEast </h2>
-              <span class="body-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span>
-              <span class="body-2" v-else> Cloud Music player </span>
+              <!-- <h2 class="title" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2> -->
+              <h2 class="subtitle-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2>
+              <h2 class="subtitle-2" v-else> NetEast </h2>
+              <!-- <span class="body-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span> -->
+              <span class="caption" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span>
+              <span class="caption" v-else> Cloud Music player </span>
               <v-slider
                 v-if="currentTime"
                 dense
@@ -92,7 +93,7 @@
                     <v-icon>mdi-sync</v-icon>
                   </v-btn>
                 </v-row>
-                <v-col cols="3" class="ma-0 pa-0">
+                <v-col cols="3" class="ma-0 pa-0 d-none d-sm-flex">
                   <v-slider
                     class="ml-9 pa-0 ma-0 margin10"
                     dense
@@ -113,7 +114,6 @@
           </v-row>
       </v-col>
     </v-footer>
-  </v-card>
 </template>
 
 <script>
