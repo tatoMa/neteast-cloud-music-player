@@ -8,10 +8,10 @@
   >
     <v-app-bar-nav-icon @click.stop="toggleAppDrawer" />
     <div class="d-flex align-center cursor-pointer" @click="goToHomePage">
-      <v-btn icon class="mr-2">
+      <v-btn icon class="mr-2 d-none d-sm-flex">
         <v-icon color="#fc5185" large>mdi-music-circle-outline</v-icon>
       </v-btn>
-      <p class="headline ma-auto">TT Music</p>
+      <p class="headline ma-auto">tato-music</p>
     </div>
     <v-spacer />
     <v-row

@@ -7,35 +7,15 @@
           justify="center"
           class="pa-0 pa-sm-3"
         >
+
     <!-- Loading progress bar -->
-    <v-container style="height: 400px;" v-if="data.length === 0">
-      <v-row
-        class="fill-height"
-        align-content="center"
-        justify="center"
-      >
-        <v-col
-          class="subtitle-1 text-center"
-          cols="12"
-        >
-          Wait a second...
-        </v-col>
-        <v-col cols="6">
-          <v-progress-linear
-            color="primary accent-4"
-            indeterminate
-            rounded
-            height="6"
-          ></v-progress-linear>
-        </v-col>
-      </v-row>
-    </v-container>
+    <loading :loading='getPlayLists.length === 0'/>
 
     <!-- main container -->
     <v-container fluid>
       <v-row dense>
         <v-col
-          v-for="item in data"
+          v-for="item in getPlayLists"
           :key="item.id"
           cols="6"
           sm="4"
@@ -77,15 +57,13 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-// import axios from 'axios'
 import { mapGetters } from 'vuex'
+import loading from '../components/Loading'
 export default {
-  name: 'Home',
-  // components: {
-  //   HelloWorld
-  // },
+  name: 'HotPlayLists',
+  components: {
+    loading
+  },
   data () {
     return {
       // data: [],
@@ -94,23 +72,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // map `this.doneCount` to `this.$store.getters.doneTodosCount`
-      data: 'getPlayLists'
+      getPlayLists: 'getPlayLists'
     })
   },
   mounted () {
-    // const instance = axios.create({
-    //   baseURL: 'https://neteast-cloud-music-api.herokuapp.com/',
-    //   timeout: 1000,
-    //   headers: { 'X-Custom-Header': 'foobar' }
-    // })
-    // console.log(process.env.VUE_APP_baseURL)
-
-    // axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`)
-    //   .then((response) => {
-    //     console.log(response.data.playlists)
-    //     this.data = response.data.playlists
-    //   })
     this.$store.commit('setPlayLists')
   },
   methods: {

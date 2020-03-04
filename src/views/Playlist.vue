@@ -2,31 +2,11 @@
   <v-container class="pt-0">
     <v-row class="text-center">
       <v-col cols="12">
+
         <!-- Loading progress bar -->
-        <v-container style="height: 400px;" v-if="tracks.length === 0">
-          <v-row
-            class="fill-height"
-            align-content="center"
-            justify="center"
-          >
-            <v-col
-              class="subtitle-1 text-center"
-              cols="12"
-            >
-              Getting ready...
-            </v-col>
-            <v-col cols="6">
-              <v-progress-linear
-                color="primary accent-4"
-                indeterminate
-                rounded
-                height="6"
-              ></v-progress-linear>
-            </v-col>
-          </v-row>
-        </v-container>
-        <!-- {{name}}
-        {{description}} -->
+        <loading :loading='tracks.length === 0'/>
+
+        <!-- The List -->
         <v-card
           v-if="tracks.length !== 0"
           class="mx-auto"
@@ -82,9 +62,12 @@
 
 <script>
 import axios from 'axios'
-
+import loading from '../components/Loading'
 export default {
-  name: 'List',
+  name: 'PlayList',
+  components: {
+    loading
+  },
   data () {
     return {
       item: -1,
@@ -95,7 +78,6 @@ export default {
       tracks: []
     }
   },
-
   mounted () {
     this.id = this.$route.query.id
     axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${this.id}`)
