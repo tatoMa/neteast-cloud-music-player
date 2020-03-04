@@ -13,6 +13,8 @@ export default new Vuex.Store({
   },
   mutations: {
     toggleAppDrawer (state) {
+      console.log('vuex toggled app drawer')
+
       state.appDrawer = !state.appDrawer
     },
     setPlayLists (state) {
@@ -25,7 +27,7 @@ export default new Vuex.Store({
 
   },
   getters: {
-    appDrawer: (state) => {
+    getAppDrawer: (state) => {
       return state.appDrawer
     },
     getPlayLists: (state) => {

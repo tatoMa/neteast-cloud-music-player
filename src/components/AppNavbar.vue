@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     toggleAppDrawer () {
-      this.$store.commit('toggleAppDrawer')
+      this.$emit('toggleAppDrawer')
     },
     goToHomePage () {
       this.$router.push('/')

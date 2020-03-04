@@ -57,7 +57,11 @@
 
 <script>
 export default {
+  props: [
+    'appDrawerProp'
+  ],
   data: () => ({
+    // appDrawer: null,
     items: [
       { icon: 'mdi-fire', text: 'Most Popular' },
       { icon: 'mdi-playlist-check', text: 'Subscriptions' },
@@ -72,15 +76,18 @@ export default {
     ]
   }),
   computed: {
+    // appDrawer () {
+    //   return this.appDrawerProp
+    // },
     appDrawer: {
-      get () {
-        return this.$store.getters.appDrawer
+    // getter
+      get: function () {
+        return this.appDrawerProp
+      },
+      // setter
+      set: function (newValue) {
+        this.$emit('toggleAppDrawer')
       }
-      // set (value) {
-      //   console.log('set', value)
-
-      //   // this.$store.dispatch('toggleAppDrawer')
-      // }
     }
   }
 }
