@@ -2,11 +2,11 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <!-- 😍{{getPlayerUrlAndInfoList}} -->
+        <!-- 😍{{getMusicUrlsListById}} -->
         <!-- 😀{{getCurrentPlayingSong}} -->
-        <!-- ✅{{getPlayerPlayList}} -->
+        <!-- ✅{{getMusicDetailsList}} -->
         <div v-for="song in songs" :key="song.id">
-          <p @click="addToPlayList(song)">{{song.name}} - {{song.id}}</p>
+          <p @click="setMusicDetailsList(song)">{{song.name}} - {{song.id}}</p>
           <img :src="song.al.picUrl" alt="">
         </div>
       </v-col>
@@ -35,18 +35,18 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      getPlayerPlayList: 'player/getPlayerPlayList',
-      getPlayerUrlAndInfoList: 'player/getPlayerUrlAndInfoList',
-      getCurrentPlayingSong: 'player/getCurrentPlayingSong'
+      getMusicDetailsList: 'player/getMusicDetailsList',
+      getMusicUrlsListById: 'player/getMusicUrlsListById'
+      // getCurrentPlayingSong: 'player/getCurrentPlayingSong'
     })
   },
   methods: {
     goToPlayer (item) {
       this.$router.push(`/player?id=${item.id}`)
     },
-    async addToPlayList (item) {
-      await this.$store.commit('player/addToPlayList', item)
-      this.$store.commit('player/setPlayerUrlAndInfoList')
+    async setMusicDetailsList (item) {
+      await this.$store.commit('player/setMusicDetailsList', item)
+      this.$store.commit('player/setMusicUrlsListById')
     }
   }
 }

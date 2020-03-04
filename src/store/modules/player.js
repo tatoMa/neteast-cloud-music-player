@@ -1,59 +1,62 @@
-import mock from '../../utils/mock'
-import { getSongUrlById } from '../../utils/api'
+// import mock from '../../utils/mock'
+import { getMusicUrlById } from '../../utils/api'
 
 export default {
   namespaced: true,
   state: {
-    playing: false,
-    song: mock,
+    paused: true,
+    // song: mock,
     // songId: '',
-    songsIds: [],
-    playerPlayList: [],
-    playerUrlAndInfoList: [],
-    currentPlayingSong: null
+    // songsIds: [],
+    musicDetailsList: [],
+    musicUrlsListById: []
+    // currentPausedSong: null
   },
   mutations: {
-    togglePlaying: (state) => {
-      state.playing = !state.playing
+    togglePaused: (state, payload) => {
+      if (payload) {
+        state.paused = true
+      } else state.paused = false
+      // state.paused = !state.paused
     },
-    addToPlayList: (state, item) => {
-      state.playerPlayList = []
-      state.playerPlayList.push(item)
+    setMusicDetailsList: (state, item) => {
+      state.musicDetailsList = []
+      state.musicDetailsList.push(item)
     },
-    setPlayerUrlAndInfoList: async (state) => {
-      if (state.playerPlayList.length > 0) {
-        state.playerUrlAndInfoList = []
-        await getSongUrlById(state.playerPlayList[0].id).then(res => { state.playerUrlAndInfoList.push(res) })
+    setMusicUrlsListById: async (state) => {
+      if (state.musicDetailsList.length > 0) {
+        state.musicUrlsListById = []
+        await getMusicUrlById(state.musicDetailsList[0].id).then(res => { state.musicUrlsListById.push(res) })
       }
-    },
-    setCurrentPlayingSong: (state, song) => {
-      console.log('setCurrentSong', song)
-
-      state.currentPlayingSong = song
     }
+    // setCurrentPausedSong: (state, song) => {
+    //   console.log('setCurrentSong', song)
+
+    //   state.currentPausedSong = song
+    // }
   },
   actions: {
-    setPlayerUrlAndInfoListAndCurrentPlayingSong: async ({ state, commit }) => {
-      await commit('setPlayerUrlAndInfoList')
-      // await commit('setCurrentPlayingSong', state.playerUrlAndInfoList[0])
-    }
+    // setMusicUrlsListByIdAndCurrentPausedSong: async ({ state, commit }) => {
+    //   await commit('setMusicUrlsListById')
+    //   // await commit('setCurrentPausedSong', state.musicUrlsListById[0])
+    // }
 
   },
   getters: {
-    getPlaying: (state) => {
-      return state.playing
+    getPaused: (state) => {
+      return state.paused
     },
-    getSong: (state) => {
-      return state.song
+    // getSong: (state) => {
+    //   return state.song
+    // },
+    getMusicDetailsList: (state) => {
+      return state.musicDetailsList
     },
-    getPlayerPlayList: (state) => {
-      return state.playerPlayList
-    },
-    getPlayerUrlAndInfoList: (state) => {
-      return state.playerUrlAndInfoList
-    },
-    getCurrentPlayingSong: (state) => {
-      return state.currentPlayingSong
+    getMusicUrlsListById: (state) => {
+      return state.musicUrlsListById
     }
+    // getCurrentPausedSong: (state) => {
+    //   return state.currentPausedSong
+    // }
   }
 }

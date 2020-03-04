@@ -13,9 +13,9 @@
               align-self="center"
             >
               <v-img
-                v-if="getPlayerPlayList[0]"
+                v-if="getMusicDetailsList[0]"
                 class="ma-0 pa-0"
-                :src="getPlayerPlayList[0].al.picUrl"
+                :src="getMusicDetailsList[0].al.picUrl"
                 max-width="250"
                 max-height="92"
               >
@@ -36,14 +36,14 @@
               class="pl-5 text-center"
               style="max-width:900px"
             >
-            <!-- {{getPlayerUrlAndInfoList}} -->
-              <!-- <h2 class="title" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].name}}</h2> -->
+            <!-- {{getMusicUrlsListById}} -->
+              <!-- <h2 class="title" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].name}}</h2> -->
               <div class="max-ch mx-auto">
                 <span
                   class="subtitle-2 d-sm-block"
-                  v-if="getPlayerPlayList[0]"
+                  v-if="getMusicDetailsList[0]"
                 >
-                  {{getPlayerPlayList[0].name}}
+                  {{getMusicDetailsList[0].name}}
                 </span>
                 <span
                   class="subtitle-2 d-sm-block"
@@ -51,8 +51,8 @@
                 >
                   NetEast
                 </span>
-                <!-- <span class="body-2" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span> -->
-                <span class="caption d-sm-block" v-if="getPlayerPlayList[0]">{{getPlayerPlayList[0].ar[0].name}}</span>
+                <!-- <span class="body-2" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span> -->
+                <span class="caption d-sm-block" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span>
                 <span class="caption d-sm-block" v-else> Cloud Music player </span>
               </div>
               <v-slider
@@ -84,37 +84,36 @@
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
                   <audio
-                    v-show="getPlayerUrlAndInfoList.length > 0"
+                    v-show="getMusicUrlsListById.length > 0"
                     ref="player"
-                    :src="getPlayerUrlAndInfoList.length > 0 ? getPlayerUrlAndInfoList[0].url : ''"
+                    :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
                     preload="auto"
                     type="audio/mp3"
                     @timeupdate="getMusicInfo($event.target)"
                     ></audio>
-                  <v-btn icon :disabled="getPlayerUrlAndInfoList.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon>mdi-heart</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getPlayerUrlAndInfoList.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon>mdi-step-backward</v-icon>
                   </v-btn>
-                  <v-btn icon v-if="!playing" @click="togglePlaying" :disabled="getPlayerUrlAndInfoList.length === 0">
-                    <div v-if="getPlayerUrlAndInfoList[0]">
-                      <v-icon large color="primary" v-if="getPlayerUrlAndInfoList[0].url">mdi-play</v-icon>
+                  <v-btn icon v-if="paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
+                    <div v-if="getMusicUrlsListById[0]">
+                      <v-icon large color="primary" v-if="getMusicUrlsListById[0].url">mdi-play</v-icon>
                       <v-icon large v-else>mdi-play</v-icon>
                     </div>
                       <v-icon large v-else>mdi-play</v-icon>
                   </v-btn>
-                  <v-btn icon v-if="playing" @click="togglePlaying" :disabled="getPlayerUrlAndInfoList.length === 0">
+                  <v-btn icon v-if="!paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <v-icon color="primary">mdi-pause</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getPlayerUrlAndInfoList.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon>mdi-step-forward</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getPlayerUrlAndInfoList.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon>mdi-sync</v-icon>
                   </v-btn>
                 </v-row>
-
                 <!-- volume controller -->
                 <v-col cols="3" class="ma-0 pa-0 d-none d-sm-flex">
                   <v-slider
@@ -142,7 +141,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import { getSongDetail } from '../utils/api'
+// import { getMusicDetailById } from '../utils/api'
 export default {
   data () {
     return {
@@ -151,17 +150,17 @@ export default {
       storedLastVolume: 0,
       currentTime: 0,
       duration: 0,
-      paused: true,
+      // paused: true,
       message: ['hello', 'hi']
       // song: null
     }
   },
   computed: {
     ...mapGetters({
-      playing: 'player/getPlaying',
-      songUrl: 'player/getSong',
-      getPlayerPlayList: 'player/getPlayerPlayList',
-      getPlayerUrlAndInfoList: 'player/getPlayerUrlAndInfoList'
+      paused: 'player/getPaused',
+      // songUrl: 'player/getSong',
+      getMusicDetailsList: 'player/getMusicDetailsList',
+      getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
     currentTimeComputed: {
     // getter
@@ -174,7 +173,7 @@ export default {
       }
     },
     song () {
-      // return this.getPlayerUrlAndInfoList[0] ? this.getPlayerUrlAndInfoList[0] : ''
+      // return this.getMusicUrlsListById[0] ? this.getMusicUrlsListById[0] : ''
       return ''
     }
   },
@@ -190,17 +189,17 @@ export default {
   // },
   methods: {
     togglePlaying () {
-      if (this.paused) {
+      if (this.$refs.player.paused) {
         this.$refs.player.play()
       } else {
         this.$refs.player.pause()
       }
-      this.$store.commit('player/togglePlaying')
+      this.$store.commit('player/togglePaused', this.$refs.player.paused)
     },
     getMusicInfo (audio) {
       this.currentTime = audio.currentTime
       this.duration = audio.duration
-      this.paused = audio.paused
+      // this.paused = audio.paused
     },
     toggleVolumeMute () {
       if (this.$refs.player.volume > 0) {

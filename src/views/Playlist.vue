@@ -55,7 +55,7 @@
           >
             <v-list-item-group color="primary">
               <v-list-item
-                @click="addToPlayList(track)"
+                @click="setMusicDetailsList(track)"
               >
                 <v-list-item-icon>
                   <v-icon color="pink">mdi-star</v-icon>
@@ -111,9 +111,10 @@ export default {
     // goToSong (item) {
     //   this.$router.push(`/song?id=${item.id}`)
     // },
-    async addToPlayList (item) {
-      await this.$store.commit('player/addToPlayList', item)
-      this.$store.commit('player/setPlayerUrlAndInfoList')
+    async setMusicDetailsList (item) {
+      this.$store.commit('player/togglePaused', true)
+      await this.$store.commit('player/setMusicDetailsList', item)
+      this.$store.commit('player/setMusicUrlsListById')
     }
   }
 }
