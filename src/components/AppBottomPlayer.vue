@@ -60,7 +60,7 @@
                 align="center"
                 align-content="center"
                 justify="center"
-
+                class="mt-1 mt-sm-0"
               >
               <v-slider
                 class="mt-1"
