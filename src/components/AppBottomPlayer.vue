@@ -55,20 +55,27 @@
                 <span class="caption d-sm-block" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span>
                 <span class="caption d-sm-block" v-else> Cloud Music player </span>
               </div>
+              <v-row
+                no-gutters
+                align="center"
+                align-content="center"
+                justify="center"
+
+              >
               <v-slider
-                v-if="currentTime"
-                inverse-label
-                :label="currentTime?Math.round(currentTime).toString():'0'"
+                class="mt-1"
+                v-if="getMusicUrlsListById.length > 0"
                 dense
                 v-model="currentTimeComputed"
                 min="0"
                 :max="duration"
                 color="primary"
-                height="3"
+                height="0"
                 background-color="secondary"
               ></v-slider>
               <v-slider
                 class="mt-1"
+                disabled
                 dense
                 v-else
                 v-model="currentTimeComputed"
@@ -78,6 +85,10 @@
                 height="0"
                 background-color="secondary"
               ></v-slider>
+              <div class="caption">
+                {{ currentAndDurationTimeLabel }}
+              </div>
+              </v-row>
 
               <!-- buttons section -->
               <v-row justify="space-between" no-gutters class="my-1">
@@ -172,9 +183,10 @@ export default {
         // this.$refs.player.currentTime = newValue
       }
     },
-    song () {
-      // return this.getMusicUrlsListById[0] ? this.getMusicUrlsListById[0] : ''
-      return ''
+    currentAndDurationTimeLabel: function () {
+      if (this.duration && this.duration !== 0) {
+        return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
+      } else return '0:00-0:00'
     }
   },
   watch: {
@@ -197,8 +209,11 @@ export default {
       this.$store.commit('player/togglePaused', this.$refs.player.paused)
     },
     getMusicInfo (audio) {
-      this.currentTime = audio.currentTime
-      this.duration = audio.duration
+      // console.log('audio', audio)
+      if (audio) {
+        this.currentTime = audio.currentTime
+        this.duration = audio.duration
+      }
       // this.paused = audio.paused
     },
     toggleVolumeMute () {
@@ -210,7 +225,8 @@ export default {
         this.$refs.player.volume = this.storedLastVolume
         this.volume = this.storedLastVolume
       }
-    }
+    },
+    fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s }
   }
 }
 </script>
