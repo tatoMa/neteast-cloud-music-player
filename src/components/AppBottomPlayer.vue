@@ -14,18 +14,18 @@
             >
               <v-img
                 v-if="getMusicDetailsList[0]"
-                class="ma-0 pa-0"
+                class="my-1 pa-0"
                 :src="getMusicDetailsList[0].al.picUrl"
                 max-width="250"
-                max-height="92"
+                max-height="94"
               >
               </v-img>
               <v-img
                 v-else
-                class="ma-0 pa-0"
+                class="my-1 pa-0"
                 src="../assets/default_cover.png"
                 max-width="250"
-                max-height="92"
+                max-height="94"
               >
               </v-img>
             </v-col>
@@ -33,7 +33,7 @@
             <!-- information and controllers section -->
             <v-col
               cols="9"
-              class="pl-5 text-center"
+              class="pl-1 pl-sm-5 text-center"
               style="max-width:900px"
             >
             <!-- {{getMusicUrlsListById}} -->
@@ -86,7 +86,7 @@
                 background-color="secondary"
               ></v-slider>
               <div class="caption">
-                {{ currentAndDurationTimeLabel }}
+                {{ currentTimeAndDurationLabel }}
               </div>
               </v-row>
 
@@ -97,6 +97,7 @@
                   <audio
                     v-show="getMusicUrlsListById.length > 0"
                     ref="player"
+                    autoplay
                     :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
                     preload="auto"
                     type="audio/mp3"
@@ -156,6 +157,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      audioTagPausedStatus: false,
       player: null,
       volume: 1,
       storedLastVolume: 0,
@@ -183,7 +185,7 @@ export default {
         // this.$refs.player.currentTime = newValue
       }
     },
-    currentAndDurationTimeLabel: function () {
+    currentTimeAndDurationLabel: function () {
       if (this.duration && this.duration !== 0) {
         return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
       } else return '0:00-0:00'
@@ -193,12 +195,18 @@ export default {
     volume: function (val) {
       this.$refs.player.volume = val
       // console.log(this.player)
+    },
+    audioTagPausedStatus: function (val) {
+      console.log(val)
     }
   },
   // mounted () {
   //   this.player = this.$refs.player
   //   console.log(this.player)
   // },
+  mounted () {
+    this.audioTagPausedStatus = this.$refs.player.paused
+  },
   methods: {
     togglePlaying () {
       if (this.$refs.player.paused) {

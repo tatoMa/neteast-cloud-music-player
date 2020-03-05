@@ -42,7 +42,7 @@
         <v-divider></v-divider>
 
         <!-- subcriptions -->
-        <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
+        <!-- <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
         <v-list>
           <v-list-item
             v-for="item in items2"
@@ -58,8 +58,8 @@
             <v-list-item-title v-text="item.text" />
           </v-list-item>
         </v-list>
-        <v-divider></v-divider>
-
+        <v-divider></v-divider> -->
+        <v-spacer></v-spacer>
         <!-- bottom buttons -->
         <v-list-item
           class="mt-4"
@@ -68,13 +68,13 @@
           <v-list-item-action>
             <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
           </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
+          <v-list-item-title class="grey--text text--darken-1">Custom Playlist</v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
             <v-icon color="grey darken-1">mdi-settings</v-icon>
           </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
+          <v-list-item-title class="grey--text text--darken-1">Setting</v-list-item-title>
         </v-list-item>
         </v-list-item-group>
       </v-list>

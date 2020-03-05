@@ -93,9 +93,9 @@ export default {
     // goToSong (item) {
     //   this.$router.push(`/song?id=${item.id}`)
     // },
-    async setMusicDetailsList (item) {
-      this.$store.commit('player/togglePaused', true)
-      await this.$store.commit('player/setMusicDetailsList', item)
+    setMusicDetailsList (item) {
+      this.$store.commit('player/togglePaused', false)
+      this.$store.commit('player/setMusicDetailsList', item)
       this.$store.commit('player/setMusicUrlsListById')
     }
   }

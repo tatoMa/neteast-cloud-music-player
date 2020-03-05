@@ -5,14 +5,14 @@
       >
         <v-col
           justify="center"
-          class="pa-0 pa-sm-3"
+          class="pa-1 pa-sm-3"
         >
 
     <!-- Loading progress bar -->
     <loading :loading='getPlayLists.length === 0'/>
 
     <!-- main container -->
-    <v-container fluid>
+    <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
       <v-row dense>
         <v-col
           v-for="item in getPlayLists"
@@ -20,7 +20,7 @@
           cols="6"
           sm="4"
           md="3"
-          class="pa-2"
+          class="pa-2 pa-sm-2"
         >
           <v-card class="card-hover" color="secondary">
             <v-img
