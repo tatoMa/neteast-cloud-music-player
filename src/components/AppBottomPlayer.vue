@@ -18,6 +18,8 @@
                 :src="getMusicDetailsList[0].al.picUrl+'?param=200y200'"
                 max-width="250"
                 max-height="94"
+                aspect-ratio=1
+                contain
               >
               </v-img>
               <v-img
@@ -26,6 +28,8 @@
                 src="../assets/default_cover.png"
                 max-width="250"
                 max-height="94"
+                aspect-ratio=1
+                contain
               >
               </v-img>
             </v-col>

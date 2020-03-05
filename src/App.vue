@@ -102,7 +102,7 @@ export default {
   },
   data () {
     return {
-      appDrawer: null,
+      appDrawer: false,
       item: 2,
       items: [
         { icon: 'mdi-fire', text: 'Playlist' },
