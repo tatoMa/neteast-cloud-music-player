@@ -4,11 +4,12 @@
       <v-col cols="12">
 
         <!-- Loading progress bar -->
-        <loading :loading='tracks.length === 0'/>
+        <loading :loading='!getPlayListById'/>
 
         <!-- The List -->
+        <!-- {{getPlayListById}} -->
         <v-card
-          v-if="tracks.length !== 0"
+          v-if="getPlayListById"
           class="mx-auto"
           max-width="800"
           tile
@@ -16,20 +17,20 @@
           <v-img
             class="white--text align-end"
             height="330px"
-            :src="coverImgUrl"
+            :src="getPlayListById.coverImgUrl"
           >
           </v-img>
-          <v-card-title>{{name}}</v-card-title>
-          <v-card-subtitle>{{description}}</v-card-subtitle>
+          <v-card-title>{{getPlayListById.name}}</v-card-title>
+          <v-card-subtitle>{{getPlayListById.description}}</v-card-subtitle>
         </v-card>
         <v-card
-        v-if="tracks.length !== 0"
+        v-if="getPlayListById"
         class="mx-auto"
         max-width="800"
         tile
         >
           <v-list
-            v-for="track in tracks"
+            v-for="track in getPlayListById.tracks"
             :key="track.id"
             class="ma-0 pa-0"
           >
@@ -61,8 +62,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import loading from '../components/Loading'
+import { mapGetters } from 'vuex'
 export default {
   name: 'PlayList',
   components: {
@@ -80,14 +82,20 @@ export default {
   },
   mounted () {
     this.id = this.$route.query.id
-    axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${this.id}`)
-      .then((response) => {
-        console.log(response.data.playlist)
-        this.name = response.data.playlist.name
-        this.description = response.data.playlist.description
-        this.coverImgUrl = response.data.playlist.coverImgUrl
-        this.tracks = response.data.playlist.tracks
-      })
+    // axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${this.id}`)
+    //   .then((response) => {
+    //     console.log(response.data.playlist)
+    //     this.name = response.data.playlist.name
+    //     this.description = response.data.playlist.description
+    //     this.coverImgUrl = response.data.playlist.coverImgUrl
+    //     this.tracks = response.data.playlist.tracks
+    //   })
+    this.$store.commit('setPlayListById', this.id)
+  },
+  computed: {
+    ...mapGetters({
+      getPlayListById: 'getPlayListById'
+    })
   },
   methods: {
     // goToSong (item) {

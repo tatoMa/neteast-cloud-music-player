@@ -69,8 +69,6 @@ export default {
       this.$router.push(`/search?keywords=${this.search}`)
     },
     toggleSearchInput () {
-      console.log('search open', this.searchOpen)
-
       this.searchOpen = !this.searchOpen
     },
     searchName () {
