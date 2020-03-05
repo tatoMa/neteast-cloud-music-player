@@ -15,7 +15,7 @@
               <v-img
                 v-if="getMusicDetailsList[0]"
                 class="my-1 pa-0"
-                :src="getMusicDetailsList[0].al.picUrl"
+                :src="getMusicDetailsList[0].al.picUrl+'?param=200y200'"
                 max-width="250"
                 max-height="94"
               >

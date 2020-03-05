@@ -24,7 +24,7 @@
         >
           <v-card class="card-hover" color="secondary">
             <v-img
-              :src="item.coverImgUrl"
+              :src="item.coverImgUrl+'?param=300y300'"
               class="white--text align-end image"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="20vh"

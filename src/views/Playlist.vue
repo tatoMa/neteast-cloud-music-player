@@ -7,7 +7,6 @@
         <loading :loading='!getPlayListById'/>
 
         <!-- The List -->
-        <!-- {{getPlayListById}} -->
         <v-card
           v-if="getPlayListById"
           class="mx-auto"
@@ -39,23 +38,19 @@
                 @click="setMusicDetailsList(track)"
               >
                 <v-list-item-icon>
-                  <v-icon color="pink">mdi-star</v-icon>
+                  <v-icon>mdi-star</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title v-text="track.name"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-avatar>
-                  <v-icon >mdi-play</v-icon>
+                  <v-icon>mdi-play-circle-outline</v-icon>
                 </v-list-item-avatar>
               </v-list-item>
             <!-- </v-list-item-group> -->
           <v-divider/>
           </v-list>
         </v-card>
-        <!-- <img :src="coverImgUrl" alt="">
-        <div v-for="track in tracks" :key="track.id">
-          <p @click="goToSong(track)">{{track.name}} - {{track.id}}</p>
-        </div> -->
       </v-col>
     </v-row>
   </v-container>
@@ -72,7 +67,7 @@ export default {
   },
   data () {
     return {
-      item: -1,
+      // item: -1,
       id: '',
       name: '',
       description: '',
@@ -82,14 +77,6 @@ export default {
   },
   mounted () {
     this.id = this.$route.query.id
-    // axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${this.id}`)
-    //   .then((response) => {
-    //     console.log(response.data.playlist)
-    //     this.name = response.data.playlist.name
-    //     this.description = response.data.playlist.description
-    //     this.coverImgUrl = response.data.playlist.coverImgUrl
-    //     this.tracks = response.data.playlist.tracks
-    //   })
     this.$store.commit('setPlayListById', this.id)
   },
   computed: {
@@ -98,9 +85,6 @@ export default {
     })
   },
   methods: {
-    // goToSong (item) {
-    //   this.$router.push(`/song?id=${item.id}`)
-    // },
     setMusicDetailsList (item) {
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailsList', item)
