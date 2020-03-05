@@ -14,24 +14,39 @@
       <p class="headline ma-auto">tato-music</p>
     </div>
     <v-spacer />
-    <v-row
-      align="center"
+    <!-- <v-row
+      justify="center"
       style="max-width: 650px"
-    >
+    > -->
       <v-text-field
         :append-icon-cb="() => {}"
         placeholder="Search..."
         single-line
         append-icon="mdi-magnify"
-        color="white"
+        color="primary"
         hide-details
         class="mr-5 d-none d-sm-flex"
         v-model="search"
         @keydown.enter="searchName"
       />
       <v-spacer class="d-flex d-sm-none"></v-spacer>
-      <v-icon class="d-flex d-sm-none mr-3">mdi-magnify</v-icon>
-    </v-row>
+      <v-text-field
+        style="max-width: 35vw"
+        v-if="searchOpen"
+        autofocus
+        placeholder="Search..."
+        single-line
+        color="primary"
+        hide-details
+        class="mr-1 d-flex d-sm-none"
+        v-model="search"
+        @keydown.enter="searchName"
+      />
+      <v-icon
+        class="d-flex d-sm-none mr-0"
+        @click="toggleSearchInput"
+      >mdi-magnify</v-icon>
+    <!-- </v-row> -->
   </v-app-bar>
 </template>
 
@@ -39,7 +54,8 @@
 export default {
   data () {
     return {
-      search: ''
+      search: '',
+      searchOpen: false
     }
   },
   methods: {
@@ -51,6 +67,11 @@ export default {
     },
     goToSearchName () {
       this.$router.push(`/search?keywords=${this.search}`)
+    },
+    toggleSearchInput () {
+      console.log('search open', this.searchOpen)
+
+      this.searchOpen = !this.searchOpen
     },
     searchName () {
       this.goToSearchName()
