@@ -10,8 +10,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 const config = {
   baseURL: process.env.VUE_APP_baseURL || process.env.VUE_APP_apiUrl || '',
-  timeout: 60 * 1000 // Timeout
-  // withCredentials: true // Check cross-site Access-Control
+  timeout: 60 * 1000, // Timeout
+  withCredentials: true // Check cross-site Access-Control
 }
 
 const _axios = axios.create(config)
