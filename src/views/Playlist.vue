@@ -33,7 +33,7 @@
             :key="track.id"
             class="ma-0 pa-0"
           >
-            <v-list-item-group color="primary">
+            <!-- <v-list-item-group color="primary"> -->
               <v-list-item
                 @click="setMusicDetailsList(track)"
               >
@@ -47,7 +47,7 @@
                   <v-icon >mdi-play</v-icon>
                 </v-list-item-avatar>
               </v-list-item>
-            </v-list-item-group>
+            <!-- </v-list-item-group> -->
           <v-divider/>
           </v-list>
         </v-card>

@@ -7,7 +7,24 @@
       app
       clipped
     >
-      <v-list dense>
+      <v-list dense shaped>
+        <v-list-item-group v-model="item" color="primary">
+
+        <!-- user avatar and info -->
+        <v-list-item disabled>
+          <v-list-item-avatar size=72 class="mx-auto">
+            <img src="https://randomuser.me/api/portraits/men/97.jpg">
+          </v-list-item-avatar>
+        </v-list-item>
+        <v-list-item disabled>
+          <v-list-item-content>
+            <v-list-item-title class="text-center">Jane Smith</v-list-item-title>
+            <v-list-item-subtitle class="text-center">Logged In</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+
+        <!-- navigation items -->
         <v-list-item
           v-for="item in items"
           :key="item.text"
@@ -22,6 +39,9 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-divider></v-divider>
+
+        <!-- subcriptions -->
         <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
         <v-list>
           <v-list-item
@@ -38,6 +58,9 @@
             <v-list-item-title v-text="item.text" />
           </v-list-item>
         </v-list>
+        <v-divider></v-divider>
+
+        <!-- bottom buttons -->
         <v-list-item
           class="mt-4"
           link
@@ -53,6 +76,7 @@
           </v-list-item-action>
           <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
         </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
     <app-navbar @toggleAppDrawer="toggleAppDrawer"/>
@@ -79,8 +103,9 @@ export default {
   data () {
     return {
       appDrawer: null,
+      item: 2,
       items: [
-        { icon: 'mdi-fire', text: 'Most Popular' },
+        { icon: 'mdi-fire', text: 'Playlist' },
         { icon: 'mdi-playlist-check', text: 'Subscriptions' },
         { icon: 'mdi-history', text: 'History' }
       ],
@@ -98,7 +123,6 @@ export default {
   },
   methods: {
     toggleAppDrawer () {
-      console.log('emited', this.appDrawer)
       this.appDrawer = !this.appDrawer
     }
   }

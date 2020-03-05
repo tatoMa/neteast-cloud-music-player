@@ -35,16 +35,16 @@
 
             <v-card-actions>
               <v-btn icon @click="goToPlaylist(item)">
-                <v-icon>mdi-play-circle-outline</v-icon>
+                <v-icon color="primary">mdi-play-circle-outline</v-icon>
               </v-btn>
               <v-spacer></v-spacer>
 
               <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
+                <v-icon>mdi-heart-outline</v-icon>
               </v-btn>
 
               <v-btn icon>
-                <v-icon>mdi-playlist-music</v-icon>
+                <v-icon>mdi-playlist-music-outline</v-icon>
               </v-btn>
             </v-card-actions>
           </v-card>

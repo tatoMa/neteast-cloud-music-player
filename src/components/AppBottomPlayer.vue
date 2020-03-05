@@ -60,7 +60,7 @@
                 align="center"
                 align-content="center"
                 justify="center"
-                class="mt-1 mt-sm-0"
+                class="mt-1 mt-sm-0 mb-0"
               >
               <v-slider
                 class="mt-1"
@@ -91,7 +91,7 @@
               </v-row>
 
               <!-- buttons section -->
-              <v-row justify="space-between" no-gutters class="my-1">
+              <v-row justify="space-between" no-gutters class="mb-1">
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
                   <audio

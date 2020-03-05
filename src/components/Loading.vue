@@ -1,11 +1,12 @@
 <template>
     <!-- Loading progress bar -->
       <v-row
+        no-gutters
         class="fill-height"
         align-content="center"
         justify="center"
         v-if="this.loading"
-        style="min-height:80vh"
+        style="min-height:75vh"
       >
         <v-col cols="8">
           <v-progress-linear
