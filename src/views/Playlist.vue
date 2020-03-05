@@ -86,6 +86,8 @@ export default {
   },
   methods: {
     setMusicDetailsList (item) {
+      console.log(item)
+
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailsList', item)
       this.$store.commit('player/setMusicUrlsListById')

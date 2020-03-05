@@ -153,7 +153,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import { getMusicDetailById } from '../utils/api'
 export default {
   data () {
     return {

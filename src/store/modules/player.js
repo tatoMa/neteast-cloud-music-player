@@ -1,5 +1,6 @@
 // import mock from '../../utils/mock'
-import { getMusicUrlById } from '../../utils/api'
+import { getMusicUrlById, getMusicDetailById } from '../../utils/api'
+import store from '..'
 
 export default {
   namespaced: true,
@@ -8,6 +9,7 @@ export default {
     // song: mock,
     // songId: '',
     // songsIds: [],
+    musicDetailById: null,
     musicDetailsList: [],
     musicUrlsListById: []
     // currentPausedSong: null
@@ -23,11 +25,22 @@ export default {
       state.musicDetailsList = []
       state.musicDetailsList.push(item)
     },
-    setMusicUrlsListById: async (state) => {
+    setMusicUrlsListById: (state) => {
       if (state.musicDetailsList.length > 0) {
         state.musicUrlsListById = []
-        await getMusicUrlById(state.musicDetailsList[0].id).then(res => { state.musicUrlsListById.push(res) })
+        getMusicUrlById(state.musicDetailsList[0].id).then(res => { state.musicUrlsListById.push(res) })
       }
+    },
+    setMusicDetailById: (state, id) => {
+      console.log('setMusicDetailById')
+
+      state.musicUrlsListById = []
+      getMusicDetailById(id).then(res => {
+        state.musicDetailById = res
+        state.musicDetailsList = []
+        state.musicDetailsList.push(state.musicDetailById)
+        store.commit('player/setMusicUrlsListById')
+      })
     }
     // setCurrentPausedSong: (state, song) => {
     //   console.log('setCurrentSong', song)
@@ -54,6 +67,9 @@ export default {
     },
     getMusicUrlsListById: (state) => {
       return state.musicUrlsListById
+    },
+    getMusicDetailById: (state) => {
+      return state.musicDetailById
     }
     // getCurrentPausedSong: (state) => {
     //   return state.currentPausedSong
