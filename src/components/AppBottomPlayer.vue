@@ -5,7 +5,7 @@
           <v-row
             no-gutters
             justify="center"
-            class="px-3"
+            class="px-3 px-sm-10"
           >
 
           <!-- cover image section -->
@@ -34,7 +34,7 @@
 
             <!-- information and controllers section -->
             <v-col
-
+              align-self="center"
               class="pl-1 pl-sm-5 text-center"
               style="max-width:900px"
             >
@@ -74,6 +74,8 @@
                 color="primary"
                 height="0"
                 background-color="secondary"
+                hide-details
+                @click="playTimeClick(val)"
               ></v-slider>
               <v-slider
                 class="mt-1"
@@ -86,6 +88,7 @@
                 color="primary"
                 height="0"
                 background-color="secondary"
+                hide-details
               ></v-slider>
               <div class="caption">
                 {{ currentTimeAndDurationLabel }}
@@ -235,7 +238,11 @@ export default {
         this.volume = this.storedLastVolume
       }
     },
-    fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s }
+    fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s },
+    playTimeClick (val) {
+      console.log('click slider', val)
+      this.$refs.player.currentTime = 100
+    }
   }
 }
 </script>

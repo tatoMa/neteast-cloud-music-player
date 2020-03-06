@@ -1,13 +1,9 @@
 <template>
   <v-container class="pt-0">
     <v-row class="text-center">
-      <!-- <v-col cols="12">
-        <div v-for="song in getSearchResult" :key="song.id">
-          <p @click="goToPlayer(song)">{{song.name}} - {{song.artists[0].name}} - {{song.id}}</p>
-        </div>
-      </v-col> -->
       <v-col>
-
+        <!-- Loading progress bar -->
+        <loading :loading="!getSearchResult"/>
       <v-list
             v-for="track in getSearchResult"
             :key="track.id"
@@ -37,10 +33,11 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import loading from '../components/Loading'
 import { mapGetters } from 'vuex'
 export default {
   name: 'List',
+  components: { loading },
   data () {
     return {
       keywords: '',
@@ -60,7 +57,7 @@ export default {
   },
   methods: {
     setMusicDetailsList (item) {
-      console.log(item.id)
+      // console.log(item.id)
 
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailById', item.id)
