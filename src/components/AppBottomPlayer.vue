@@ -1,24 +1,23 @@
 <template>
-    <v-footer fixed class="pa-0 ma-0" color="secondary">
-      <v-col class="py-0 px-sm-9 ma-0" cols="12">
+    <v-footer fixed class="pa-0 ma-0 z-index-higher" color="secondary">
+      <!-- <div class="py-0 px-sm-9 ma-0" cols="12"> -->
         <!-- player -->
           <v-row
             no-gutters
-            align="center"
+            justify="center"
+            class="px-3"
           >
 
           <!-- cover image section -->
-            <v-col
-              cols="3"
-              align-self="center"
-            >
+            <!-- <div
+
+            > -->
               <v-img
                 v-if="getMusicDetailsList[0]"
                 class="my-1 pa-0"
                 :src="getMusicDetailsList[0].al.picUrl+'?param=200y200'"
-                max-width="250"
+                max-width="94"
                 max-height="94"
-                aspect-ratio=1
                 contain
               >
               </v-img>
@@ -26,17 +25,16 @@
                 v-else
                 class="my-1 pa-0"
                 src="../assets/default_cover.png"
-                max-width="250"
+                max-width="94"
                 max-height="94"
-                aspect-ratio=1
                 contain
               >
               </v-img>
-            </v-col>
+            <!-- </div> -->
 
             <!-- information and controllers section -->
             <v-col
-              cols="9"
+
               class="pl-1 pl-sm-5 text-center"
               style="max-width:900px"
             >
@@ -151,7 +149,7 @@
               </v-row>
             </v-col>
           </v-row>
-      </v-col>
+      <!-- </v-col> -->
     </v-footer>
 </template>
 
@@ -200,7 +198,7 @@ export default {
       // console.log(this.player)
     },
     audioTagPausedStatus: function (val) {
-      console.log(val)
+      // console.log(val)
     }
   },
   // mounted () {
@@ -247,5 +245,8 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.z-index-higher{
+  z-index: 10;
 }
 </style>
