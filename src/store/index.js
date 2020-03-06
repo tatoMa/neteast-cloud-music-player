@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import player from './modules/player'
-import { getPlayLists, getPlayListById, getSearchResult } from '../utils/api'
+import { getPlayLists, getPlayListById, getSearchResult, getNewMusicLists } from '../utils/api'
 
 Vue.use(Vuex)
 
@@ -10,8 +10,8 @@ export default new Vuex.Store({
     // appDrawer: false,
     playListById: null,
     playLists: [],
-    searchResult: null
-
+    searchResult: null,
+    newMusicLists: []
   },
   mutations: {
     // toggleAppDrawer (state) {
@@ -29,6 +29,12 @@ export default new Vuex.Store({
       state.searchResult = null
       getSearchResult(text).then(res => { state.searchResult = res })
       // console.log('searching', state.searchResult)
+    },
+    setNewMusicLists (state) {
+      getNewMusicLists().then(res => {
+        console.log(res)
+        state.newMusicLists = res
+      })
     }
 
   },
@@ -47,6 +53,9 @@ export default new Vuex.Store({
     },
     getSearchResult: (state) => {
       return state.searchResult
+    },
+    getNewMusicLists: (state) => {
+      return state.newMusicLists
     }
 
   },

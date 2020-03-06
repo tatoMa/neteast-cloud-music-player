@@ -4,7 +4,7 @@
       <v-col>
         <!-- Loading progress bar -->
         <loading :loading="!getSearchResult"/>
-      <v-list
+          <v-list
             v-for="track in getSearchResult"
             :key="track.id"
             class="ma-0 pa-0"
@@ -25,7 +25,7 @@
               </v-list-item>
             <!-- </v-list-item-group> -->
           <v-divider/>
-          </v-list>
+        </v-list>
       </v-col>
 
     </v-row>
@@ -57,12 +57,6 @@ export default {
   },
   methods: {
     setMusic (id) {
-      // this.$store.commit('player/togglePaused', false)
-      // this.$store.commit('player/setMusicDetailByIdFromSearch', track.id)
-      // this.$store.commit('player/setMusicUrlsListById')
-      // const trackById = this.getSearchResult.filter((track) => track.id === id)
-      // console.log(trackById)
-
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailByIdFromSearch', id)
       this.$store.commit('player/setMusicUrlsListById')

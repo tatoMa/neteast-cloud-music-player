@@ -29,6 +29,7 @@
           v-for="item in items"
           :key="item.text"
           link
+          @click="gotoPage(item.url)"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -105,9 +106,9 @@ export default {
       appDrawer: false,
       item: 2,
       items: [
-        { icon: 'mdi-fire', text: 'Playlist' },
-        { icon: 'mdi-playlist-check', text: 'Subscriptions' },
-        { icon: 'mdi-history', text: 'History' }
+        { icon: 'mdi-fire', text: 'Top Music', url: 'topmusic' },
+        { icon: 'mdi-format-list-bulleted-square', text: 'Top Playlists', url: '' },
+        { icon: 'mdi-account-multiple', text: 'Top Artists', url: 'topartist' }
       ],
       items2: [
         { picture: 28, text: 'Joseph' },
@@ -124,6 +125,9 @@ export default {
   methods: {
     toggleAppDrawer () {
       this.appDrawer = !this.appDrawer
+    },
+    gotoPage (url) {
+      this.$router.push(`/${url}`)
     }
   }
 }

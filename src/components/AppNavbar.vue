@@ -11,7 +11,7 @@
       <v-btn icon class="mr-2 d-none d-sm-flex">
         <v-icon color="#fc5185" large>mdi-music-circle-outline</v-icon>
       </v-btn>
-      <p class="headline ma-auto" color="primary">tato-music</p>
+      <p class="headline ma-auto">tato-music</p>
     </div>
     <v-spacer />
     <!-- <v-row

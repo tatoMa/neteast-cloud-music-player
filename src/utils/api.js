@@ -3,6 +3,9 @@ import axios from 'axios'
 const getPlayLists = axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`, { withCredentials: true })
   .then((response) => response.data.playlists)
 
+const getNewMusicLists = () => axios.get(`${process.env.VUE_APP_baseURL}/personalized/newsong`, { withCredentials: true })
+  .then((response) => response.data.result)
+
 const getPlayListById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${id}`, { withCredentials: true })
   .then((response) => response.data.playlist)
 
@@ -23,6 +26,7 @@ const getSearchResult = (text) => axios.get(`${process.env.VUE_APP_baseURL}/sear
 
 export {
   getPlayLists,
+  getNewMusicLists,
   getPlayListById,
   getMusicDetailById,
   getMusicDetailByIds,

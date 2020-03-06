@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HotPlayLists from '../views/HotPlayLists.vue'
+import TopPlayLists from '../views/TopPlayLists.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'HotPlayLists',
-    component: HotPlayLists
+    name: 'TopPlayLists',
+    component: TopPlayLists
   },
   {
     path: '/Song',
@@ -16,10 +16,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Song.vue')
   },
   // {
-  //   path: '/hotplaylists',
-  //   name: 'HotPlayLists',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/HotPlayLists.vue')
+  //   path: '/Topplaylists',
+  //   name: 'TopPlayLists',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/TopPlayLists.vue')
   // },
+  {
+    path: '/topmusic',
+    name: 'TopMusic',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TopMusic.vue')
+  },
   {
     path: '/playlist',
     name: 'Playlist',
