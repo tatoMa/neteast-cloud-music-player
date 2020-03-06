@@ -15,7 +15,7 @@
         >
           <v-img
             class="white--text align-end"
-            height="330px"
+            height="35vh"
             :src="getPlayListById.coverImgUrl"
           >
           </v-img>
@@ -28,6 +28,16 @@
         max-width="800"
         tile
         >
+        <v-btn
+          @click="setMusicList"
+          rounded
+          color="primary"
+          block
+          class="mb-1"
+        >
+          play list
+          <v-icon right>mdi-play-circle-outline</v-icon>
+        </v-btn>
           <v-list
             v-for="track in getPlayListById.tracks"
             :key="track.id"
@@ -35,7 +45,7 @@
           >
             <!-- <v-list-item-group color="primary"> -->
               <v-list-item
-                @click="setMusicDetailById(track.id)"
+                @click="setMusic(track.id)"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-star</v-icon>
@@ -85,7 +95,7 @@ export default {
     })
   },
   methods: {
-    setMusicDetailById (id) {
+    setMusic (id) {
       // console.log(tracks)
       const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
       console.log(trackById[0])
@@ -93,7 +103,13 @@ export default {
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailById', trackById[0])
       this.$store.commit('player/setMusicUrlsListById')
+    },
+    setMusicList () {
+      this.$store.commit('player/togglePaused', false)
+      this.$store.commit('player/setMusicDetailByIdsList', this.getPlayListById.tracks)
+      this.$store.commit('player/setMusicUrlsListById')
     }
+
   }
 }
 </script>

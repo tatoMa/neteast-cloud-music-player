@@ -1,5 +1,6 @@
 // import mock from '../../utils/mock'
 import { getMusicUrlById, getMusicDetailById } from '../../utils/api'
+// import { getMusicUrlById, getMusicUrlByIds, getMusicDetailById } from '../../utils/api'
 import store from '..'
 
 export default {
@@ -11,7 +12,8 @@ export default {
     // songsIds: [],
     musicDetailById: null,
     musicDetailsList: [],
-    musicUrlsListById: []
+    musicUrlsList: [],
+    currentTrack: 0
     // currentPausedSong: null
   },
   mutations: {
@@ -23,24 +25,52 @@ export default {
     },
     setMusicDetailById: (state, payload) => {
       // console.log(payload)
+      state.currentTrack = 0
       state.musicDetailsList = []
       state.musicDetailsList.push(payload)
     },
     setMusicDetailByIdsList: (state, payload) => {
       // console.log(payload)
+      state.currentTrack = 0
       state.musicDetailsList = []
       state.musicDetailsList = payload
     },
     setMusicUrlsListById: (state) => {
       if (state.musicDetailsList.length > 0) {
-        state.musicUrlsListById = []
-        getMusicUrlById(state.musicDetailsList[0].id).then(res => { state.musicUrlsListById.push(res) })
+        state.musicUrlsList = []
+        // console.log(state.musicDetailsList[state.currentTrack].id)
+        getMusicUrlById(state.musicDetailsList[state.currentTrack].id).then(res => { state.musicUrlsList.push(res) })
       }
     },
+    setNextTrack: (state) => {
+      if (state.currentTrack < state.musicDetailsList.length - 1) {
+        state.currentTrack++
+        store.commit('player/setMusicUrlsListById')
+      }
+    },
+    setPrevTrack: (state) => {
+      if (state.currentTrack > 0) {
+        state.currentTrack--
+        store.commit('player/setMusicUrlsListById')
+      }
+    },
+    // setMusicUrlsListByIdsList: (state) => {
+    //   if (state.musicDetailsList.length > 0) {
+    //     state.musicUrlsList = []
+    //     console.log(state.musicDetailsList[0].id)
+
+    //     const ids = state.musicDetailsList.map((item) => item.id)
+    //     getMusicUrlByIds(ids.join(',')).then(res => {
+    //       console.log(res)
+
+    //       state.musicUrlsList = res
+    //     })
+    //   }
+    // },
     setMusicDetailByIdFromSearch: (state, id) => {
       console.log('setMusicDetailById')
 
-      state.musicUrlsListById = []
+      state.musicUrlsList = []
       getMusicDetailById(id).then(res => {
         state.musicDetailById = res
         state.musicDetailsList = []
@@ -57,7 +87,7 @@ export default {
   actions: {
     // setMusicUrlsListByIdAndCurrentPausedSong: async ({ state, commit }) => {
     //   await commit('setMusicUrlsListById')
-    //   // await commit('setCurrentPausedSong', state.musicUrlsListById[0])
+    //   // await commit('setCurrentPausedSong', state.musicUrlsList[0])
     // }
 
   },
@@ -65,14 +95,14 @@ export default {
     getPaused: (state) => {
       return state.paused
     },
-    // getSong: (state) => {
-    //   return state.song
-    // },
+    getCurrentTrack: (state) => {
+      return state.currentTrack
+    },
     getMusicDetailsList: (state) => {
       return state.musicDetailsList
     },
     getMusicUrlsListById: (state) => {
-      return state.musicUrlsListById
+      return state.musicUrlsList
     },
     getMusicDetailById: (state) => {
       return state.musicDetailById

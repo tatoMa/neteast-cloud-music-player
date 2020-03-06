@@ -13,9 +13,9 @@
 
             > -->
               <v-img
-                v-if="getMusicDetailsList[0]"
+                v-if="getMusicDetailsList[currentTrack]"
                 class="my-1 pa-0"
-                :src="getMusicDetailsList[0].al.picUrl+'?param=200y200'"
+                :src="getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
                 max-width="94"
                 max-height="94"
                 contain
@@ -43,9 +43,9 @@
               <div class="max-ch mx-auto">
                 <span
                   class="subtitle-2 d-sm-block"
-                  v-if="getMusicDetailsList[0]"
+                  v-if="getMusicDetailsList[currentTrack]"
                 >
-                  {{getMusicDetailsList[0].name}}
+                  {{getMusicDetailsList[currentTrack].name}}
                 </span>
                 <span
                   class="subtitle-2 d-sm-block"
@@ -54,7 +54,7 @@
                   NetEast
                 </span>
                 <!-- <span class="body-2" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span> -->
-                <span class="caption d-sm-block" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span>
+                <span class="caption d-sm-block" v-if="getMusicDetailsList[currentTrack]">{{getMusicDetailsList[currentTrack].ar[0].name}}</span>
                 <span class="caption d-sm-block" v-else> Cloud Music player </span>
               </div>
               <v-row
@@ -109,9 +109,9 @@
                     @timeupdate="getMusicInfo($event.target)"
                     ></audio>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon>mdi-heart</v-icon>
+                    <v-icon disabled="">mdi-heart</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click="prevTrack">
                     <v-icon>mdi-step-backward</v-icon>
                   </v-btn>
                   <v-btn icon v-if="paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
@@ -124,11 +124,11 @@
                   <v-btn icon v-if="!paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <v-icon color="primary">mdi-pause</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click="nextTrack">
                     <v-icon>mdi-step-forward</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon>mdi-sync</v-icon>
+                    <v-icon disabled="">mdi-sync</v-icon>
                   </v-btn>
                 </v-row>
                 <!-- volume controller -->
@@ -174,6 +174,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      currentTrack: 'player/getCurrentTrack',
       paused: 'player/getPaused',
       // songUrl: 'player/getSong',
       getMusicDetailsList: 'player/getMusicDetailsList',
@@ -242,6 +243,12 @@ export default {
     playTimeClick (val) {
       console.log('click slider', val)
       this.$refs.player.currentTime = 100
+    },
+    nextTrack () {
+      this.$store.commit('player/setNextTrack')
+    },
+    prevTrack () {
+      this.$store.commit('player/setPrevTrack')
     }
   }
 }
