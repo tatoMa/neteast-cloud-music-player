@@ -67,7 +67,7 @@ export default {
     },
     goToSearchName () {
       this.$router.push(`/search?keywords=${this.search}`)
-      this.$router.go(`/search?keywords=${this.search}`)
+      // this.$router.go(`/search?keywords=${this.search}`)
     },
     toggleSearchInput () {
       this.searchOpen = !this.searchOpen
