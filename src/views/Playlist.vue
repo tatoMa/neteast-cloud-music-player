@@ -35,7 +35,7 @@
           >
             <!-- <v-list-item-group color="primary"> -->
               <v-list-item
-                @click="setMusicDetailsList(track)"
+                @click="setMusicDetailById(track.id)"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-star</v-icon>
@@ -85,10 +85,13 @@ export default {
     })
   },
   methods: {
-    setMusicDetailsList (item) {
-      // console.log(item)
+    setMusicDetailById (id) {
+      // console.log(tracks)
+      const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
+      console.log(trackById[0])
+
       this.$store.commit('player/togglePaused', false)
-      this.$store.commit('player/setMusicDetailsList', item)
+      this.$store.commit('player/setMusicDetailById', trackById[0])
       this.$store.commit('player/setMusicUrlsListById')
     }
   }

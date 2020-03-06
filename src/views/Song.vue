@@ -6,7 +6,7 @@
         <!-- 😀{{getCurrentPlayingSong}} -->
         <!-- ✅{{getMusicDetailsList}} -->
         <div v-for="song in songs" :key="song.id">
-          <p @click="setMusicDetailsList(song)">{{song.name}} - {{song.id}}</p>
+          <p @click="setMusicDetailById(song)">{{song.name}} - {{song.id}}</p>
           <img :src="song.al.picUrl" alt="">
         </div>
       </v-col>
@@ -44,8 +44,8 @@ export default {
     goToPlayer (item) {
       this.$router.push(`/player?id=${item.id}`)
     },
-    async setMusicDetailsList (item) {
-      await this.$store.commit('player/setMusicDetailsList', item)
+    async setMusicDetailById (item) {
+      await this.$store.commit('player/setMusicDetailById', item)
       this.$store.commit('player/setMusicUrlsListById')
     }
   }

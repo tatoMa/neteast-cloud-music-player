@@ -9,8 +9,14 @@ const getPlayListById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/playli
 const getMusicDetailById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${id}`, { withCredentials: true })
   .then((response) => response.data.songs[0])
 
+const getMusicDetailByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${ids}`, { withCredentials: true })
+  .then((response) => response.data.songs)
+
 const getMusicUrlById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/song/url?id=${id}`, { withCredentials: true })
   .then((response) => response.data.data[0])
+
+const getMusicUrlByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song/url?id=${ids}`, { withCredentials: true })
+  .then((response) => response.data.data)
 
 const getSearchResult = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search?keywords=${text}`, { withCredentials: true })
   .then((response) => response.data.result.songs)
@@ -19,6 +25,8 @@ export {
   getPlayLists,
   getPlayListById,
   getMusicDetailById,
+  getMusicDetailByIds,
   getMusicUrlById,
+  getMusicUrlByIds,
   getSearchResult
 }

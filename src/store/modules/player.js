@@ -21,9 +21,15 @@ export default {
       } else state.paused = false
       // state.paused = !state.paused
     },
-    setMusicDetailsList: (state, item) => {
+    setMusicDetailById: (state, payload) => {
+      // console.log(payload)
       state.musicDetailsList = []
-      state.musicDetailsList.push(item)
+      state.musicDetailsList.push(payload)
+    },
+    setMusicDetailByIdsList: (state, payload) => {
+      // console.log(payload)
+      state.musicDetailsList = []
+      state.musicDetailsList = payload
     },
     setMusicUrlsListById: (state) => {
       if (state.musicDetailsList.length > 0) {
@@ -31,7 +37,7 @@ export default {
         getMusicUrlById(state.musicDetailsList[0].id).then(res => { state.musicUrlsListById.push(res) })
       }
     },
-    setMusicDetailById: (state, id) => {
+    setMusicDetailByIdFromSearch: (state, id) => {
       console.log('setMusicDetailById')
 
       state.musicUrlsListById = []
