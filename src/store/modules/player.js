@@ -10,7 +10,7 @@ export default {
     // song: mock,
     // songId: '',
     // songsIds: [],
-    musicDetailById: null,
+    // musicDetailById: null,
     musicDetailsList: [],
     musicUrlsList: [],
     currentTrack: 0
@@ -54,6 +54,16 @@ export default {
         store.commit('player/setMusicUrlsListById')
       }
     },
+    setMusicDetailByIdFromSearch: (state, id) => {
+      state.currentTrack = 0
+      state.musicUrlsList = []
+      state.musicDetailsList = []
+      getMusicDetailById(id).then(res => {
+        // state.musicDetailById = res
+        state.musicDetailsList.push(res)
+        store.commit('player/setMusicUrlsListById')
+      })
+    }
     // setMusicUrlsListByIdsList: (state) => {
     //   if (state.musicDetailsList.length > 0) {
     //     state.musicUrlsList = []
@@ -67,17 +77,7 @@ export default {
     //     })
     //   }
     // },
-    setMusicDetailByIdFromSearch: (state, id) => {
-      console.log('setMusicDetailById')
 
-      state.musicUrlsList = []
-      getMusicDetailById(id).then(res => {
-        state.musicDetailById = res
-        state.musicDetailsList = []
-        state.musicDetailsList.push(state.musicDetailById)
-        store.commit('player/setMusicUrlsListById')
-      })
-    }
     // setCurrentPausedSong: (state, song) => {
     //   console.log('setCurrentSong', song)
 

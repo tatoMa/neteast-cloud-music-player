@@ -11,7 +11,7 @@
           >
             <!-- <v-list-item-group color="primary"> -->
               <v-list-item
-                @click="setMusicDetailById(track)"
+                @click="setMusic(track.id)"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-star</v-icon>
@@ -40,14 +40,14 @@ export default {
   components: { loading },
   data () {
     return {
-      keywords: '',
+      keyword: '',
       songs: []
     }
   },
   mounted () {
-    // if (this.keywords !== '') {
-    this.keywords = this.$route.query.keywords
-    this.$store.commit('setSearchResult', this.keywords)
+    // if (this.keyword !== '') {
+    this.keyword = this.$route.query.keyword
+    this.$store.commit('setSearchResult', this.keyword)
     // }
   },
   computed: {
@@ -56,12 +56,16 @@ export default {
     })
   },
   methods: {
-    setMusicDetailById (item) {
-      // console.log(item.id)
+    setMusic (id) {
+      // this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setMusicDetailByIdFromSearch', track.id)
+      // this.$store.commit('player/setMusicUrlsListById')
+      // const trackById = this.getSearchResult.filter((track) => track.id === id)
+      // console.log(trackById)
 
       this.$store.commit('player/togglePaused', false)
-      this.$store.commit('player/setMusicDetailByIdFromSearch', item.id)
-      // this.$store.commit('player/setMusicUrlsListById')
+      this.$store.commit('player/setMusicDetailByIdFromSearch', id)
+      this.$store.commit('player/setMusicUrlsListById')
     }
   }
 }

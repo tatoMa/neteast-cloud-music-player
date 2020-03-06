@@ -28,7 +28,7 @@ export default new Vuex.Store({
     setSearchResult (state, text) {
       state.searchResult = null
       getSearchResult(text).then(res => { state.searchResult = res })
-      console.log('searching', state.searchResult)
+      // console.log('searching', state.searchResult)
     }
 
   },

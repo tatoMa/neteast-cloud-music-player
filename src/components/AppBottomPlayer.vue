@@ -122,7 +122,11 @@
                       <v-icon large v-else>mdi-play</v-icon>
                   </v-btn>
                   <v-btn icon v-if="!paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon color="primary">mdi-pause</v-icon>
+                    <div v-if="getMusicUrlsListById[0]">
+                      <v-icon color="primary" v-if="!getMusicUrlsListById[0].url" >mdi-alert-circle</v-icon>
+                      <v-icon color="primary" v-else>mdi-pause</v-icon>
+                    </div>
+                      <v-icon color="primary" v-else>mdi-pause</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click="nextTrack">
                     <v-icon>mdi-step-forward</v-icon>
