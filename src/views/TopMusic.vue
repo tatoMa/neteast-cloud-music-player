@@ -15,9 +15,11 @@
           <v-tab>Hot</v-tab>
           <v-tab>Origional</v-tab>
           <v-tab>Popular</v-tab>
+          <v-tab>International</v-tab>
+          <v-tab>UK Top</v-tab>
 
           <v-tab-item
-            v-for="n in 4"
+            v-for="n in 6"
             :key="n"
           >
             <TopMusicById :id='n-1'></TopMusicById>
@@ -29,7 +31,7 @@
             sm="6"
             md="4"
             class="pa-0 ma-0"
-            v-for="n in 4"
+            v-for="n in 6"
             :key="n"
           >
             <TopMusicById :id='n-1'></TopMusicById>

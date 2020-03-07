@@ -13,7 +13,6 @@
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
           cols="12"
-          md="6"
           class="px-2 py-0 my-0 click-effect"
           @click="setMusic(item.id)"
         >
