@@ -13,12 +13,16 @@
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
           cols="12"
-          sm="6"
-          md="4"
-          class="px-2 py-0 my-1"
+          md="6"
+          class="px-2 py-0 my-0 click-effect"
           @click="setMusic(item.id)"
         >
-          <v-card v-if="index < 30" color="secondary" style="min-height:108px">
+          <v-card
+            v-if="index < 30"
+            class="my-1"
+            color="secondary"
+            style="min-height:108px"
+          >
             <div class="d-flex flex-no-wrap justify-space-between">
               <div>
                 <v-card-title
@@ -88,5 +92,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.click-effect .justify-space-between{
+  transition: .15s ease-out;
+}
+.click-effect:active .justify-space-between{
+  background-color:#79797980 !important
+}
 </style>

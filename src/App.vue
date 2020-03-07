@@ -106,8 +106,8 @@ export default {
       appDrawer: false,
       item: 2,
       items: [
-        { icon: 'mdi-fire', text: 'Top Music', url: 'topmusic' },
-        { icon: 'mdi-format-list-bulleted-square', text: 'Top Playlists', url: '' },
+        { icon: 'mdi-fire', text: 'Top Music', url: '' },
+        { icon: 'mdi-format-list-bulleted-square', text: 'Top Playlists', url: 'topplaylists' },
         { icon: 'mdi-account-multiple', text: 'Top Artists', url: 'topartist' }
       ],
       items2: [
