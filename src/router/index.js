@@ -13,27 +13,22 @@ const routes = [
   {
     path: '/Song',
     name: 'Song',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Song.vue')
+    component: () => import(/* webpackChunkName: "song" */ '../views/Song.vue')
   },
-  // {
-  //   path: '/Topplaylists',
-  //   name: 'TopPlayLists',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/TopPlayLists.vue')
-  // },
   {
     path: '/topmusic',
     name: 'TopMusic',
-    component: () => import(/* webpackChunkName: "about" */ '../views/TopMusic.vue')
+    component: () => import(/* webpackChunkName: "topmusic" */ '../views/TopMusic.vue')
   },
   {
     path: '/playlist',
     name: 'Playlist',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Playlist.vue')
+    component: () => import(/* webpackChunkName: "playlist" */ '../views/Playlist.vue')
   },
   {
     path: '/search',
     name: 'Search',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Search.vue')
+    component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue')
   }
 ]
 

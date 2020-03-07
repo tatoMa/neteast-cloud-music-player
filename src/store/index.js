@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import player from './modules/player'
-import { getPlayLists, getPlayListById, getSearchResult, getNewMusicLists } from '../utils/api'
+import {
+  getPlayLists,
+  getPlayListById,
+  getSearchResultByText,
+  getNewMusicLists,
+  getTopMusicListsById
+} from '../utils/api'
 
 Vue.use(Vuex)
 
@@ -11,7 +17,8 @@ export default new Vuex.Store({
     playListById: null,
     playLists: [],
     searchResult: null,
-    newMusicLists: []
+    newMusicLists: [],
+    topMusicListsById: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] }
   },
   mutations: {
     // toggleAppDrawer (state) {
@@ -27,13 +34,19 @@ export default new Vuex.Store({
     },
     setSearchResult (state, text) {
       state.searchResult = null
-      getSearchResult(text).then(res => { state.searchResult = res })
+      getSearchResultByText(text).then(res => { state.searchResult = res })
       // console.log('searching', state.searchResult)
     },
     setNewMusicLists (state) {
       getNewMusicLists().then(res => {
-        console.log(res)
+        // console.log(res)
         state.newMusicLists = res
+      })
+    },
+    setTopMusicListsById (state, id) {
+      getTopMusicListsById(id).then(res => {
+        // console.log(id, res)
+        state.topMusicListsById[id] = res
       })
     }
 
@@ -56,6 +69,11 @@ export default new Vuex.Store({
     },
     getNewMusicLists: (state) => {
       return state.newMusicLists
+    },
+    getTopMusicListsById: (state) => {
+      console.log(state.topMusicListsById)
+
+      return state.topMusicListsById
     }
 
   },
