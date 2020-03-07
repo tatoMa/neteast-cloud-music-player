@@ -269,7 +269,7 @@ export default {
   text-overflow: ellipsis;
 }
 .z-index-higher{
-  z-index: 10;
+  z-index: 2;
 }
 .normal-player{
   height: 96px;
