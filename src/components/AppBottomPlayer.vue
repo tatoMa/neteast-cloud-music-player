@@ -68,21 +68,21 @@
                 class="mt-1"
                 v-if="getMusicUrlsListById.length > 0"
                 dense
-                v-model="currentTimeComputed"
+                v-model="currentTime"
                 min="0"
                 :max="duration"
                 color="primary"
                 height="0"
                 background-color="secondary"
                 hide-details
-                @click="playTimeClick(val)"
+                @click="playTimeClick()"
               ></v-slider>
               <v-slider
                 class="mt-1"
                 disabled
                 dense
                 v-else
-                v-model="currentTimeComputed"
+                v-model="currentTime"
                 min="0"
                 max="100"
                 color="primary"
@@ -165,14 +165,14 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      audioTagPausedStatus: false,
-      player: null,
+      // audioTagPausedStatus: false,
+      // player: null,
+      ended: false, // for when audio tag is ended
       volume: 1,
       storedLastVolume: 0,
       currentTime: 0,
-      duration: 0,
+      duration: 0
       // paused: true,
-      message: ['hello', 'hi']
       // song: null
     }
   },
@@ -184,16 +184,6 @@ export default {
       getMusicDetailsList: 'player/getMusicDetailsList',
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
-    currentTimeComputed: {
-    // getter
-      get: function () {
-        return this.currentTime
-      },
-      // setter
-      set: function (newValue) {
-        // this.$refs.player.currentTime = newValue
-      }
-    },
     currentTimeAndDurationLabel: function () {
       if (this.duration && this.duration !== 0) {
         return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
@@ -204,17 +194,13 @@ export default {
     volume: function (val) {
       this.$refs.player.volume = val
       // console.log(this.player)
-    },
-    audioTagPausedStatus: function (val) {
-      // console.log(val)
     }
   },
-  // mounted () {
-  //   this.player = this.$refs.player
-  //   console.log(this.player)
-  // },
   mounted () {
-    this.audioTagPausedStatus = this.$refs.player.paused
+    // this.audioTagPausedStatus = this.$refs.player.paused
+    this.$refs.player.onended = () => {
+      this.nextTrack()
+    }
   },
   methods: {
     togglePlaying () {
@@ -244,9 +230,9 @@ export default {
       }
     },
     fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s },
-    playTimeClick (val) {
-      console.log('click slider', val)
-      this.$refs.player.currentTime = 100
+    playTimeClick () {
+      console.log('click slider')
+      this.$refs.player.currentTime = 260
     },
     nextTrack () {
       this.$store.commit('player/setNextTrack')
