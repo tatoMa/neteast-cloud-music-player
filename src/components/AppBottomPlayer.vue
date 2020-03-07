@@ -1,42 +1,51 @@
 <template>
-    <v-footer fixed class="pa-0 ma-0 z-index-higher" color="secondary">
-      <!-- <div class="py-0 px-sm-9 ma-0" cols="12"> -->
+    <v-footer
+      fixed
+      class="pa-0 ma-0 z-index-higher"
+      color="secondary"
+    >
+      <!-- <v-col class="py-0 px-sm-9 ma-0" cols="12"> -->
         <!-- player -->
           <v-row
             no-gutters
             justify="center"
-            class="px-3 px-sm-10"
+            align="end"
+            class="px-3 px-sm-10 normal-player"
+            @click="toggleLayout"
+            :class="{ 'full-height-player': layout }"
+            style="width:100vw"
           >
 
           <!-- cover image section -->
-            <!-- <div
-
-            > -->
+            <v-col
+              :cols="layout?12:3"
+            >
               <v-img
                 v-if="getMusicDetailsList[currentTrack]"
-                class="my-1 pa-0"
-                :src="getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
-                max-width="94"
-                max-height="94"
+                class="my-1 pa-0 mx-auto"
+                :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=600y600' : getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
+                :max-width="layout ? 400 : 94"
+                :max-height="layout ? 400 : 94"
                 contain
               >
               </v-img>
               <v-img
                 v-else
-                class="my-1 pa-0"
+                class="my-1 pa-0 mx-auto"
                 src="../assets/default_cover.png"
-                max-width="94"
-                max-height="94"
+                :max-width="layout ? 400 : 94"
+                :max-height="layout ? 400 : 94"
                 contain
               >
               </v-img>
-            <!-- </div> -->
+            </v-col>
 
             <!-- information and controllers section -->
             <v-col
-              align-self="center"
+              :align-self="layout?'end':'center'"
               class="pl-1 pl-sm-5 text-center"
               style="max-width:900px"
+              :class="layout ? 'mb-4' : ''"
             >
             <!-- {{getMusicUrlsListById}} -->
               <!-- <h2 class="title" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].name}}</h2> -->
@@ -111,24 +120,24 @@
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon disabled="">mdi-heart</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click="prevTrack">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="prevTrack">
                     <v-icon>mdi-step-backward</v-icon>
                   </v-btn>
-                  <v-btn icon v-if="paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
+                  <v-btn icon v-if="paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <div v-if="getMusicUrlsListById[0]">
                       <v-icon large color="primary" v-if="getMusicUrlsListById[0].url">mdi-play</v-icon>
                       <v-icon large v-else>mdi-play</v-icon>
                     </div>
                       <v-icon large v-else>mdi-play</v-icon>
                   </v-btn>
-                  <v-btn icon v-if="!paused" @click="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
+                  <v-btn icon v-if="!paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <div v-if="getMusicUrlsListById[0]">
                       <v-icon color="primary" v-if="!getMusicUrlsListById[0].url" >mdi-alert-circle</v-icon>
                       <v-icon color="primary" v-else>mdi-pause</v-icon>
                     </div>
                       <v-icon color="primary" v-else>mdi-pause</v-icon>
                   </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click="nextTrack">
+                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="nextTrack">
                     <v-icon>mdi-step-forward</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
@@ -171,7 +180,8 @@ export default {
       volume: 1,
       storedLastVolume: 0,
       currentTime: 0,
-      duration: 0
+      duration: 0,
+      layout: false
       // paused: true,
       // song: null
     }
@@ -188,6 +198,9 @@ export default {
       if (this.duration && this.duration !== 0) {
         return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
       } else return '0:00-0:00'
+    },
+    breakpoint () {
+      return this.$vuetify.breakpoint.xs
     }
   },
   watch: {
@@ -239,6 +252,11 @@ export default {
     },
     prevTrack () {
       this.$store.commit('player/setPrevTrack')
+    },
+    toggleLayout () {
+      if (this.breakpoint) {
+        this.layout = !this.layout
+      }
     }
   }
 }
@@ -252,5 +270,12 @@ export default {
 }
 .z-index-higher{
   z-index: 10;
+}
+.normal-player{
+  height: 96px;
+  transition: .4s ease-in-out;
+}
+.full-height-player{
+  height:calc(100vh - 56px);
 }
 </style>

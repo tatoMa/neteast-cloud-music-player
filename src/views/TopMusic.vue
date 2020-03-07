@@ -58,9 +58,9 @@ export default {
       return this.$vuetify.breakpoint
     }
   },
-  mounted () {
-    console.log(this.$vuetify.breakpoint)
-  },
+  // mounted () {
+  //   console.log(this.$vuetify.breakpoint)
+  // },
   methods: {
 
   }
