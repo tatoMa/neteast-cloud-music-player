@@ -19,7 +19,6 @@
       style="max-width: 650px"
     > -->
       <v-text-field
-        :append-icon-cb="() => {}"
         placeholder="Search..."
         single-line
         append-icon="mdi-magnify"

@@ -13,13 +13,13 @@
         <!-- user avatar and info -->
         <v-list-item disabled>
           <v-list-item-avatar size=72 class="mx-auto">
-            <img src="https://randomuser.me/api/portraits/men/97.jpg">
+            <img src="./assets/logo.png">
           </v-list-item-avatar>
         </v-list-item>
         <v-list-item disabled>
           <v-list-item-content>
-            <v-list-item-title class="text-center">Jane Smith</v-list-item-title>
-            <v-list-item-subtitle class="text-center">Logged In</v-list-item-subtitle>
+            <v-list-item-title class="text-center">tato music</v-list-item-title>
+            <v-list-item-subtitle class="text-center">make your life colorful</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>

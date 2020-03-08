@@ -316,7 +316,7 @@ export default {
   height:calc(100vh - 112px);
 }
 .cover-round{
-  position: relative;
+  // position: relative;
   border-radius: 50%;
 }
 .cover-disk::after{

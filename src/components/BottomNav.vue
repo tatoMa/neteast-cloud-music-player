@@ -1,7 +1,6 @@
 <template>
   <v-bottom-navigation
     v-model="bottomNav"
-    dark
     shift
     color="primary"
     class="bottom-nav"
