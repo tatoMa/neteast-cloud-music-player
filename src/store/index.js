@@ -30,7 +30,7 @@ export default new Vuex.Store({
       )
     },
     setPlayLists (state) {
-      getPlayLists.then(res => { state.playLists = res })
+      getPlayLists().then(res => { state.playLists = res })
     },
     setSearchResult (state, text) {
       state.searchResult = null
