@@ -16,7 +16,7 @@
           >
 
             <!-- eject button -->
-            <v-card v-if="!layout" class="eject-button px-5 lighten-1" flat color="secondary">
+            <v-card v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
               <v-icon>mdi-eject-outline</v-icon>
             </v-card><!-- eject button -->
 
@@ -118,7 +118,7 @@
               <v-row
                 justify="space-between"
                 no-gutters class="mb-1"
-                :class="layout?'mb-6':''"
+                :class="layout?'mb-8':''"
                 @click.stop="preventClick"
               >
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
@@ -184,9 +184,13 @@
             :layout = "layout"
           />
           <WaveEffect
-            v-if="!paused"
+            v-if="!paused && breakpoint"
             :layout = "layout"
           ></WaveEffect>
+          <WaveEffectLarge
+            v-if="!paused && !breakpoint"
+            :layout = "layout"
+          ></WaveEffectLarge>
       <!-- </v-col> -->
     </v-footer>
 </template>
@@ -195,8 +199,9 @@
 import { mapGetters } from 'vuex'
 import BottomNav from './BottomNav'
 import WaveEffect from './WaveEffect'
+import WaveEffectLarge from './WaveEffectLarge'
 export default {
-  components: { BottomNav, WaveEffect },
+  components: { BottomNav, WaveEffect, WaveEffectLarge },
   data () {
     return {
       // audioTagPausedStatus: false,
