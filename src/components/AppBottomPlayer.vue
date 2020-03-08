@@ -4,7 +4,6 @@
       class="pa-0 ma-0 z-index-higher border-top-radius"
       color="secondary"
     >
-      <!-- <v-col class="py-0 px-sm-9 ma-0" cols="12"> -->
         <!-- player -->
           <v-row
             no-gutters
@@ -13,12 +12,20 @@
             class="px-3 px-sm-10 normal-player"
             @click="toggleLayout"
             :class="{ 'full-height-player': layout }"
-            style="width:100vw"
+            style="width:100vw; z-index:5"
           >
-          <v-card v-if="!layout" class="eject-button px-5 lighten-1" flat color="secondary">
-            <v-icon>mdi-eject-outline</v-icon>
-          </v-card>
-          <!-- cover image section -->
+
+            <!-- eject button -->
+            <v-card v-if="!layout" class="eject-button px-5 lighten-1" flat color="secondary">
+              <v-icon>mdi-eject-outline</v-icon>
+            </v-card><!-- eject button -->
+
+            <!-- drawer down button -->
+            <v-btn icon v-if="layout">
+              <v-icon>mdi-chevron-down</v-icon>
+            </v-btn><!-- drawer down button -->
+
+            <!-- cover image section -->
             <v-col
               :cols="layout?12:3"
             >
@@ -111,6 +118,7 @@
               <v-row
                 justify="space-between"
                 no-gutters class="mb-1"
+                :class="layout?'mb-6':''"
                 @click.stop="preventClick"
               >
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
@@ -172,13 +180,23 @@
               </v-row>
             </v-col>
           </v-row>
+          <BottomNav
+            :layout = "layout"
+          />
+          <WaveEffect
+            v-if="!paused"
+            :layout = "layout"
+          ></WaveEffect>
       <!-- </v-col> -->
     </v-footer>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import BottomNav from './BottomNav'
+import WaveEffect from './WaveEffect'
 export default {
+  components: { BottomNav, WaveEffect },
   data () {
     return {
       // audioTagPausedStatus: false,
@@ -290,7 +308,7 @@ export default {
   transition: .4s ease-in-out;
 }
 .full-height-player{
-  height:calc(100vh - 56px);
+  height:calc(100vh - 114px);
 }
 .cover-round{
   position: relative;
@@ -314,6 +332,7 @@ export default {
   top: -17px;
   opacity: 0.6;
 }
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
