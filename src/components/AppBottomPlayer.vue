@@ -22,7 +22,8 @@
             >
               <v-img
                 v-if="getMusicDetailsList[currentTrack]"
-                class="my-1 pa-0 mx-auto image-round"
+                class="my-1 pa-0 mx-auto cover-round"
+                :class="paused ? '' : 'cover-rotation'"
                 :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=600y600' : getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
@@ -278,7 +279,18 @@ export default {
 .full-height-player{
   height:calc(100vh - 56px);
 }
-.image-round{
+.cover-round{
   border-radius: 50%;
+}
+.cover-rotation{
+  animation: rotation 15s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

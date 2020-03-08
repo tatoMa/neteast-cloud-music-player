@@ -71,8 +71,6 @@ export default new Vuex.Store({
       return state.newMusicLists
     },
     getTopMusicListsById: (state) => {
-      console.log(state.topMusicListsById)
-
       return state.topMusicListsById
     }
 
