@@ -1,7 +1,7 @@
 <template>
     <v-footer
       fixed
-      class="pa-0 ma-0 z-index-higher"
+      class="pa-0 ma-0 z-index-higher border-top-radius"
       color="secondary"
     >
       <!-- <v-col class="py-0 px-sm-9 ma-0" cols="12"> -->
@@ -280,6 +280,10 @@ export default {
 }
 .z-index-higher{
   z-index: 2;
+}
+.border-top-radius{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .normal-player{
   height: 96px;

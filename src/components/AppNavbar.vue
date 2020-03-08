@@ -31,7 +31,7 @@
       />
       <v-spacer class="d-flex d-sm-none"></v-spacer>
       <v-text-field
-        style="max-width: 35vw"
+        style="max-width: 30vw"
         v-if="searchOpen"
         autofocus
         placeholder="Search..."
@@ -83,6 +83,7 @@ export default {
     searchName () {
       this.goToSearchName()
       this.search = ''
+      this.searchOpen = false
     },
     toggleDarkTheme () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
