@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     goToPlaylist (item) {
-      this.$router.push(`/playlist?id=${item.id}`)
+      this.$router.push(`/playlistdetails?id=${item.id}`)
     }
   }
 }

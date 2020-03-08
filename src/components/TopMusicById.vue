@@ -9,22 +9,27 @@
     <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0" v-if="getTopMusicListsById[id].length !== 0">
       <div class="headline text-center">{{getTopMusicListsById[id].name}}</div>
       <v-row dense align-content="start">
-        <!-- <v-btn
-          @click="setMusicList"
-          rounded
-          color="primary"
-          block
-          class="my-1"
+        <v-col
+          cols="12"
+          class="px-2 py-0 my-0"
         >
-          play list
-          <v-icon right>mdi-play-circle-outline</v-icon>
-        </v-btn> -->
+          <v-btn
+            @click="setMusicList"
+            rounded
+            color="primary"
+            block
+            class="my-1"
+          >
+            play list
+            <v-icon right>mdi-play-circle-outline</v-icon>
+          </v-btn>
+        </v-col>
         <v-col
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
           cols="12"
           class="px-2 py-0 my-0 click-effect"
-          @click="setMusic(item.id)"
+          @click="setMusic(item)"
         >
           <v-card
             v-if="index < 30"
@@ -92,18 +97,16 @@ export default {
     this.$store.commit('setTopMusicListsById', this.id)
   },
   methods: {
-    setMusic (id) {
+    setMusic (item) {
       this.$store.commit('player/togglePaused', false)
-      this.$store.commit('player/setMusicDetailByIdFromSearch', id)
+      this.$store.commit('player/setMusicDetailById', item)
+      this.$store.commit('player/setMusicUrlsListById')
+    },
+    setMusicList () {
+      this.$store.commit('player/togglePaused', false)
+      this.$store.commit('player/setMusicDetailByIdsList', this.getTopMusicListsById[this.id].tracks)
       this.$store.commit('player/setMusicUrlsListById')
     }
-    // setMusicList () {
-    //   this.$store.commit('player/togglePaused', false)
-    //   console.log(this.getTopMusicListsById[this.id].tracks)
-
-    //   this.$store.commit('player/setMusicDetailByIdsList', this.getPlayListById[this.id].tracks)
-    //   this.$store.commit('player/setMusicUrlsListById')
-    // }
   }
 }
 </script>

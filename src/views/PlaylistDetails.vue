@@ -71,7 +71,7 @@
 import loading from '../components/Loading'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'PlayList',
+  name: 'PlayListDetails',
   components: {
     loading
   },
@@ -98,14 +98,14 @@ export default {
     setMusic (id) {
       // console.log(tracks)
       const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
-      console.log(trackById[0])
-
+      // console.log(trackById[0])
       this.$store.commit('player/togglePaused', false)
       this.$store.commit('player/setMusicDetailById', trackById[0])
       this.$store.commit('player/setMusicUrlsListById')
     },
     setMusicList () {
       this.$store.commit('player/togglePaused', false)
+      // console.log(this.getPlayListById.tracks)
       this.$store.commit('player/setMusicDetailByIdsList', this.getPlayListById.tracks)
       this.$store.commit('player/setMusicUrlsListById')
     }
