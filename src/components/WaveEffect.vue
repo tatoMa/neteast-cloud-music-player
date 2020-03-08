@@ -47,7 +47,7 @@ export default {
     left: 50%;
     margin: -30px 0 0 -54.5%;
     position: absolute;
-    bottom: 96px;
+    bottom: 95px;
     width: 100vw;
     z-index: 1;
     transition: 0.4s;

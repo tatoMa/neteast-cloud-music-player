@@ -8,7 +8,7 @@
           <v-row
             no-gutters
             justify="center"
-            align="end"
+            align="start"
             class="px-3 px-sm-10 normal-player"
             @click="toggleLayout"
             :class="{ 'full-height-player': layout }"
@@ -21,7 +21,7 @@
             </v-card><!-- eject button -->
 
             <!-- drawer down button -->
-            <v-btn icon v-if="layout">
+            <v-btn icon v-if="layout" class="mt-2">
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn><!-- drawer down button -->
 
@@ -313,7 +313,7 @@ export default {
   transition: .4s ease-in-out;
 }
 .full-height-player{
-  height:calc(100vh - 114px);
+  height:calc(100vh - 112px);
 }
 .cover-round{
   position: relative;
@@ -337,7 +337,6 @@ export default {
   top: -17px;
   opacity: 0.6;
 }
-
 @keyframes rotation {
   from {
     transform: rotate(0deg);
