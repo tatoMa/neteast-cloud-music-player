@@ -287,15 +287,10 @@ export default {
   content: '';
     position: absolute;
     border-radius: 50%;
-    top: 0;
-    left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   box-shadow: 0 0 5px 5px black;
-  // overflow: hidden;
+    top: -2%;
+    left: -2%;
     width: 104%;
     height: 104%;
-    transform: translate(-2%, -2%);
     border: 20px solid black;
 }
 .cover-rotation{
