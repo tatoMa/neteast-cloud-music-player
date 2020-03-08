@@ -23,7 +23,7 @@
               <v-img
                 v-if="getMusicDetailsList[currentTrack]"
                 class="my-1 pa-0 mx-auto cover-round"
-                :class="paused ? '' : 'cover-rotation'"
+                :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
                 :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=600y600' : getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
@@ -280,7 +280,23 @@ export default {
   height:calc(100vh - 56px);
 }
 .cover-round{
+  position: relative;
   border-radius: 50%;
+}
+.cover-disk::after{
+  content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   box-shadow: 0 0 5px 5px black;
+  // overflow: hidden;
+    width: 104%;
+    height: 104%;
+    transform: translate(-2%, -2%);
+    border: 20px solid black;
 }
 .cover-rotation{
   animation: rotation 15s infinite linear;
