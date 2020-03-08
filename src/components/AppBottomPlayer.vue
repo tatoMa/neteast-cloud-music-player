@@ -22,7 +22,7 @@
             >
               <v-img
                 v-if="getMusicDetailsList[currentTrack]"
-                class="my-1 pa-0 mx-auto"
+                class="my-1 pa-0 mx-auto image-round"
                 :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=600y600' : getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
@@ -277,5 +277,8 @@ export default {
 }
 .full-height-player{
   height:calc(100vh - 56px);
+}
+.image-round{
+  border-radius: 50%;
 }
 </style>
