@@ -15,7 +15,9 @@
             :class="{ 'full-height-player': layout }"
             style="width:100vw"
           >
-
+          <v-card v-if="!layout" class="eject-button px-5 lighten-1" flat color="secondary">
+            <v-icon>mdi-eject-outline</v-icon>
+          </v-card>
           <!-- cover image section -->
             <v-col
               :cols="layout?12:3"
@@ -24,7 +26,7 @@
                 v-if="getMusicDetailsList[currentTrack]"
                 class="my-1 pa-0 mx-auto cover-round"
                 :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
-                :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=600y600' : getMusicDetailsList[currentTrack].al.picUrl+'?param=200y200'"
+                :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=400y400' : getMusicDetailsList[currentTrack].al.picUrl+'?param=100y100'"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
                 contain
@@ -106,7 +108,11 @@
               </v-row>
 
               <!-- buttons section -->
-              <v-row justify="space-between" no-gutters class="mb-1">
+              <v-row
+                justify="space-between"
+                no-gutters class="mb-1"
+                @click.stop="preventClick"
+              >
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
                   <audio
@@ -258,6 +264,9 @@ export default {
       if (this.breakpoint) {
         this.layout = !this.layout
       }
+    },
+    preventClick () {
+
     }
   }
 }
@@ -295,6 +304,11 @@ export default {
 }
 .cover-rotation{
   animation: rotation 15s infinite linear;
+}
+.eject-button{
+  position: absolute;
+  top: -17px;
+  opacity: 0.6;
 }
 @keyframes rotation {
   from {
