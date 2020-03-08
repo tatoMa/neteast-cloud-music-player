@@ -45,7 +45,15 @@
       <v-icon
         class="d-flex d-sm-none mr-0"
         @click="toggleSearchInput"
-      >mdi-magnify</v-icon>
+      >
+        mdi-magnify
+      </v-icon>
+      <v-icon
+        class="mr-0 ml-3"
+        @click="toggleDarkTheme"
+      >
+        {{this.$vuetify.theme.dark ?  'mdi-white-balance-sunny' : 'mdi-brightness-4'}}
+      </v-icon>
     <!-- </v-row> -->
   </v-app-bar>
 </template>
@@ -75,6 +83,9 @@ export default {
     searchName () {
       this.goToSearchName()
       this.search = ''
+    },
+    toggleDarkTheme () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }

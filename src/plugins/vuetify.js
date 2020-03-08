@@ -14,6 +14,12 @@ export default new Vuetify({
         info: '#2196F3',
         success: '#4CAF50',
         warning: '#FFC107'
+      },
+      light: {
+        primary: '#fc5185',
+        secondary: '#f8f8f8',
+        accent: '#43dde6',
+        error: '#FF5252'
       }
     }
   }
