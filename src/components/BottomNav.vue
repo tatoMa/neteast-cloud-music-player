@@ -6,22 +6,22 @@
     class="bottom-nav"
     :class="layout ? 'bottom-nav-ani' : ''"
   >
-    <v-btn>
+    <v-btn @click.stop="$emit('switchTab',0)">
       <span>Player</span>
       <v-icon>mdi-music-circle</v-icon>
     </v-btn>
 
-    <v-btn>
+    <v-btn @click.stop="$emit('switchTab',1)">
       <span>Playlist</span>
       <v-icon>mdi-playlist-music</v-icon>
     </v-btn>
 
-    <v-btn>
+    <v-btn @click.stop="$emit('switchTab',2)">
       <span>Download</span>
       <v-icon>mdi-cloud-download</v-icon>
     </v-btn>
 
-    <v-btn>
+    <v-btn @click.stop="$emit('switchTab',3)">
       <span>Message</span>
       <v-icon>mdi-message</v-icon>
     </v-btn>

@@ -1,0 +1,29 @@
+<template>
+    <ul>
+      <li
+      v-for="item in getMusicDetailsList"
+      :key="item.name">
+        {{item.name}}
+      </li>
+    </ul>
+</template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters({
+      currentTrack: 'player/getCurrentTrack',
+      paused: 'player/getPaused',
+      // songUrl: 'player/getSong',
+      getMusicDetailsList: 'player/getMusicDetailsList',
+      getMusicUrlsListById: 'player/getMusicUrlsListById'
+    })
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

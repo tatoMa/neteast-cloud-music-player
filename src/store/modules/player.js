@@ -29,6 +29,12 @@ export default {
       state.musicDetailsList = []
       state.musicDetailsList.push(payload)
     },
+    addMusicDetailById: (state, payload) => {
+      // console.log(payload)
+      // state.currentTrack = 0
+      // state.musicDetailsList = []
+      state.musicDetailsList.push(payload)
+    },
     setMusicDetailByIdsList: (state, payload) => {
       // console.log(payload)
       state.currentTrack = 0
@@ -40,6 +46,14 @@ export default {
         state.musicUrlsList = []
         // console.log(state.musicDetailsList[state.currentTrack].id)
         getMusicUrlById(state.musicDetailsList[state.currentTrack].id).then(res => { state.musicUrlsList.push(res) })
+      }
+    },
+    addMusicUrlsListById: (state) => {
+      // console.log(state.musicDetailsList)
+      if (state.musicDetailsList.length > 0) {
+        // state.musicUrlsList = []
+        // console.log(state.musicDetailsList[state.currentTrack].id)
+        getMusicUrlById(state.musicDetailsList[state.musicDetailsList.length - 1].id).then(res => { state.musicUrlsList.push(res) })
       }
     },
     setNextTrack: (state) => {

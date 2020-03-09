@@ -83,6 +83,7 @@ export default {
     width: 100vw;
     z-index: 1;
     transition: 0.4s;
+    pointer-events: none;
 }
 .full-layout{
   bottom: 56px;

@@ -4,32 +4,43 @@
       class="pa-0 ma-0 z-index-higher border-top-radius"
       color="secondary"
     >
+    <audio
+      v-show="getMusicUrlsListById.length > 0"
+      ref="player"
+      autoplay
+      :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
+      preload="auto"
+      type="audio/mp3"
+      @timeupdate="getMusicInfo($event.target)"
+    ></audio>
+
         <!-- player -->
           <v-row
             no-gutters
             justify="center"
             align="start"
             class="px-3 px-sm-10 normal-player"
-            @click="toggleLayout"
             :class="{ 'full-height-player': layout }"
             style="width:100vw; z-index:5"
           >
 
             <!-- eject button -->
-            <v-card v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
+            <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
               <v-icon>mdi-eject-outline</v-icon>
             </v-card><!-- eject button -->
 
             <!-- drawer down button -->
-            <v-btn icon v-if="layout" class="mt-2">
+            <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2">
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn><!-- drawer down button -->
 
             <!-- cover image section -->
             <v-col
               :cols="layout?12:3"
+              v-if="tab === 0"
             >
               <v-img
+                @click="toggleLayout"
                 v-if="getMusicDetailsList[currentTrack]"
                 class="my-1 pa-0 mx-auto cover-round"
                 :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
@@ -40,6 +51,7 @@
               >
               </v-img>
               <v-img
+                @click="toggleLayout"
                 v-else
                 class="my-1 pa-0 mx-auto"
                 src="../assets/default_cover.png"
@@ -56,6 +68,7 @@
               class="pl-1 pl-sm-5 text-center"
               style="max-width:900px"
               :class="layout ? 'mb-4' : ''"
+              v-if="tab === 0"
             >
             <!-- {{getMusicUrlsListById}} -->
               <!-- <h2 class="title" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].name}}</h2> -->
@@ -119,19 +132,10 @@
                 justify="space-between"
                 no-gutters class="mb-1"
                 :class="layout?'mb-8':''"
-                @click.stop="preventClick"
+                @click.stop=""
               >
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
-                  <audio
-                    v-show="getMusicUrlsListById.length > 0"
-                    ref="player"
-                    autoplay
-                    :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
-                    preload="auto"
-                    type="audio/mp3"
-                    @timeupdate="getMusicInfo($event.target)"
-                    ></audio>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
                     <v-icon disabled="">mdi-heart</v-icon>
                   </v-btn>
@@ -179,9 +183,15 @@
 
               </v-row>
             </v-col>
+
+            <!-- Play List Tab -->
+            <v-col v-if="tab === 1" class="scrollY" cols="12">
+              <PlayerPlayList/>
+            </v-col>
           </v-row>
           <BottomNav
             :layout = "layout"
+            @switchTab = "switchTab"
           />
           <WaveEffect
             v-if="!paused && breakpoint"
@@ -200,12 +210,14 @@ import { mapGetters } from 'vuex'
 import BottomNav from './BottomNav'
 import WaveEffect from './WaveEffect'
 import WaveEffectLarge from './WaveEffectLarge'
+import PlayerPlayList from './PlayerPlayList'
 export default {
-  components: { BottomNav, WaveEffect, WaveEffectLarge },
+  components: { BottomNav, WaveEffect, WaveEffectLarge, PlayerPlayList },
   data () {
     return {
       // audioTagPausedStatus: false,
       // player: null,
+      tab: 0,
       ended: false, // for when audio tag is ended
       volume: 1,
       storedLastVolume: 0,
@@ -232,6 +244,11 @@ export default {
     breakpoint () {
       return this.$vuetify.breakpoint.xs
     }
+    // currentTrackUrlAvailabel () {
+    //   console.log(this.getMusicUrlsListById[0].url)
+
+    //   return !!this.getMusicUrlsListById[0].url
+    // }
   },
   watch: {
     volume: function (val) {
@@ -279,6 +296,9 @@ export default {
     },
     nextTrack () {
       this.$store.commit('player/setNextTrack')
+      // if (!this.currentTrackUrlAvailabel) {
+      //   this.nextTrack()
+      // }
     },
     prevTrack () {
       this.$store.commit('player/setPrevTrack')
@@ -288,8 +308,11 @@ export default {
         this.layout = !this.layout
       }
     },
-    preventClick () {
+    // preventClick () {
 
+    // },
+    switchTab (item) {
+      this.tab = item
     }
   }
 }
@@ -336,6 +359,11 @@ export default {
   position: absolute;
   top: -17px;
   opacity: 0.6;
+}
+.scrollY{
+  overflow:auto;
+    height:calc(100vh - 160px);
+
 }
 @keyframes rotation {
   from {
