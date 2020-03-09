@@ -186,7 +186,13 @@
 
             <!-- Play List Tab -->
             <v-col v-if="tab === 1" class="scrollY" cols="12">
-              <PlayerPlayList/>
+              <PlayerTabPlaylist/>
+            </v-col>
+            <v-col v-if="tab === 2" class="scrollY" cols="12">
+              <PlayerTabDownload/>
+            </v-col>
+            <v-col v-if="tab === 3" class="scrollY" cols="12">
+              <PlayerTabMessage/>
             </v-col>
           </v-row>
           <BottomNav
@@ -210,9 +216,11 @@ import { mapGetters } from 'vuex'
 import BottomNav from './BottomNav'
 import WaveEffect from './WaveEffect'
 import WaveEffectLarge from './WaveEffectLarge'
-import PlayerPlayList from './PlayerPlayList'
+import PlayerTabPlaylist from './PlayerTabPlaylist'
+import PlayerTabDownload from './PlayerTabDownload'
+import PlayerTabMessage from './PlayerTabMessage'
 export default {
-  components: { BottomNav, WaveEffect, WaveEffectLarge, PlayerPlayList },
+  components: { BottomNav, WaveEffect, WaveEffectLarge, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
   data () {
     return {
       // audioTagPausedStatus: false,
