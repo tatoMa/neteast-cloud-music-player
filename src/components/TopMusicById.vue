@@ -3,7 +3,6 @@
     justify="start"
     class="pa-1 pa-sm-3"
   >
-  <!-- {{getTopMusicListsById[id]}} -->
     <!-- Loading progress bar -->
     <loading :loading='getTopMusicListsById[id].length === 0'/>
     <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0" v-if="getTopMusicListsById[id].length !== 0">
@@ -24,43 +23,15 @@
             <v-icon right>mdi-play-circle-outline</v-icon>
           </v-btn>
         </v-col>
-        <v-col
-          v-ripple
+
+        <!-- Music Item With Pic Component -->
+        <musicItemWithPic
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
-          cols="12"
-          class="px-0 py-0 my-1"
-          @click="setMusic(item)"
-        >
-          <v-card
-            v-if="index < 30"
-            class="my-0"
-            color="secondary"
-            style="min-height:108px"
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                  class="subtitle-1 max-ch"
-                  v-text="item.name"
-                ></v-card-title>
-
-                <v-card-subtitle class="caption" v-text="item.ar[0].name"></v-card-subtitle>
-              </div>
-
-              <v-avatar
-                class="ma-2"
-                size="92"
-                tile
-              >
-                <v-img
-                :src="item.al.picUrl+'?param=100y100'"
-                :lazy-src="item.al.picUrl+'?param=30y30'"
-                ></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
+          :item="item"
+          :index="index"
+          @setMusic="setMusic"
+        />
       </v-row>
     </v-container>
   </v-col>
@@ -70,13 +41,15 @@
 // import axios from 'axios'
 import { mapGetters } from 'vuex'
 import loading from '../components/Loading'
+import musicItemWithPic from './MusicItemWithPic'
 export default {
   name: 'HotPlayLists',
   props: [
     'id'
   ],
   components: {
-    loading
+    loading,
+    musicItemWithPic
   },
   data () {
     return {
