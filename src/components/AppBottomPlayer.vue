@@ -33,7 +33,7 @@
                 v-if="getMusicDetailsList[currentTrack]"
                 class="my-1 pa-0 mx-auto cover-round"
                 :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
-                :src="layout ? getMusicDetailsList[currentTrack].al.picUrl+'?param=400y400' : getMusicDetailsList[currentTrack].al.picUrl+'?param=100y100'"
+                :src="getMusicDetailsList[currentTrack].al.picUrl+'?param=400y400'"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
                 contain
