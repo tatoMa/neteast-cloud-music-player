@@ -30,8 +30,17 @@
           :key="item.id"
           :item="item"
           :index="index"
+          :maxItem="maxItem * page"
           @setMusic="setMusic"
         />
+        <v-btn
+        block rounded outlined color="primary"
+        @click.stop="page++"
+        v-if="getTopMusicListsById[id].tracks.length > maxItem * page"
+        >
+          Load More
+          <v-icon>mdi-chevron-down</v-icon>
+        </v-btn>
       </v-row>
     </v-container>
   </v-col>
@@ -53,6 +62,8 @@ export default {
   },
   data () {
     return {
+      maxItem: 30,
+      page: 1
       // data: [],
       // search: ''
     }

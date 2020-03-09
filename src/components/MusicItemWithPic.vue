@@ -5,7 +5,7 @@
     cols="12"
     class="px-0 py-0 my-1"
     @click.stop="$emit('setMusic',item)"
-    v-if="index < 30"
+    v-if="index < maxItem"
   >
     <v-card
       class="my-0"
@@ -19,13 +19,13 @@
           ></v-card-title>
 
           <v-card-subtitle class="caption pb-1" v-text="item.ar[0].name"></v-card-subtitle>
-          <v-btn small depressed outlined rounded class="ml-3" color="primary" @click.stop="">
+          <v-btn small depressed rounded class="ml-3" color="primary" @click.stop="">
             <v-icon>mdi-playlist-plus</v-icon>
           </v-btn>
         </div>
 
         <v-avatar
-          class="ma-2"
+          class="ma-1"
           size="92"
           tile
         >
@@ -46,6 +46,9 @@ export default {
       type: Object
     },
     index: {
+      type: Number
+    },
+    maxItem: {
       type: Number
     }
   }
