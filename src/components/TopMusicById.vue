@@ -8,7 +8,7 @@
     <loading :loading='getTopMusicListsById[id].length === 0'/>
     <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0" v-if="getTopMusicListsById[id].length !== 0">
       <div class="headline text-center">{{getTopMusicListsById[id].name}}</div>
-      <v-row dense align-content="start">
+      <v-row dense align-content="start" class="px-2">
         <v-col
           cols="12"
           class="px-2 py-0 my-0"
@@ -25,15 +25,16 @@
           </v-btn>
         </v-col>
         <v-col
+          v-ripple
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
           cols="12"
-          class="px-2 py-0 my-0 click-effect"
+          class="px-0 py-0 my-1"
           @click="setMusic(item)"
         >
           <v-card
             v-if="index < 30"
-            class="my-1"
+            class="my-0"
             color="secondary"
             style="min-height:108px"
           >
