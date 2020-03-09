@@ -1,8 +1,8 @@
 # neteast-music-vue
-### A mobile first responsive web app for listening music from Neteast cloud platform which uses a open source API: 
+### It is a mobile first responsive web app for listening music from Neteast cloud platform which is using a open source API: 
 https://github.com/Binaryify/NeteaseCloudMusicApi
 
-### Stack based on Vue, VueX, VueRouter, Vuetify, Axios, PWA, SCSS, Jest, Nightwatch, Eslint, Babel and others.
+### The stack is based on Vue, VueX, VueRouter, Vuetify, Axios, PWA, SCSS, Jest, Nightwatch, Eslint, Babel and others.
 
 ![picture 01](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/01.jpg?raw=true)
 
