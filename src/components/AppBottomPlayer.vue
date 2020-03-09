@@ -30,7 +30,7 @@
             </v-card><!-- eject button -->
 
             <!-- drawer down button -->
-            <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2">
+            <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn><!-- drawer down button -->
 
@@ -299,8 +299,8 @@ export default {
     },
     fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s },
     playTimeClick () {
-      console.log('click slider')
-      this.$refs.player.currentTime = 260
+      // console.log('click slider')
+      // this.$refs.player.currentTime = 260
     },
     nextTrack () {
       this.$store.commit('player/setNextTrack')
@@ -314,6 +314,7 @@ export default {
     toggleLayout () {
       if (this.breakpoint) {
         this.layout = !this.layout
+        this.tab = 0
       }
     },
     // preventClick () {
