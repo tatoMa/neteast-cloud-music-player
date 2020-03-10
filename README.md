@@ -1,6 +1,6 @@
 # neteast-music-vue
 
-###Deployed link:
+### Deployed link:
 https://neteast.netlify.com/
 
 ### It is a mobile first responsive web app for listening music from Neteast cloud platform which is using a open source API: 
