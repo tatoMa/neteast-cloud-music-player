@@ -3,14 +3,20 @@
     <v-row class="text-center">
       <v-col>
         <!-- Loading progress bar -->
-        <loading :loading="!getSearchResult"/>
+        <Loading :loading="!getSearchResult"/>
           <v-list
             v-for="track in getSearchResult"
             :key="track.id"
             class="ma-0 pa-0"
           >
+            <MusicItem
+              :id="track.id"
+              :artist="track.artists[0].name"
+              :name="track.name"
+              @setMusic="setMusic"
+            />
             <!-- <v-list-item-group color="primary"> -->
-              <v-list-item
+              <!-- <v-list-item
                 @click="setMusic(track.id)"
               >
                 <v-list-item-icon>
@@ -22,22 +28,22 @@
                 <v-list-item-avatar>
                   <v-icon>mdi-play-circle-outline</v-icon>
                 </v-list-item-avatar>
-              </v-list-item>
+              </v-list-item> -->
             <!-- </v-list-item-group> -->
           <v-divider/>
         </v-list>
       </v-col>
-
     </v-row>
   </v-container>
 </template>
 
 <script>
-import loading from '../components/Loading'
+import Loading from '../components/Loading'
+import MusicItem from '../components/MusicItem'
 import { mapGetters } from 'vuex'
 export default {
   name: 'List',
-  components: { loading },
+  components: { Loading, MusicItem },
   data () {
     return {
       keyword: '',

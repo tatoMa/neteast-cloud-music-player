@@ -87,7 +87,7 @@
           <router-view></router-view>
       </v-scroll-x-transition>
     </v-content>
-    <app-bottom-player/>
+    <Player/>
   </v-app>
 </template>
 
@@ -95,13 +95,13 @@
 // import { mapGetters } from 'vuex'
 // import appDrawer from './components/AppDrawer'
 import appNavbar from './components/AppNavbar'
-import appBottomPlayer from './components/AppBottomPlayer'
+import Player from './components/Player'
 export default {
   name: 'App',
   components: {
     // appDrawer,
     appNavbar,
-    appBottomPlayer
+    Player
   },
   data () {
     return {

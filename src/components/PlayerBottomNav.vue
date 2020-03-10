@@ -43,8 +43,10 @@ export default {
   },
   methods: {
     toggleBottomNavTab (tab) {
-      this.$emit('switchTab', tab)
-      this.bottomNav = tab
+      if (this.bottomNav !== tab) {
+        this.$emit('switchTab', tab)
+        this.bottomNav = tab
+      } else this.$emit('toggleLayout')
     }
   }
 

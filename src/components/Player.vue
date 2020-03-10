@@ -195,9 +195,10 @@
               <PlayerTabMessage/>
             </v-col>
           </v-row>
-          <BottomNav
+          <PlayerBottomNav
             :layout = "layout"
             @switchTab = "switchTab"
+            @toggleLayout = "toggleLayout"
           />
           <WaveEffect
             v-if="!paused && breakpoint"
@@ -213,14 +214,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import BottomNav from './BottomNav'
+import PlayerBottomNav from './PlayerBottomNav'
 import WaveEffect from './WaveEffect'
 import WaveEffectLarge from './WaveEffectLarge'
 import PlayerTabPlaylist from './PlayerTabPlaylist'
 import PlayerTabDownload from './PlayerTabDownload'
 import PlayerTabMessage from './PlayerTabMessage'
 export default {
-  components: { BottomNav, WaveEffect, WaveEffectLarge, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
+  components: { PlayerBottomNav, WaveEffect, WaveEffectLarge, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
   data () {
     return {
       // audioTagPausedStatus: false,
