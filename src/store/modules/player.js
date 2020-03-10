@@ -45,7 +45,20 @@ export default {
       if (state.musicDetailsList.length > 0) {
         state.musicUrlsList = []
         // console.log(state.musicDetailsList[state.currentTrack].id)
-        getMusicUrlById(state.musicDetailsList[state.currentTrack].id).then(res => { state.musicUrlsList.push(res) })
+        getMusicUrlById(state.musicDetailsList[state.currentTrack].id)
+          .then(res => {
+            // console.log(res)
+            state.musicUrlsList.push(res)
+            if (!res.url) {
+              console.log('no url return')
+              store.commit('player/setNextTrack')
+            }
+          })
+          .catch(res => {
+            console.log('error return', res)
+            state.musicUrlsList.push(res)
+            store.commit('player/setNextTrack')
+          })
       }
     },
     addMusicUrlsListById: (state) => {

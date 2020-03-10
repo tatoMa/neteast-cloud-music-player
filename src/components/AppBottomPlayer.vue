@@ -100,14 +100,14 @@
                 class="mt-1"
                 v-if="getMusicUrlsListById.length > 0"
                 dense
-                v-model="currentTime"
+                v-model="currentTimeComputed"
                 min="0"
                 :max="duration"
                 color="primary"
-                height="0"
+                height="3"
                 background-color="secondary"
                 hide-details
-                @click="playTimeClick()"
+                @click="sliderClick()"
               ></v-slider>
               <v-slider
                 class="mt-1"
@@ -118,7 +118,7 @@
                 min="0"
                 max="100"
                 color="primary"
-                height="0"
+                height="3"
                 background-color="secondary"
                 hide-details
               ></v-slider>
@@ -251,6 +251,17 @@ export default {
     },
     breakpoint () {
       return this.$vuetify.breakpoint.xs
+    },
+    currentTimeComputed: {
+    // getter
+      get: function () {
+        return this.currentTime
+      },
+      // setter
+      set: function () {
+        // this.currentTime = this.currentTimeComputed
+        return this.currentTime
+      }
     }
     // currentTrackUrlAvailabel () {
     //   console.log(this.getMusicUrlsListById[0].url)
@@ -298,8 +309,8 @@ export default {
       }
     },
     fmtSecToMin (s) { return (s - (s %= 60)) / 60 + (s > 9 ? ':' : ':0') + s },
-    playTimeClick () {
-      // console.log('click slider')
+    sliderClick () {
+      console.log('click slider')
       // this.$refs.player.currentTime = 260
     },
     nextTrack () {
@@ -317,9 +328,6 @@ export default {
         this.tab = 0
       }
     },
-    // preventClick () {
-
-    // },
     switchTab (item) {
       this.tab = item
     }
