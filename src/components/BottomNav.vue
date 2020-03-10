@@ -6,22 +6,22 @@
     class="bottom-nav"
     :class="layout ? 'bottom-nav-ani' : ''"
   >
-    <v-btn @click.stop="$emit('switchTab',0)">
+    <v-btn @click.stop="toggleBottomNavTab(0)">
       <span>Player</span>
       <v-icon>mdi-music-circle</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="$emit('switchTab',1)">
+    <v-btn @click.stop="toggleBottomNavTab(1)">
       <span>Playlist</span>
       <v-icon>mdi-playlist-music</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="$emit('switchTab',2)">
+    <v-btn @click.stop="toggleBottomNavTab(2)">
       <span>Download</span>
       <v-icon>mdi-cloud-download</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="$emit('switchTab',3)">
+    <v-btn @click.stop="toggleBottomNavTab(3)">
       <span>Message</span>
       <v-icon>mdi-message</v-icon>
     </v-btn>
@@ -39,6 +39,12 @@ export default {
   data () {
     return {
       bottomNav: 0
+    }
+  },
+  methods: {
+    toggleBottomNavTab (tab) {
+      this.$emit('switchTab', tab)
+      this.bottomNav = tab
     }
   }
 

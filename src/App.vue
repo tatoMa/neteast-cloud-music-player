@@ -29,7 +29,7 @@
           v-for="item in items"
           :key="item.text"
           link
-          @click="gotoPage(item.url)"
+          :to="item.url"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -83,7 +83,9 @@
     <app-navbar @toggleAppDrawer="toggleAppDrawer"/>
     <v-content>
     <!-- <a @click="appDrawer = !appDrawer"> click </a> -->
-      <router-view></router-view>
+      <v-scroll-x-transition mode="out-in">
+          <router-view></router-view>
+      </v-scroll-x-transition>
     </v-content>
     <app-bottom-player/>
   </v-app>
@@ -106,7 +108,7 @@ export default {
       appDrawer: false,
       item: 2,
       items: [
-        { icon: 'mdi-fire', text: 'Top Music', url: '' },
+        { icon: 'mdi-fire', text: 'Top Music', url: '/' },
         { icon: 'mdi-format-list-bulleted-square', text: 'Top Playlists', url: 'topplaylists' },
         { icon: 'mdi-account-multiple', text: 'Top Artists', url: 'topartist' }
       ],
