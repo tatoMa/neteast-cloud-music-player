@@ -13,7 +13,7 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
 
 - [ ] maybe login?
-- [ ] click and jump to one music
+- [x] click and play music without wipeout playlist
 - [ ] message tab
 - [ ] download music function
 - [x] audio analyser and synchronizer effect by web api and drawing on canvas
