@@ -42,26 +42,22 @@ export default {
       bottomNav: 0
     }
   },
+  watch: {
+    layout (val) {
+      if (!val) this.bottomNav = 0
+    }
+  },
   methods: {
     toggleBottomNavTab (tab) {
       if (this.bottomNav !== tab) {
         this.$emit('switchTab', tab)
         this.bottomNav = tab
-      } else this.$emit('toggleLayout')
+      } else {
+        this.$emit('toggleLayout')
+        this.bottomNav = 0
+      }
     }
   }
-
-  // computed: {
-  //   // eslint-disable-next-line vue/return-in-computed-property
-  //   color () {
-  //     switch (this.bottomNav) {
-  //       case 0: return 'blue-grey'
-  //       case 1: return 'teal'
-  //       case 2: return 'brown'
-  //       case 3: return 'indigo'
-  //     }
-  //   }
-  // }
 }
 </script>
 

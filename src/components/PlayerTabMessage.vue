@@ -1,6 +1,8 @@
 <template>
   <div>
 <!-- {{getCommentsById}} -->
+  <!-- Loading progress bar -->
+  <loading :loading='getCommentsById.length === 0'/>
   <v-card
     v-for="(item, index) in getCommentsById"
     :key="index"
@@ -46,8 +48,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-
+import loading from './Loading'
 export default {
+  components: {
+    loading
+  },
   computed: {
     ...mapGetters({
       // currentTrack: 'player/getCurrentTrack',
