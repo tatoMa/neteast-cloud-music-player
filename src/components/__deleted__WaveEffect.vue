@@ -45,7 +45,7 @@ export default {
 .bars {
     height: 30px;
     left: 50%;
-    margin: -30px 0 0 -54.5%;
+    margin: 0 0 0 -54.5%;
     position: absolute;
     bottom: 95px;
     width: 100vw;
@@ -58,7 +58,7 @@ export default {
 }
 
 .bar {
-   background: #fe457cde;
+   background: #ff91b27c;
     bottom: 1px;
     height: 3px;
     position: absolute;

@@ -4,7 +4,15 @@
       class="pa-0 ma-0 z-index-higher border-top-radius"
       color="secondary"
     >
+    <canvas
+      id='canvas'
+      :class="[layout ? 'canvas-movedown' : '']"
+      width="600"
+      height="350"
+    >
+    </canvas>
     <audio
+      crossorigin="anonymous"
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
       autoplay
@@ -12,6 +20,7 @@
       preload="auto"
       type="audio/mp3"
       @timeupdate="getMusicInfo($event.target)"
+      id="audio"
     ></audio>
 
         <!-- player -->
@@ -200,14 +209,14 @@
             @switchTab = "switchTab"
             @toggleLayout = "toggleLayout"
           />
-          <WaveEffect
+          <!-- <WaveEffect
             v-if="!paused && breakpoint"
             :layout = "layout"
-          ></WaveEffect>
-          <WaveEffectLarge
+          ></WaveEffect> -->
+          <!-- <WaveEffectLarge
             v-if="!paused && !breakpoint"
             :layout = "layout"
-          ></WaveEffectLarge>
+          ></WaveEffectLarge> -->
       <!-- </v-col> -->
     </v-footer>
 </template>
@@ -215,13 +224,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import PlayerBottomNav from './PlayerBottomNav'
-import WaveEffect from './WaveEffect'
-import WaveEffectLarge from './WaveEffectLarge'
+// import WaveEffect from './WaveEffect'
+// import WaveEffectLarge from './WaveEffectLarge'
 import PlayerTabPlaylist from './PlayerTabPlaylist'
 import PlayerTabDownload from './PlayerTabDownload'
 import PlayerTabMessage from './PlayerTabMessage'
+import audioAnalysier from '../utils/audioAnalyser'
 export default {
-  components: { PlayerBottomNav, WaveEffect, WaveEffectLarge, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
+  components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
   data () {
     return {
       // audioTagPausedStatus: false,
@@ -281,6 +291,8 @@ export default {
     this.$refs.player.onended = () => {
       this.nextTrack()
     }
+    audioAnalysier.init()
+    audioAnalysier.start()
   },
   methods: {
     togglePlaying () {
@@ -336,6 +348,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+#canvas {
+    height: 45px;
+    left: 55%;
+    margin: 0 0 0 -54.5%;
+    position: absolute;
+    bottom: 95px;
+    width: 100vw;
+    z-index: 1;
+    transition: 0.4s;
+    pointer-events: none;
+}
+.canvas-movedown{
+  bottom: 56px !important
+}
 .max-ch{
   max-width: 26ch;
   white-space: nowrap;
