@@ -27,6 +27,9 @@ const getMusicUrlByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song
 const getSearchResultByText = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search?keywords=${text}`, { withCredentials: true })
   .then((response) => response.data.result.songs)
 
+const getCommentsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/comment/music?id=${id}`, { withCredentials: true })
+  .then((response) => response.data)
+
 export {
   getPlayLists,
   getNewMusicLists,
@@ -36,5 +39,6 @@ export {
   getMusicDetailByIds,
   getMusicUrlById,
   getMusicUrlByIds,
-  getSearchResultByText
+  getSearchResultByText,
+  getCommentsById
 }

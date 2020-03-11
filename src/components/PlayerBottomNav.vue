@@ -17,14 +17,15 @@
     </v-btn>
 
     <v-btn @click.stop="toggleBottomNavTab(2)">
+      <span>Message</span>
+      <v-icon>mdi-message</v-icon>
+    </v-btn>
+
+    <v-btn @click.stop="toggleBottomNavTab(3)">
       <span>Download</span>
       <v-icon>mdi-cloud-download</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="toggleBottomNavTab(3)">
-      <span>Message</span>
-      <v-icon>mdi-message</v-icon>
-    </v-btn>
   </v-bottom-navigation>
 </template>
 

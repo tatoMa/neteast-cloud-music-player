@@ -198,10 +198,10 @@
               <PlayerTabPlaylist/>
             </v-col>
             <v-col v-if="tab === 2" class="scrollY" cols="12">
-              <PlayerTabDownload/>
+              <PlayerTabMessage/>
             </v-col>
             <v-col v-if="tab === 3" class="scrollY" cols="12">
-              <PlayerTabMessage/>
+              <PlayerTabDownload/>
             </v-col>
           </v-row>
           <PlayerBottomNav

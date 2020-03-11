@@ -6,21 +6,22 @@
         {{item.name}}
       </li>
     </ul> -->
-    <div>
       <v-list
-        v-for="track in getMusicDetailsList"
-        :key="track.id"
         class="ma-0 pa-0"
         color="transparent"
       >
-        <MusicItem
-          :id="track.id"
-          :artist="track.ar[0].name"
-          :name="track.name"
-          @setMusic="setMusic(track.id)"
-        />
+        <v-subheader>My playlist</v-subheader>
+        <v-list-item-group :value="currentTrack" color="primary">
+          <MusicItem
+            v-for="track in getMusicDetailsList"
+            :key="track.id"
+            :id="track.id"
+            :artist="track.ar[0].name"
+            :name="track.name"
+            @setMusic="setMusic(track.id)"
+          />
+        </v-list-item-group>
       </v-list>
-    </div>
 </template>
 
 <script>
@@ -32,10 +33,9 @@ export default {
   computed: {
     ...mapGetters({
       currentTrack: 'player/getCurrentTrack',
-      paused: 'player/getPaused',
-      // songUrl: 'player/getSong',
-      getMusicDetailsList: 'player/getMusicDetailsList',
-      getMusicUrlsListById: 'player/getMusicUrlsListById'
+      // paused: 'player/getPaused',
+      getMusicDetailsList: 'player/getMusicDetailsList'
+      // getMusicUrlsListById: 'player/getMusicUrlsListById'
     })
   },
   methods: {

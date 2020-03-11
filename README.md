@@ -13,9 +13,9 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
 
 - [ ] maybe login?
-- [x] click and play music without wipeout playlist
-- [ ] message tab
 - [ ] download music function
+- [x] message tab with styled component and function
+- [x] click and play music without wipeout playlist
 - [x] audio analyser and synchronizer effect by web api and drawing on canvas
 - [x] playlist tab in player
 - [x] player tabs and sections

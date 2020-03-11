@@ -6,7 +6,8 @@ import {
   getPlayListById,
   getSearchResultByText,
   getNewMusicLists,
-  getTopMusicListsById
+  getTopMusicListsById,
+  getCommentsById
 } from '../utils/api'
 
 Vue.use(Vuex)
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     playLists: [],
     searchResult: null,
     newMusicLists: [],
+    comments: null,
     topMusicListsById: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [] }
   },
   mutations: {
@@ -48,8 +50,15 @@ export default new Vuex.Store({
         // console.log(id, res)
         state.topMusicListsById[id] = res
       })
+    },
+    setCommentsById (state, id) {
+      // console.log(id)
+      state.comments = []
+      getCommentsById(id).then(res => {
+        // console.log(id, res)
+        state.comments = res.hotComments
+      })
     }
-
   },
   actions: {
 
@@ -72,6 +81,9 @@ export default new Vuex.Store({
     },
     getTopMusicListsById: (state) => {
       return state.topMusicListsById
+    },
+    getCommentsById: (state) => {
+      return state.comments
     }
 
   },
