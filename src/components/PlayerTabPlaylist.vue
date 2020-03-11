@@ -17,7 +17,7 @@
           :id="track.id"
           :artist="track.ar[0].name"
           :name="track.name"
-          @setMusic="setMusic"
+          @setMusic="setMusic(track.id)"
         />
       </v-list>
     </div>
@@ -39,8 +39,8 @@ export default {
     })
   },
   methods: {
-    setMusic () {
-      console.log('ok')
+    setMusic (id) {
+      this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
     }
   }
 }

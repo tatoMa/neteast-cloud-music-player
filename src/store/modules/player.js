@@ -61,6 +61,32 @@ export default {
           })
       }
     },
+    setMusicUrlsListByPassIdFromMusicList: (state, id) => {
+      if (state.musicDetailsList.length > 0) {
+        state.musicUrlsList = []
+        getMusicUrlById(id)
+          .then(res => {
+            // console.log(res)
+            state.musicUrlsList.push(res)
+            store.commit('player/setCurrentTrackByFindIdFromPlaylist', id)
+            if (!res.url) {
+              console.log('no url return')
+              store.commit('player/setNextTrack')
+            }
+          })
+          .catch(res => {
+            console.log('error return', res)
+            state.musicUrlsList.push(res)
+            store.commit('player/setNextTrack')
+          })
+      }
+    },
+    setCurrentTrackByFindIdFromPlaylist: (state, id) => {
+      const index = state.musicDetailsList.findIndex((item) => {
+        return item.id === id
+      })
+      store.commit('player/setCurrentTrackByIndex', index)
+    },
     addMusicUrlsListById: (state) => {
       // console.log(state.musicDetailsList)
       if (state.musicDetailsList.length > 0) {
@@ -80,6 +106,9 @@ export default {
         state.currentTrack--
         store.commit('player/setMusicUrlsListById')
       }
+    },
+    setCurrentTrackByIndex: (state, index) => {
+      state.currentTrack = index
     },
     setMusicDetailByIdFromSearch: (state, id) => {
       state.currentTrack = 0
