@@ -19,7 +19,7 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 - [x] audio analyser and synchronizer effect by web api and drawing on canvas
 - [x] playlist tab in player
 - [x] player tabs and sections
-- [x] > music wave effect
+- [x] music wave effect (removed)
 - [x] player buttons
 - [x] slider for volume control
 - [x] slider for audio progress
