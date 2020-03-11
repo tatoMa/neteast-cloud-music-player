@@ -12,6 +12,33 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
 
+- [ ] maybe login?
+- [ ] click and jump to one music
+- [ ] message tab
+- [ ] download music function
+- [x] audio analyser and synchronizer effect by web api and drawing on canvas
+- [x] playlist tab in player
+- [x] player tabs and sections
+- [x] > music wave effect
+- [x] player buttons
+- [x] slider for volume control
+- [x] slider for audio progress
+- [x] full screen player mode
+- [x] animated transition
+- [x] hot music page Tabs and sections
+- [x] theme switch (dark and light)
+- [x] pagination for all list
+- [x] add to playlist function
+- [x] play all music in list function
+- [x] responsive design implement
+- [x] search
+- [x] navigation drawer
+- [x] hot music page 
+- [x] player controller
+- [x] state management init
+- [x] utils and apis
+- [x] hot playlists page 
+
 #### Project setup
 ```
 npm install
