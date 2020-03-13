@@ -24,7 +24,7 @@
             class="my-1"
           >
             play list
-            <v-icon right>mdi-play-circle-outline</v-icon>
+            <v-icon right>{{mdiPlayCircleOutline}}</v-icon>
           </v-btn>
         </v-col>
 
@@ -45,7 +45,7 @@
           v-if="maxItem * page <= getTopMusicListsById[id].tracks.length"
         >
           Load More
-          <v-icon>mdi-chevron-down</v-icon>
+          <v-icon>{{mdiChevronDown}}</v-icon>
         </v-btn>
       </v-row>
     </v-container>
@@ -55,10 +55,10 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import { mapGetters } from 'vuex'
 import loading from '../components/Loading'
 import musicItemWithPic from './MusicItemWithPic'
+import { mdiChevronDown, mdiPlayCircleOutline } from '@mdi/js'
 export default {
   name: 'HotPlayLists',
   props: [
@@ -70,6 +70,8 @@ export default {
   },
   data () {
     return {
+      mdiChevronDown,
+      mdiPlayCircleOutline,
       maxItem: 30,
       page: 1
       // data: [],

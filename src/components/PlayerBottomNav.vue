@@ -8,28 +8,29 @@
   >
     <v-btn @click.stop="toggleBottomNavTab(0)">
       <span>Player</span>
-      <v-icon>mdi-music-circle</v-icon>
+      <v-icon>{{mdiMusicCircle}}</v-icon>
     </v-btn>
 
     <v-btn @click.stop="toggleBottomNavTab(1)">
       <span>Playlist</span>
-      <v-icon>mdi-playlist-music</v-icon>
+      <v-icon>{{mdiPlaylistMusic}}</v-icon>
     </v-btn>
 
     <v-btn @click.stop="toggleBottomNavTab(2)">
       <span>Message</span>
-      <v-icon>mdi-message</v-icon>
+      <v-icon>{{mdiMessage}}</v-icon>
     </v-btn>
 
     <v-btn @click.stop="toggleBottomNavTab(3)">
       <span>Download</span>
-      <v-icon>mdi-cloud-download</v-icon>
+      <v-icon>{{mdiCloudDownload}}</v-icon>
     </v-btn>
 
   </v-bottom-navigation>
 </template>
 
 <script>
+import { mdiMusicCircle, mdiPlaylistMusic, mdiMessage, mdiCloudDownload } from '@mdi/js'
 export default {
   name: 'BottomNav',
   props: {
@@ -39,6 +40,10 @@ export default {
   },
   data () {
     return {
+      mdiMusicCircle,
+      mdiPlaylistMusic,
+      mdiMessage,
+      mdiCloudDownload,
       bottomNav: 0
     }
   },

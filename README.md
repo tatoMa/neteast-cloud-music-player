@@ -13,7 +13,9 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
 
 - [ ] maybe login?
+- [ ] large image adaptive loading
 - [ ] download music function
+- [x] material icon tree-shaking (Reduce 300K after build the bundle)
 - [x] message tab with styled component and function
 - [x] click and play music without wipeout playlist
 - [x] audio analyser and synchronizer effect by web api and drawing on canvas

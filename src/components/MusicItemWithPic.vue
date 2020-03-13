@@ -20,7 +20,7 @@
 
           <v-card-subtitle class="caption pb-1" v-text="item.ar[0].name"></v-card-subtitle>
           <v-btn small outlined depressed rounded class="ml-3" color="primary" @click.stop="$emit('addToPlaylist',item)">
-            <v-icon>mdi-playlist-plus</v-icon>add to playlist
+            <v-icon>{{mdiPlaylistPlus}}</v-icon>add to playlist
           </v-btn>
         </div>
 
@@ -40,7 +40,14 @@
 </template>
 
 <script>
+import { mdiPlaylistPlus } from '@mdi/js'
+
 export default {
+  data () {
+    return {
+      mdiPlaylistPlus
+    }
+  },
   props: {
     item: {
       type: Object

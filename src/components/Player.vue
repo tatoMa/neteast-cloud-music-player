@@ -35,12 +35,12 @@
 
             <!-- eject button -->
             <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
-              <v-icon>mdi-eject-outline</v-icon>
+              <v-icon>{{mdiEjectOutline}}</v-icon>
             </v-card><!-- eject button -->
 
             <!-- drawer down button -->
             <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
-              <v-icon>mdi-chevron-down</v-icon>
+              <v-icon>{{mdiChevronDown}}</v-icon>
             </v-btn><!-- drawer down button -->
 
             <!-- cover image section -->
@@ -146,30 +146,30 @@
                 <v-spacer class="d-none d-sm-flex"></v-spacer>
                 <v-row justify="space-between" no-gutters>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon disabled="">mdi-heart</v-icon>
+                    <v-icon disabled="">{{mdiHeart}}</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="prevTrack">
-                    <v-icon>mdi-step-backward</v-icon>
+                    <v-icon>{{mdiStepBackward}}</v-icon>
                   </v-btn>
                   <v-btn icon v-if="paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <div v-if="getMusicUrlsListById[0]">
-                      <v-icon large color="primary" v-if="getMusicUrlsListById[0].url">mdi-play</v-icon>
-                      <v-icon large v-else>mdi-play</v-icon>
+                      <v-icon large color="primary" v-if="getMusicUrlsListById[0].url">{{mdiPlay}}</v-icon>
+                      <v-icon large v-else>{{mdiPlay}}</v-icon>
                     </div>
-                      <v-icon large v-else>mdi-play</v-icon>
+                      <v-icon large v-else>{{mdiPlay}}</v-icon>
                   </v-btn>
                   <v-btn icon v-if="!paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
                     <div v-if="getMusicUrlsListById[0]">
-                      <v-icon color="primary" v-if="!getMusicUrlsListById[0].url" >mdi-alert-circle</v-icon>
-                      <v-icon color="primary" v-else>mdi-pause</v-icon>
+                      <v-icon color="primary" v-if="!getMusicUrlsListById[0].url" >{{mdiAlertCircle}}</v-icon>
+                      <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
                     </div>
-                      <v-icon color="primary" v-else>mdi-pause</v-icon>
+                      <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="nextTrack">
-                    <v-icon>mdi-step-forward</v-icon>
+                    <v-icon>{{mdiStepForward}}</v-icon>
                   </v-btn>
                   <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon disabled="">mdi-sync</v-icon>
+                    <v-icon disabled="">{{mdiSync}}</v-icon>
                   </v-btn>
                 </v-row>
                 <!-- volume controller -->
@@ -182,7 +182,7 @@
                     max="1"
                     color="primary"
                     background-color="secondary"
-                    append-icon="mdi-volume-high"
+                    :append-icon=mdiVolumeHigh
                     @click:append="toggleVolumeMute"
                     hide-details
                     step=0.05
@@ -230,12 +230,23 @@ import PlayerTabPlaylist from './PlayerTabPlaylist'
 import PlayerTabDownload from './PlayerTabDownload'
 import PlayerTabMessage from './PlayerTabMessage'
 import audioAnalysier from '../utils/audioAnalyser'
+import { mdiVolumeHigh, mdiSync, mdiEjectOutline, mdiChevronDown, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
 export default {
   components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
   data () {
     return {
       // audioTagPausedStatus: false,
       // player: null,
+      mdiVolumeHigh,
+      mdiSync,
+      mdiEjectOutline,
+      mdiChevronDown,
+      mdiHeart,
+      mdiStepBackward,
+      mdiStepForward,
+      mdiPlay,
+      mdiAlertCircle,
+      mdiPause,
       tab: 0,
       ended: false, // for when audio tag is ended
       volume: 1,

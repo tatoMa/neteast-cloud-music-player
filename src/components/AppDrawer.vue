@@ -40,13 +40,13 @@
       link
     >
       <v-list-item-action>
-        <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+        <v-icon color="grey darken-1">{{mdiPlusCircleOutline}}</v-icon>
       </v-list-item-action>
       <v-list-item-title class="grey--text text--darken-1">Custom Playlist</v-list-item-title>
     </v-list-item>
     <v-list-item link>
       <v-list-item-action>
-        <v-icon color="grey darken-1">mdi-settings</v-icon>
+        <v-icon color="grey darken-1">{{mdiAccountSettings}}</v-icon>
       </v-list-item-action>
       <v-list-item-title class="grey--text text--darken-1">Setting</v-list-item-title>
     </v-list-item>
@@ -55,13 +55,18 @@
 </template>
 
 <script>
+import { mdiPlusCircleOutline, mdiAccountSettings, mdiFire, mdiFormatListBulletedSquare } from '@mdi/js'
 export default {
   data () {
     return {
+      mdiPlusCircleOutline,
+      mdiAccountSettings,
+      mdiFire,
+      mdiFormatListBulletedSquare,
       item: 2,
       items: [
-        { icon: 'mdi-fire', text: 'Top Music', url: '/' },
-        { icon: 'mdi-format-list-bulleted-square', text: 'Top Playlists', url: 'topplaylists' }
+        { icon: mdiFire, text: 'Top Music', url: '/' },
+        { icon: mdiFormatListBulletedSquare, text: 'Top Playlists', url: 'topplaylists' }
         // { icon: 'mdi-account-multiple', text: 'Top Artists', url: 'topartist' }
       ]
     }

@@ -36,7 +36,7 @@
           class="mb-1"
         >
           play list
-          <v-icon right>mdi-play-circle-outline</v-icon>
+          <v-icon right>{{mdiPlayCircleOutline}}</v-icon>
         </v-btn>
           <v-list
             v-for="track in getPlayListById.tracks"
@@ -48,13 +48,13 @@
                 @click="setMusic(track.id)"
               >
                 <v-list-item-icon>
-                  <v-icon>mdi-star</v-icon>
+                  <v-icon>{{mdiStar}}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
                   <v-list-item-title v-text="track.name"></v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-avatar>
-                  <v-icon>mdi-play-circle-outline</v-icon>
+                  <v-icon>{{mdiPlayCircleOutline}}</v-icon>
                 </v-list-item-avatar>
               </v-list-item>
             <!-- </v-list-item-group> -->
@@ -67,9 +67,9 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import loading from '../components/Loading'
 import { mapGetters } from 'vuex'
+import { mdiStar, mdiPlayCircleOutline } from '@mdi/js'
 export default {
   name: 'PlayListDetails',
   components: {
@@ -78,6 +78,8 @@ export default {
   data () {
     return {
       // item: -1,
+      mdiStar,
+      mdiPlayCircleOutline,
       id: '',
       name: '',
       description: '',
