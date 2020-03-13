@@ -15,21 +15,6 @@
               :name="track.name"
               @setMusic="setMusic"
             />
-            <!-- <v-list-item-group color="primary"> -->
-              <!-- <v-list-item
-                @click="setMusic(track.id)"
-              >
-                <v-list-item-icon>
-                  <v-icon>mdi-star</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="track.artists[0].name+' - '+track.name"></v-list-item-title>
-                </v-list-item-content>
-                <v-list-item-avatar>
-                  <v-icon>mdi-play-circle-outline</v-icon>
-                </v-list-item-avatar>
-              </v-list-item> -->
-            <!-- </v-list-item-group> -->
           <v-divider/>
         </v-list>
       </v-col>

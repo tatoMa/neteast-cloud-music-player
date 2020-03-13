@@ -10,11 +10,6 @@ const routes = [
     name: 'TopMusic',
     component: TopMusic
   },
-  // {
-  //   path: '/Song',
-  //   name: 'Song',
-  //   component: () => import(/* webpackChunkName: "song" */ '../views/Song.vue')
-  // },
   {
     path: '/topplaylists',
     name: 'TopPlayLists',
