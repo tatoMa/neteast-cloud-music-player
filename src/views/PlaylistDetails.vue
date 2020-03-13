@@ -1,12 +1,12 @@
 <template>
-  <v-container class="pt-0">
+  <v-container class="pt-0 mb-12 pb-12">
     <v-row class="text-center">
       <v-col cols="12">
 
         <!-- Loading progress bar -->
         <loading :loading='!getPlayListById'/>
 
-        <!-- The List -->
+        <!-- image, name and description of playlist -->
         <v-card
           v-if="getPlayListById"
           class="mx-auto"
@@ -21,7 +21,9 @@
           </v-img>
           <v-card-title>{{getPlayListById.name}}</v-card-title>
           <v-card-subtitle>{{getPlayListById.description}}</v-card-subtitle>
-        </v-card>
+        </v-card><!-- image, name and description of playlist -->
+
+        <!-- the list and all items -->
         <v-card
         v-if="getPlayListById"
         class="mx-auto"
@@ -35,7 +37,7 @@
           block
           class="mb-1"
         >
-          play list
+          play All {{getPlayListById.tracks.length}} Songs
           <v-icon right>{{mdiPlayCircleOutline}}</v-icon>
         </v-btn>
           <v-list
@@ -43,24 +45,16 @@
             :key="track.id"
             class="ma-0 pa-0"
           >
-            <!-- <v-list-item-group color="primary"> -->
-              <v-list-item
-                @click="setMusic(track.id)"
-              >
-                <v-list-item-icon>
-                  <v-icon>{{mdiStar}}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title v-text="track.name"></v-list-item-title>
-                </v-list-item-content>
-                <v-list-item-avatar>
-                  <v-icon>{{mdiPlayCircleOutline}}</v-icon>
-                </v-list-item-avatar>
-              </v-list-item>
-            <!-- </v-list-item-group> -->
+            <MusicItem
+              :id="track.id"
+              :artist="track.ar[0].name"
+              :name="track.name"
+              @setMusic="setMusic"
+            />
           <v-divider/>
           </v-list>
-        </v-card>
+        </v-card><!-- the list and all items -->
+
       </v-col>
     </v-row>
   </v-container>
@@ -68,12 +62,14 @@
 
 <script>
 import loading from '../components/Loading'
+import MusicItem from '../components/MusicItem'
 import { mapGetters } from 'vuex'
 import { mdiStar, mdiPlayCircleOutline } from '@mdi/js'
 export default {
   name: 'PlayListDetails',
   components: {
-    loading
+    loading,
+    MusicItem
   },
   data () {
     return {

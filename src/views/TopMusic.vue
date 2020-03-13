@@ -1,6 +1,6 @@
 <template>
   <v-container
-        class=" pa-0 pa-sm-3 ma-0 pb-12 mb-12"
+        class=" pa-0 pa-sm-3 ma-0 mb-12"
         fluid
   >
     <!-- mobile screen -->

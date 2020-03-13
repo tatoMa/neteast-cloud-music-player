@@ -17,7 +17,7 @@
     <v-content>
       <v-scroll-x-transition mode="out-in">
           <!-- router -->
-          <router-view></router-view>
+          <router-view class="pb-12"></router-view>
       </v-scroll-x-transition>
     </v-content><!-- main section -->
 

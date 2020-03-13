@@ -8,9 +8,9 @@
     <v-list-item-content>
         <v-list-item-title v-text="artist+' - '+name"></v-list-item-title>
     </v-list-item-content>
-    <v-list-item-avatar>
+    <v-list-item-icon>
         <v-icon>{{mdiPlayCircleOutline}}</v-icon>
-    </v-list-item-avatar>
+    </v-list-item-icon>
   </v-list-item>
 </template>
 
