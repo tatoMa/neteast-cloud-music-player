@@ -21,7 +21,7 @@
         v-for="n in 6"
         :key="n"
       >
-        <TopMusicById :id='n-1'></TopMusicById>
+        <TopMusicItem :id='n-1'></TopMusicItem>
       </v-tab-item>
     </v-tabs><!-- mobile screen -->
 
@@ -35,7 +35,7 @@
         v-for="n in 6"
         :key="n"
       >
-        <TopMusicById :id='n-1'></TopMusicById>
+        <TopMusicItem :id='n-1'></TopMusicItem>
       </v-col>
     </v-row><!-- desktop and large screen -->
 
@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import TopMusicById from '../components/TopMusicById'
+import TopMusicItem from '../components/TopMusicItem'
 export default {
   name: 'TopMusic',
   components: {
-    TopMusicById
+    TopMusicItem
   },
   data () {
     return {

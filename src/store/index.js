@@ -71,7 +71,7 @@ export default new Vuex.Store({
       return state.playListById
     },
     getPlayLists: (state) => {
-      console.log(state.playLists)
+      // console.log(state.playLists)
       return state.playLists
     },
     getSearchResult: (state) => {

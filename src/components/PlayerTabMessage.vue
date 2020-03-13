@@ -63,8 +63,6 @@ export default {
     })
   },
   mounted () {
-    // console.log(this.getMusicUrlsListById[0].id)
-
     this.$store.commit('setCommentsById', this.getMusicUrlsListById[0].id)
   }
 }

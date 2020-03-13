@@ -1,11 +1,4 @@
 <template>
-    <!-- <ul>
-      <li
-      v-for="item in getMusicDetailsList"
-      :key="item.name">
-        {{item.name}}
-      </li>
-    </ul> -->
       <v-list
         class="ma-0 pa-0"
         color="transparent"

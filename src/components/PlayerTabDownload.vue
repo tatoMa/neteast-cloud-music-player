@@ -10,7 +10,6 @@ export default {
     ...mapGetters({
       currentTrack: 'player/getCurrentTrack',
       paused: 'player/getPaused',
-      // songUrl: 'player/getSong',
       getMusicDetailsList: 'player/getMusicDetailsList',
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     })

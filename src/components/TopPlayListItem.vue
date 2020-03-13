@@ -2,6 +2,7 @@
   <v-card class="card-hover" color="secondary">
     <v-img
       :src="item.coverImgUrl+'?param=300y300'"
+      :lazy-src="item.coverImgUrl+'?param=30y30'"
       class="white--text align-end image"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="20vh"
@@ -14,7 +15,8 @@
       <v-avatar
         size="36">
         <img
-          :src="item.creator.avatarUrl"
+          :src="item.creator.avatarUrl+'?param=36y36'"
+          :lazy-src="item.creator.avatarUrl+'?param=5y5'"
           :alt="item.creator.nickname"
         >
       </v-avatar>
@@ -29,18 +31,6 @@
       >
         {{tag}}
       </v-chip>
-      <!-- <v-btn icon @click.stop="$emit('goToPlaylist',item)">
-        <v-icon color="primary">{{mdiPlayCircleOutline}}</v-icon>
-      </v-btn>
-      <v-spacer></v-spacer> -->
-
-      <!-- <v-btn icon>
-        <v-icon>{{mdiHeartOutline}}</v-icon>
-      </v-btn> -->
-
-      <!-- <v-btn icon>
-        <v-icon>{{mdiPlaylistMusicOutline}}</v-icon>
-      </v-btn> -->
     </v-card-actions>
   </v-card>
 </template>
