@@ -12,13 +12,12 @@
     >
     </canvas>
     <audio
-      crossorigin="anonymous"
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
       autoplay
       :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
       preload="auto"
-      type="audio/mp3"
+      type="audio/mpeg"
       @timeupdate="getMusicInfo($event.target)"
       id="audio"
     ></audio>
