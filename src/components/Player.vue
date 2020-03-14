@@ -318,6 +318,7 @@ export default {
   methods: {
     togglePlaying () {
       if (this.$refs.player.paused) {
+        this.$refs.player.load()
         this.$refs.player.play()
       } else {
         this.$refs.player.pause()
