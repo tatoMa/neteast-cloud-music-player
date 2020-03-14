@@ -12,11 +12,10 @@
     >
     </canvas>
     <audio
-    controls
+      autoplay
       crossorigin="anonymous"
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
-      autoplay
       :src="getMusicUrlsListById.length > 0 ? musicUrlHttps : ''"
       preload="auto"
       type="audio/mpeg"
@@ -230,7 +229,7 @@ import PlayerBottomNav from './PlayerBottomNav'
 import PlayerTabPlaylist from './PlayerTabPlaylist'
 import PlayerTabDownload from './PlayerTabDownload'
 import PlayerTabMessage from './PlayerTabMessage'
-import audioAnalysier from '../utils/audioAnalyser'
+import audioAnalyser from '../utils/audioAnalyser'
 import { mdiVolumeHigh, mdiSync, mdiEjectOutline, mdiChevronDown, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
 export default {
   components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
@@ -254,7 +253,8 @@ export default {
       storedLastVolume: 0,
       currentTime: 0,
       duration: 0,
-      layout: false
+      layout: false,
+      audioAnalyser: false
       // paused: true,
       // song: null
     }
@@ -268,6 +268,7 @@ export default {
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
     musicUrlHttps () {
+      this.audioAnalyserStart()
       if (this.getMusicUrlsListById[0].url) {
         let url = this.getMusicUrlsListById[0].url
         if (url.match('^http://')) {
@@ -312,12 +313,19 @@ export default {
     this.$refs.player.onended = () => {
       this.nextTrack()
     }
-    audioAnalysier.init()
-    audioAnalysier.start()
+    audioAnalyser.init()
+    // audioAnalyser.start()
   },
   methods: {
+    audioAnalyserStart () {
+      if (!this.audioAnalyser) {
+        audioAnalyser.start()
+        this.audioAnalyser = true
+      }
+    },
     togglePlaying () {
       if (this.$refs.player.paused) {
+        // audioAnalyser.init()
         this.$refs.player.load()
         this.$refs.player.play()
       } else {
