@@ -230,6 +230,7 @@ import PlayerTabPlaylist from './PlayerTabPlaylist'
 import PlayerTabDownload from './PlayerTabDownload'
 import PlayerTabMessage from './PlayerTabMessage'
 import audioAnalyser from '../utils/audioAnalyser'
+import { httpToHttps } from '../utils/helper'
 import { mdiVolumeHigh, mdiSync, mdiEjectOutline, mdiChevronDown, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
 export default {
   components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
@@ -268,14 +269,11 @@ export default {
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
     musicUrlHttps () {
-      this.audioAnalyserStart()
-      if (this.getMusicUrlsListById[0].url) {
-        let url = this.getMusicUrlsListById[0].url
-        if (url.match('^http://')) {
-          url = url.replace('http://', 'https://')
-        }
-        return url
-      } return null
+      const url = this.getMusicUrlsListById[0].url
+      if (url) {
+        return httpToHttps(url)
+      }
+      return null
     },
     currentTimeAndDurationLabel: function () {
       if (this.duration && this.duration !== 0) {
@@ -309,12 +307,13 @@ export default {
     }
   },
   mounted () {
-    // this.audioTagPausedStatus = this.$refs.player.paused
+    audioAnalyser.init()
     this.$refs.player.onended = () => {
       this.nextTrack()
     }
-    audioAnalyser.init()
-    // audioAnalyser.start()
+    this.$refs.player.onplay = () => {
+      this.audioAnalyserStart()
+    }
   },
   methods: {
     audioAnalyserStart () {
@@ -358,9 +357,6 @@ export default {
     },
     nextTrack () {
       this.$store.commit('player/setNextTrack')
-      // if (!this.currentTrackUrlAvailabel) {
-      //   this.nextTrack()
-      // }
     },
     prevTrack () {
       this.$store.commit('player/setPrevTrack')

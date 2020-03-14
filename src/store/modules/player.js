@@ -155,11 +155,11 @@ export default {
       return state.currentTrack
     },
     getMusicDetailsList: (state) => {
-      console.log('music details', state.musicDetailsList)
+      // console.log('music details', state.musicDetailsList)
       return state.musicDetailsList
     },
     getMusicUrlsListById: (state) => {
-      console.log('url info', state.musicUrlsList)
+      // console.log('url info', state.musicUrlsList)
       return state.musicUrlsList
     },
     getMusicDetailById: (state) => {
