@@ -15,6 +15,9 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 - [ ] maybe login?
 - [ ] large image adaptive loading
 - [ ] download music function
+- [ ] music progress slider click and jump to time function
+- [x] fix music url request 403 error (by adding referrer head into index page)
+- [x] reduce the bundle size and loading size(to homepage 440k total)
 - [x] material icon tree-shaking (Reduce 300K after build the bundle)
 - [x] message tab with styled component and function
 - [x] click and play music without wipeout playlist

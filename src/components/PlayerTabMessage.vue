@@ -2,7 +2,7 @@
   <div>
 <!-- {{getCommentsById}} -->
   <!-- Loading progress bar -->
-  <loading :loading='getCommentsById.length === 0'/>
+  <loading v-if="getCommentsById.length" :loading='getCommentsById.length === 0'/>
   <v-card
     v-for="(item, index) in getCommentsById"
     :key="index"

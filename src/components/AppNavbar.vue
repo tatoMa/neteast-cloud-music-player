@@ -85,7 +85,7 @@ export default {
       this.searchOpen = !this.searchOpen
     },
     searchInput () {
-      this.goToSearchInput()
+      this.goToSearchName()
       this.search = ''
       this.searchOpen = false
     },
