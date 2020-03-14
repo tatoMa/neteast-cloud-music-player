@@ -86,6 +86,7 @@ export default {
     },
     searchInput () {
       this.goToSearchName()
+      this.$store.commit('setSearchResult', this.$route.query.keyword)
       this.search = ''
       this.searchOpen = false
     },
