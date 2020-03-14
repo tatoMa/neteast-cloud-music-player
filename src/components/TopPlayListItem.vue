@@ -1,7 +1,7 @@
 <template>
   <v-card class="card-hover" color="secondary">
     <v-img
-      :src="item.coverImgUrl+'?param=300y300'"
+      :src="httpToHttps(item.coverImgUrl)+'?param=300y300'"
       class="white--text align-end image"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="20vh"
@@ -14,8 +14,8 @@
       <v-avatar
         size="36">
         <img
-          :src="item.creator.avatarUrl+'?param=36y36'"
-          :lazy-src="item.creator.avatarUrl+'?param=5y5'"
+          :src="httpToHttps(item.creator.avatarUrl)+'?param=36y36'"
+          :lazy-src="httpToHttps(item.creator.avatarUrl)+'?param=5y5'"
           :alt="item.creator.nickname"
         >
       </v-avatar>
@@ -36,6 +36,7 @@
 
 <script>
 import { mdiHeartOutline, mdiPlayCircleOutline, mdiPlaylistMusicOutline } from '@mdi/js'
+import { httpToHttps } from '../utils/helper'
 
 export default {
   props: {
@@ -47,7 +48,8 @@ export default {
     return {
       mdiHeartOutline,
       mdiPlayCircleOutline,
-      mdiPlaylistMusicOutline
+      mdiPlaylistMusicOutline,
+      httpToHttps
     }
   }
 }
