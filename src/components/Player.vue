@@ -12,6 +12,7 @@
     >
     </canvas>
     <audio
+      autoplay
       crossorigin="anonymous"
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
