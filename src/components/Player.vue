@@ -16,7 +16,7 @@
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
       autoplay
-      :src="getMusicUrlsListById.length > 0 ? getMusicUrlsListById[0].url : ''"
+      :src="getMusicUrlsListById.length > 0 ? musicUrlHttps : ''"
       preload="auto"
       type="audio/mpeg"
       @timeupdate="getMusicInfo($event.target)"
@@ -266,6 +266,15 @@ export default {
       getMusicDetailsList: 'player/getMusicDetailsList',
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
+    musicUrlHttps () {
+      if (this.getMusicUrlsListById[0].url) {
+        let url = this.getMusicUrlsListById[0].url
+        if (url.match('^http://')) {
+          url = url.replace('http://', 'https://')
+        }
+        return url
+      } return null
+    },
     currentTimeAndDurationLabel: function () {
       if (this.duration && this.duration !== 0) {
         return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
