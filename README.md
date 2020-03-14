@@ -44,6 +44,13 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 - [x] utils and apis
 - [x] hot playlists page 
 
+
+### need a env file to start this app
+```
+.env
+VUE_APP_baseURL=Your URL
+```
+
 #### Project setup
 ```
 npm install

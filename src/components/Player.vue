@@ -12,11 +12,9 @@
     >
     </canvas>
     <audio
-    controls
       crossorigin="anonymous"
       v-show="getMusicUrlsListById.length > 0"
       ref="player"
-      autoplay
       :src="getMusicUrlsListById.length > 0 ? musicUrlHttps : ''"
       preload="auto"
       type="audio/mpeg"
@@ -313,11 +311,13 @@ export default {
       this.nextTrack()
     }
     audioAnalysier.init()
-    audioAnalysier.start()
+    // audioAnalysier.start()
   },
   methods: {
     togglePlaying () {
       if (this.$refs.player.paused) {
+        // audioAnalysier.init()
+        audioAnalysier.start()
         this.$refs.player.load()
         this.$refs.player.play()
       } else {
