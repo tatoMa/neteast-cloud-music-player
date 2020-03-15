@@ -209,15 +209,7 @@
             @switchTab = "switchTab"
             @toggleLayout = "toggleLayout"
           />
-          <!-- <WaveEffect
-            v-if="!paused && breakpoint"
-            :layout = "layout"
-          ></WaveEffect> -->
-          <!-- <WaveEffectLarge
-            v-if="!paused && !breakpoint"
-            :layout = "layout"
-          ></WaveEffectLarge> -->
-      <!-- </v-col> -->
+
     </v-footer>
 </template>
 

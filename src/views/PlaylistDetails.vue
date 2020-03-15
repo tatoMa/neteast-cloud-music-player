@@ -16,7 +16,7 @@
           <v-img
             class="white--text align-end"
             height="35vh"
-            :src="getPlayListById.coverImgUrl"
+            :src="httpToHttps(getPlayListById.coverImgUrl)"
           >
           </v-img>
           <v-card-title>{{getPlayListById.name}}</v-card-title>
@@ -64,6 +64,7 @@
 import loading from '../components/Loading'
 import MusicItem from '../components/MusicItem'
 import { mapGetters } from 'vuex'
+import { httpToHttps } from '../utils/helper'
 import { mdiStar, mdiPlayCircleOutline } from '@mdi/js'
 export default {
   name: 'PlayListDetails',
@@ -74,6 +75,7 @@ export default {
   data () {
     return {
       // item: -1,
+      httpToHttps,
       mdiStar,
       mdiPlayCircleOutline,
       id: '',
