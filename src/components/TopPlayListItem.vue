@@ -18,7 +18,6 @@
         size="36">
         <img
           :src="httpToHttps(item.creator.avatarUrl)+'?param=36y36'"
-          :lazy-src="httpToHttps(item.creator.avatarUrl)+'?param=5y5'"
           :alt="item.creator.nickname"
         >
       </v-avatar>

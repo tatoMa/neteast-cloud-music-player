@@ -31,7 +31,6 @@
         >
           <v-img
           :src="httpToHttps(this.item.al.picUrl) +'?param=100y100'"
-          :lazy-src="httpToHttps(this.item.al.picUrl) +'?param=30y30'"
           ></v-img>
         </v-avatar>
       </div>
