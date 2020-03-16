@@ -20,7 +20,15 @@
           >
           </v-img>
           <v-card-title>{{getPlayListById.name}}</v-card-title>
-          <v-card-subtitle>{{getPlayListById.description}}</v-card-subtitle>
+          <v-expansion-panels accordion>
+            <v-expansion-panel class="text-left">
+              <v-expansion-panel-header class="body-2 font-weight-light">{{headerTextSliced}}...</v-expansion-panel-header>
+              <v-expansion-panel-content class="body-2 font-weight-light">
+                {{getPlayListById.description}}
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+          <!-- <v-card-subtitle>{{getPlayListById.description}}</v-card-subtitle> -->
         </v-card><!-- image, name and description of playlist -->
 
         <!-- the list and all items -->
@@ -92,7 +100,10 @@ export default {
   computed: {
     ...mapGetters({
       getPlayListById: 'getPlayListById'
-    })
+    }),
+    headerTextSliced () {
+      return this.getPlayListById.description.slice(0, 36)
+    }
   },
   methods: {
     setMusic (id) {
