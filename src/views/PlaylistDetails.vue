@@ -100,7 +100,7 @@ export default {
       getPlayListById: 'getPlayListById'
     }),
     headerTextSliced () {
-      return this.getPlayListById.description.slice(0, 36)
+      return this.getPlayListById.description ? this.getPlayListById.description.slice(0, 36) : 'Sescription'
     }
   },
   methods: {
