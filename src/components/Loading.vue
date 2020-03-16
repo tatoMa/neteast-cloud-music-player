@@ -6,7 +6,7 @@
         align-content="center"
         justify="center"
         v-if="this.loading"
-        style="min-height:75vh"
+        style="min-height:65vh"
       >
         <v-col cols="8">
           <v-progress-linear

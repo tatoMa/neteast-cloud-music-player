@@ -48,7 +48,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import loading from './Loading'
+import loading from '../Loading'
 export default {
   components: {
     loading

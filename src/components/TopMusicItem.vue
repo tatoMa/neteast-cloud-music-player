@@ -57,7 +57,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import loading from '../components/Loading'
-import musicItemWithPic from './MusicItemWithPic'
+import musicItemWithPic from './Common/MusicItemWithPic'
 import { mdiChevronDown, mdiPlayCircleOutline } from '@mdi/js'
 export default {
   name: 'HotPlayLists',

@@ -2,6 +2,7 @@
   <v-container class="pt-0">
     <v-row class="text-center">
       <v-col>
+
         <!-- Loading progress bar -->
         <Loading :loading="!getSearchResult"/>
           <v-list
@@ -24,22 +25,19 @@
 
 <script>
 import Loading from '../components/Loading'
-import MusicItem from '../components/MusicItem'
+import MusicItem from '../components/Common/MusicItem'
 import { mapGetters } from 'vuex'
 export default {
   name: 'List',
   components: { Loading, MusicItem },
   data () {
     return {
-      keyword: '',
-      songs: []
+      keyword: ''
     }
   },
   mounted () {
-    // if (this.keyword !== '') {
     this.keyword = this.$route.query.keyword
     this.$store.commit('setSearchResult', this.keyword)
-    // }
   },
   computed: {
     ...mapGetters({
@@ -55,8 +53,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-img{
-  max-width: 400px;
-}
-</style>

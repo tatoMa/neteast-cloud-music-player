@@ -28,7 +28,8 @@
               :item=item
               @goToPlaylist=goToPlaylist
             />
-          </v-col>
+          </v-col><!-- the list -->
+
         </v-row>
       </v-container>
 
@@ -46,11 +47,6 @@ export default {
     loading,
     TopPlayListItem
   },
-  data () {
-    return {
-      search: ''
-    }
-  },
   computed: {
     ...mapGetters({
       getPlayLists: 'getPlayLists'
@@ -66,16 +62,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-img{
-  max-width : 60px;
-}
-.image{
-  cursor: pointer;
-  zoom: 1;
-  transition: 200ms ease-in-out;
-}
-.card-hover:hover .image{
-  transform: translateY(-8px)
-}
-</style>

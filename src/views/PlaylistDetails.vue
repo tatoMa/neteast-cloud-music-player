@@ -15,7 +15,7 @@
         >
           <v-img
             class="white--text align-end"
-            height="35vh"
+            height="30vh"
             :src="httpToHttps(getPlayListById.coverImgUrl)"
           >
           </v-img>
@@ -28,7 +28,6 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
-          <!-- <v-card-subtitle>{{getPlayListById.description}}</v-card-subtitle> -->
         </v-card><!-- image, name and description of playlist -->
 
         <!-- the list and all items -->
@@ -43,7 +42,7 @@
           rounded
           color="primary"
           block
-          class="mb-1"
+          class="mt-2 mb-1"
         >
           play All {{getPlayListById.tracks.length}} Songs
           <v-icon right>{{mdiPlayCircleOutline}}</v-icon>
@@ -70,7 +69,7 @@
 
 <script>
 import loading from '../components/Loading'
-import MusicItem from '../components/MusicItem'
+import MusicItem from '../components/Common/MusicItem'
 import { mapGetters } from 'vuex'
 import { httpToHttps } from '../utils/helper'
 import { mdiStar, mdiPlayCircleOutline } from '@mdi/js'
@@ -82,7 +81,6 @@ export default {
   },
   data () {
     return {
-      // item: -1,
       httpToHttps,
       mdiStar,
       mdiPlayCircleOutline,

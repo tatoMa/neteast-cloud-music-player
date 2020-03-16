@@ -41,7 +41,7 @@
 
 <script>
 import { mdiPlaylistPlus } from '@mdi/js'
-import { httpToHttps } from '../utils/helper'
+import { httpToHttps } from '../../utils/helper'
 export default {
   data () {
     return {

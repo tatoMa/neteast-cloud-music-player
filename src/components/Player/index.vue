@@ -63,7 +63,7 @@
                 @click="toggleLayout"
                 v-else
                 class="my-1 pa-0 mx-auto"
-                src="../assets/default_cover.png"
+                src="../../assets/default_cover.png"
                 :max-width="layout ? 400 : 94"
                 :max-height="layout ? 400 : 94"
                 contain
@@ -215,14 +215,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import PlayerBottomNav from './PlayerBottomNav'
+import PlayerBottomNav from './BottomNav'
 // import WaveEffect from './WaveEffect'
 // import WaveEffectLarge from './WaveEffectLarge'
-import PlayerTabPlaylist from './PlayerTabPlaylist'
-import PlayerTabDownload from './PlayerTabDownload'
-import PlayerTabMessage from './PlayerTabMessage'
-import audioAnalyser from '../utils/audioAnalyser'
-import { httpToHttps } from '../utils/helper'
+import PlayerTabPlaylist from './TabPlaylist'
+import PlayerTabDownload from './TabDownload'
+import PlayerTabMessage from './TabMessage'
+import audioAnalyser from '../../utils/audioAnalyser'
+import { httpToHttps } from '../../utils/helper'
 import { mdiVolumeHigh, mdiSync, mdiEjectOutline, mdiChevronDown, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
 export default {
   components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },

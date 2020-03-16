@@ -49,11 +49,6 @@ export default {
   components: {
     TopMusicItem
   },
-  data () {
-    return {
-
-    }
-  },
   computed: {
     breakpoint () {
       return this.$vuetify.breakpoint

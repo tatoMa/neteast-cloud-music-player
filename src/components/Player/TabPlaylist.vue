@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import MusicItem from './MusicItem'
+import MusicItem from '../Common/MusicItem'
 
 export default {
   components: { MusicItem },

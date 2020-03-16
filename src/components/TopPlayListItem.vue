@@ -1,5 +1,7 @@
 <template>
   <v-card class="card-hover" color="secondary">
+
+    <!-- cover image -->
     <v-img
       :src="httpToHttps(item.coverImgUrl)+'?param=300y300'"
       class="white--text align-end image"
@@ -8,8 +10,9 @@
       @click.stop="$emit('goToPlaylist',item)"
     >
       <v-card-title class="subtitle-1" v-text="item.name"></v-card-title>
-    </v-img>
+    </v-img><!-- cover image -->
 
+    <!-- creater info and tags of music types -->
     <v-card-actions>
       <v-avatar
         size="36">
@@ -30,7 +33,8 @@
       >
         {{tag}}
       </v-chip>
-    </v-card-actions>
+    </v-card-actions><!-- creater info and tags of music types -->
+
   </v-card>
 </template>
 
@@ -54,7 +58,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

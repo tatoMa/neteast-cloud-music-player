@@ -17,7 +17,10 @@
     <v-content>
       <v-scroll-x-transition mode="out-in">
           <!-- router -->
-          <router-view class="pb-12"></router-view>
+          <router-view
+            class="pb-12"
+            :key="$route.fullPath"
+          ></router-view>
       </v-scroll-x-transition>
     </v-content><!-- main section -->
 
@@ -31,7 +34,7 @@
 // import { mapGetters } from 'vuex'
 import AppDrawer from './components/AppDrawer'
 import appNavbar from './components/AppNavbar'
-import Player from './components/Player'
+import Player from './components/Player/index'
 export default {
   name: 'App',
   components: {
