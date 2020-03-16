@@ -1,16 +1,20 @@
 <template>
-    <v-footer
-      fixed
-      class="pa-0 ma-0 z-index-higher border-top-radius"
-      color="secondary"
-    >
+  <v-footer
+    fixed
+    class="pa-0 ma-0 z-index-higher border-top-radius"
+    color="secondary"
+  >
+
+    <!-- audio synchronizer -->
     <canvas
       id='canvas'
       :class="[layout ? 'canvas-movedown' : '']"
       width="600"
       height="350"
     >
-    </canvas>
+    </canvas><!-- audio synchronizer -->
+
+    <!-- audio source -->
     <audio
       autoplay
       crossorigin="anonymous"
@@ -21,225 +25,162 @@
       type="audio/mpeg"
       @timeupdate="getMusicInfo($event.target)"
       id="audio"
-    ></audio>
+    ></audio><!-- audio source -->
 
-        <!-- player -->
-          <v-row
-            no-gutters
-            justify="center"
-            align="start"
-            class="px-3 px-sm-10 normal-player"
-            :class="{ 'full-height-player': layout }"
-            style="width:100vw; z-index:5"
-          >
+    <!-- player -->
+    <v-row
+      no-gutters
+      justify="center"
+      align="start"
+      class="px-3 px-sm-10 normal-player"
+      :class="{ 'full-height-player': layout }"
+      style="width:100vw; z-index:5"
+    >
 
-            <!-- eject button -->
-            <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
-              <v-icon>{{mdiEjectOutline}}</v-icon>
-            </v-card><!-- eject button -->
+      <!-- eject button -->
+      <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
+        <v-icon>{{mdiEjectOutline}}</v-icon>
+      </v-card><!-- eject button -->
 
-            <!-- drawer down button -->
-            <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
-              <v-icon>{{mdiChevronDown}}</v-icon>
-            </v-btn><!-- drawer down button -->
+      <!-- drawer down button -->
+      <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
+        <v-icon>{{mdiChevronDown}}</v-icon>
+      </v-btn><!-- drawer down button -->
 
-            <!-- cover image section -->
-            <v-col
-              :cols="layout?12:3"
-              v-if="tab === 0"
-            >
-              <v-img
-                @click="toggleLayout"
-                v-if="getMusicDetailsList[currentTrack]"
-                class="my-1 pa-0 mx-auto cover-round"
-                :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
-                :src="httpToHttps(this.getMusicDetailsList[this.currentTrack].al.picUrl)+'?param=400y400'"
-                :max-width="layout ? 400 : 94"
-                :max-height="layout ? 400 : 94"
-                contain
-              >
-              </v-img>
-              <v-img
-                @click="toggleLayout"
-                v-else
-                class="my-1 pa-0 mx-auto"
-                src="../../assets/default_cover.png"
-                :max-width="layout ? 400 : 94"
-                :max-height="layout ? 400 : 94"
-                contain
-              >
-              </v-img>
-            </v-col>
+      <!-- cover image section -->
+      <v-col
+        :cols="layout?12:3"
+        v-if="tab === 0"
+      >
+        <v-img
+          @click="toggleLayout"
+          v-if="getMusicDetailsList[currentTrack]"
+          class="my-1 pa-0 mx-auto cover-round"
+          :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
+          :src="httpToHttps(this.getMusicDetailsList[this.currentTrack].al.picUrl)+'?param=400y400'"
+          :max-width="layout ? 400 : 94"
+          :max-height="layout ? 400 : 94"
+          contain
+        >
+        </v-img>
+        <v-img
+          @click="toggleLayout"
+          v-else
+          class="my-1 pa-0 mx-auto"
+          src="../../assets/default_cover.png"
+          :max-width="layout ? 400 : 94"
+          :max-height="layout ? 400 : 94"
+          contain
+        >
+        </v-img>
+      </v-col>
 
-            <!-- information and controllers section -->
-            <v-col
-              :align-self="layout?'end':'center'"
-              class="pl-1 pl-sm-5 text-center"
-              style="max-width:900px"
-              :class="layout ? 'mb-4' : ''"
-              v-if="tab === 0"
-            >
-            <!-- {{getMusicUrlsListById}} -->
-              <!-- <h2 class="title" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].name}}</h2> -->
-              <div class="max-ch mx-auto">
-                <span
-                  class="subtitle-2 d-sm-block"
-                  v-if="getMusicDetailsList[currentTrack]"
-                >
-                  {{getMusicDetailsList[currentTrack].name}}
-                </span>
-                <span
-                  class="subtitle-2 d-sm-block"
-                  v-else
-                >
-                  NetEast
-                </span>
-                <!-- <span class="body-2" v-if="getMusicDetailsList[0]">{{getMusicDetailsList[0].ar[0].name}}</span> -->
-                <span class="caption d-sm-block" v-if="getMusicDetailsList[currentTrack]">{{getMusicDetailsList[currentTrack].ar[0].name}}</span>
-                <span class="caption d-sm-block" v-else> Cloud Music player </span>
-              </div>
-              <v-row
-                no-gutters
-                align="center"
-                align-content="center"
-                justify="center"
-                class="mt-1 mt-sm-0 mb-0"
-              >
-              <v-slider
-                class="mt-1"
-                v-if="getMusicUrlsListById.length > 0"
-                dense
-                v-model="currentTimeComputed"
-                min="0"
-                :max="duration"
-                color="primary"
-                height="3"
-                background-color="secondary"
-                hide-details
-                @click="sliderClick()"
-              ></v-slider>
-              <v-slider
-                class="mt-1"
-                disabled
-                dense
-                v-else
-                v-model="currentTime"
-                min="0"
-                max="100"
-                color="primary"
-                height="3"
-                background-color="secondary"
-                hide-details
-              ></v-slider>
-              <div class="caption">
-                {{ currentTimeAndDurationLabel }}
-              </div>
-              </v-row>
+      <!-- information and controllers section -->
+      <v-col
+        :align-self="layout?'end':'center'"
+        class="pl-1 pl-sm-5 text-center"
+        style="max-width:900px"
+        :class="layout ? 'mb-4' : ''"
+        v-if="tab === 0"
+      >
+        <MusicInfo
+          :track=getMusicDetailsList[currentTrack]
+        />
+        <v-row
+          no-gutters
+          align="center"
+          align-content="center"
+          justify="center"
+          class="mt-1 mt-sm-0 mb-0"
+        >
+          <v-slider
+            class="mt-1"
+            v-if="getMusicUrlsListById.length > 0"
+            dense
+            v-model="currentTimeComputed"
+            min="0"
+            :max="duration"
+            color="primary"
+            height="3"
+            background-color="secondary"
+            hide-details
+            @click="sliderClick()"
+          ></v-slider>
+          <v-slider
+            class="mt-1"
+            disabled
+            dense
+            v-else
+            v-model="currentTime"
+            min="0"
+            max="100"
+            color="primary"
+            height="3"
+            background-color="secondary"
+            hide-details
+          ></v-slider>
+          <div class="caption">
+            {{ currentTimeAndDurationLabel }}
+          </div>
+        </v-row>
 
-              <!-- buttons section -->
-              <v-row
-                justify="space-between"
-                no-gutters class="mb-1"
-                :class="layout?'mb-8':''"
-                @click.stop=""
-              >
-                <v-spacer class="d-none d-sm-flex"></v-spacer>
-                <v-row justify="space-between" no-gutters>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon disabled="">{{mdiHeart}}</v-icon>
-                  </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="prevTrack">
-                    <v-icon>{{mdiStepBackward}}</v-icon>
-                  </v-btn>
-                  <v-btn icon v-if="paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
-                    <div v-if="getMusicUrlsListById[0]">
-                      <v-icon large color="primary" v-if="getMusicUrlsListById[0].url">{{mdiPlay}}</v-icon>
-                      <v-icon large v-else>{{mdiPlay}}</v-icon>
-                    </div>
-                      <v-icon large v-else>{{mdiPlay}}</v-icon>
-                  </v-btn>
-                  <v-btn icon v-if="!paused" @click.stop="togglePlaying" :disabled="getMusicUrlsListById.length === 0">
-                    <div v-if="getMusicUrlsListById[0]">
-                      <v-icon color="primary" v-if="!getMusicUrlsListById[0].url" >{{mdiAlertCircle}}</v-icon>
-                      <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
-                    </div>
-                      <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
-                  </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0" @click.stop="nextTrack">
-                    <v-icon>{{mdiStepForward}}</v-icon>
-                  </v-btn>
-                  <v-btn icon :disabled="getMusicUrlsListById.length === 0">
-                    <v-icon disabled="">{{mdiSync}}</v-icon>
-                  </v-btn>
-                </v-row>
-                <!-- volume controller -->
-                <v-col cols="3" class="ma-0 pa-0 d-none d-sm-flex">
-                  <v-slider
-                    class="ml-9 pa-0 ma-0 margin10"
-                    dense
-                    v-model="volume"
-                    min="0"
-                    max="1"
-                    color="primary"
-                    background-color="secondary"
-                    :append-icon=mdiVolumeHigh
-                    @click:append="toggleVolumeMute"
-                    hide-details
-                    step=0.05
-                    style="margin:20px"
-                  ></v-slider>
-                </v-col>
+        <!-- buttons section -->
+        <ControlButtons
+          :layout=layout
+          :music=getMusicUrlsListById
+          @togglePlaying=togglePlaying
+        />
+      </v-col>
+      <!-- Play List Tab -->
+      <v-col v-if="tab === 1" class="scrollY" cols="12">
+        <PlayerTabPlaylist/>
+      </v-col>
+      <v-col v-if="tab === 2" class="scrollY" cols="12">
+        <PlayerTabMessage/>
+      </v-col>
+      <v-col v-if="tab === 3" class="scrollY" cols="12">
+        <PlayerTabDownload/>
+      </v-col>
+    </v-row>
 
-              </v-row>
-            </v-col>
+    <!-- bottom navigation -->
+    <PlayerBottomNav
+      :layout = "layout"
+      @switchTab = "switchTab"
+      @toggleLayout = "toggleLayout"
+      @toggleVolumeMute=toggleVolumeMute
+    />
 
-            <!-- Play List Tab -->
-            <v-col v-if="tab === 1" class="scrollY" cols="12">
-              <PlayerTabPlaylist/>
-            </v-col>
-            <v-col v-if="tab === 2" class="scrollY" cols="12">
-              <PlayerTabMessage/>
-            </v-col>
-            <v-col v-if="tab === 3" class="scrollY" cols="12">
-              <PlayerTabDownload/>
-            </v-col>
-          </v-row>
-          <PlayerBottomNav
-            :layout = "layout"
-            @switchTab = "switchTab"
-            @toggleLayout = "toggleLayout"
-          />
-
-    </v-footer>
+  </v-footer>
 </template>
 
 <script>
+import audioAnalyser from '../../utils/audioAnalyser'
+import { httpToHttps } from '../../utils/helper'
 import { mapGetters } from 'vuex'
+import { mdiEjectOutline, mdiChevronDown } from '@mdi/js'
+
+import ControlButtons from './ControlButtons'
+import MusicInfo from './MusicInfo'
+
 import PlayerBottomNav from './BottomNav'
-// import WaveEffect from './WaveEffect'
-// import WaveEffectLarge from './WaveEffectLarge'
 import PlayerTabPlaylist from './TabPlaylist'
 import PlayerTabDownload from './TabDownload'
 import PlayerTabMessage from './TabMessage'
-import audioAnalyser from '../../utils/audioAnalyser'
-import { httpToHttps } from '../../utils/helper'
-import { mdiVolumeHigh, mdiSync, mdiEjectOutline, mdiChevronDown, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
+
 export default {
-  components: { PlayerBottomNav, PlayerTabPlaylist, PlayerTabDownload, PlayerTabMessage },
+  components: {
+    ControlButtons,
+    MusicInfo,
+    PlayerBottomNav,
+    PlayerTabPlaylist,
+    PlayerTabDownload,
+    PlayerTabMessage
+  },
   data () {
     return {
-      // audioTagPausedStatus: false,
-      // player: null,
-      mdiVolumeHigh,
-      mdiSync,
       mdiEjectOutline,
       mdiChevronDown,
-      mdiHeart,
-      mdiStepBackward,
-      mdiStepForward,
-      mdiPlay,
-      mdiAlertCircle,
-      mdiPause,
       httpToHttps,
       tab: 0,
       ended: false, // for when audio tag is ended
@@ -249,8 +190,6 @@ export default {
       duration: 0,
       layout: false,
       audioAnalyser: false
-      // paused: true,
-      // song: null
     }
   },
   computed: {
@@ -280,11 +219,6 @@ export default {
         return this.currentTime
       }
     }
-    // currentTrackUrlAvailabel () {
-    //   console.log(this.getMusicUrlsListById[0].url)
-
-    //   return !!this.getMusicUrlsListById[0].url
-    // }
   },
   watch: {
     volume: function (val) {
@@ -340,12 +274,6 @@ export default {
     sliderClick () {
       console.log('click slider')
       // this.$refs.player.currentTime = 260
-    },
-    nextTrack () {
-      this.$store.commit('player/setNextTrack')
-    },
-    prevTrack () {
-      this.$store.commit('player/setPrevTrack')
     },
     toggleLayout () {
       if (this.breakpoint) {

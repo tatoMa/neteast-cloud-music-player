@@ -1,5 +1,5 @@
 <template>
-  <v-card class="card-hover" color="secondary">
+  <v-card class="card-hover" color="secondary" v-ripple>
 
     <!-- cover image -->
     <v-img
