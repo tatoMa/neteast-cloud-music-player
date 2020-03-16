@@ -16,11 +16,13 @@
     <!-- main section -->
     <v-content>
       <v-scroll-x-transition mode="out-in">
+
           <!-- router -->
           <router-view
             class="pb-12"
             :key="$route.fullPath"
-          ></router-view>
+          ></router-view> <!-- define key to fullpath of router makes router refresh whenever address changes -->
+
       </v-scroll-x-transition>
     </v-content><!-- main section -->
 
