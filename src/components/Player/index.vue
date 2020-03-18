@@ -50,7 +50,7 @@
       <!-- cover image section -->
       <v-col
         :cols="layout?12:3"
-        v-if="tab === 0"
+        v-show="tab === 0"
       >
         <v-img
           @click="toggleLayout"
@@ -81,7 +81,7 @@
         class="pl-1 pl-sm-5 text-center"
         style="max-width:900px"
         :class="layout ? 'mb-4' : ''"
-        v-if="tab === 0"
+        v-show="tab === 0"
       >
         <MusicInfo
           :track=getMusicDetailsList[currentTrack]
