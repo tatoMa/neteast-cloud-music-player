@@ -158,7 +158,7 @@ export default {
       return state.musicDetailById
     },
     getLyricById: (state) => {
-      console.log(state.lyric)
+      // console.log(state.lyric)
 
       return state.lyric
     }

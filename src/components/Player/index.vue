@@ -167,20 +167,20 @@ import ControlButtons from './ControlButtons'
 import MusicInfo from './MusicInfo'
 
 import PlayerBottomNav from './BottomNav'
-import TabPlaylist from './TabPlaylist'
-import TabDownload from './TabDownload'
-import TabMessage from './TabMessage'
-import TabLyric from './TabLyric'
+// import TabPlaylist from './TabPlaylist'
+// import TabDownload from './TabDownload'
+// import TabMessage from './TabMessage'
+// import TabLyric from './TabLyric'
 
 export default {
   components: {
     ControlButtons,
     MusicInfo,
     PlayerBottomNav,
-    TabPlaylist,
-    TabDownload,
-    TabMessage,
-    TabLyric
+    TabPlaylist: () => import(/* webpackPrefetch: true */ './TabPlaylist'),
+    TabDownload: () => import(/* webpackPrefetch: true */ './TabDownload'),
+    TabMessage: () => import(/* webpackPrefetch: true */ './TabMessage'),
+    TabLyric: () => import(/* webpackPrefetch: true */ './TabLyric')
   },
   data () {
     return {
