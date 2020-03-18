@@ -40,6 +40,10 @@ const getCommentsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/commen
   .then(response => response.data)
   .catch(error => console.log(error))
 
+const getLyricById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/lyric?id=${id}`, { withCredentials: true })
+  .then(response => response.data)
+  .catch(error => console.log(error))
+
 export {
   getPlayLists,
   getNewMusicLists,
@@ -50,5 +54,6 @@ export {
   getMusicUrlById,
   getMusicUrlByIds,
   getSearchResultByText,
-  getCommentsById
+  getCommentsById,
+  getLyricById
 }

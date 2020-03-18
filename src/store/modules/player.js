@@ -1,5 +1,5 @@
 // import mock from '../../utils/mock'
-import { getMusicUrlById, getMusicDetailById } from '../../utils/api'
+import { getMusicUrlById, getMusicDetailById, getLyricById } from '../../utils/api'
 // import { getMusicUrlById, getMusicUrlByIds, getMusicDetailById } from '../../utils/api'
 import store from '..'
 
@@ -13,7 +13,8 @@ export default {
     // musicDetailById: null,
     musicDetailsList: [],
     musicUrlsList: [],
-    currentTrack: 0
+    currentTrack: 0,
+    lyric: null
     // currentPausedSong: null
   },
   mutations: {
@@ -59,6 +60,7 @@ export default {
             state.musicUrlsList.push(res)
             store.commit('player/setNextTrack')
           })
+        store.commit('player/setLyricById', state.musicDetailsList[state.currentTrack].id)
       }
     },
     setMusicUrlsListByPassIdFromMusicList: (state, id) => {
@@ -119,26 +121,16 @@ export default {
         state.musicDetailsList.push(res)
         store.commit('player/setMusicUrlsListById')
       })
+    },
+    setLyricById: (state, id) => {
+      getLyricById(id)
+        .then(res => {
+          state.lyric = res.lrc.lyric
+        })
+        .catch(() => {
+          state.lyric = null
+        })
     }
-    // setMusicUrlsListByIdsList: (state) => {
-    //   if (state.musicDetailsList.length > 0) {
-    //     state.musicUrlsList = []
-    //     console.log(state.musicDetailsList[0].id)
-
-    //     const ids = state.musicDetailsList.map((item) => item.id)
-    //     getMusicUrlByIds(ids.join(',')).then(res => {
-    //       console.log(res)
-
-    //       state.musicUrlsList = res
-    //     })
-    //   }
-    // },
-
-    // setCurrentPausedSong: (state, song) => {
-    //   console.log('setCurrentSong', song)
-
-    //   state.currentPausedSong = song
-    // }
   },
   actions: {
     // setMusicUrlsListByIdAndCurrentPausedSong: async ({ state, commit }) => {
@@ -164,6 +156,11 @@ export default {
     },
     getMusicDetailById: (state) => {
       return state.musicDetailById
+    },
+    getLyricById: (state) => {
+      console.log(state.lyric)
+
+      return state.lyric
     }
     // getCurrentPausedSong: (state) => {
     //   return state.currentPausedSong

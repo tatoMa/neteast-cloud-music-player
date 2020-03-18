@@ -2,6 +2,7 @@
   <v-bottom-navigation
     v-model="bottomNav"
     shift
+    max-width="100vw"
     color="primary"
     class="bottom-nav"
     :class="layout ? 'bottom-nav-ani' : ''"
@@ -17,11 +18,16 @@
     </v-btn>
 
     <v-btn @click.stop="toggleBottomNavTab(2)">
+      <span>Lyric</span>
+      <v-icon>{{mdiClipboardTextPlay}}</v-icon>
+    </v-btn>
+
+    <v-btn @click.stop="toggleBottomNavTab(3)">
       <span>Message</span>
       <v-icon>{{mdiMessage}}</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="toggleBottomNavTab(3)">
+    <v-btn @click.stop="toggleBottomNavTab(4)">
       <span>Download</span>
       <v-icon>{{mdiCloudDownload}}</v-icon>
     </v-btn>
@@ -30,7 +36,7 @@
 </template>
 
 <script>
-import { mdiMusicCircle, mdiPlaylistMusic, mdiMessage, mdiCloudDownload } from '@mdi/js'
+import { mdiMusicCircle, mdiPlaylistMusic, mdiMessage, mdiCloudDownload, mdiClipboardTextPlay } from '@mdi/js'
 export default {
   name: 'BottomNav',
   props: {
@@ -44,6 +50,7 @@ export default {
       mdiPlaylistMusic,
       mdiMessage,
       mdiCloudDownload,
+      mdiClipboardTextPlay,
       bottomNav: 0
     }
   },

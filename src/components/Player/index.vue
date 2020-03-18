@@ -133,13 +133,16 @@
       </v-col>
       <!-- Play List Tab -->
       <v-col v-if="tab === 1" class="scrollY" cols="12">
-        <PlayerTabPlaylist/>
+        <TabPlaylist/>
       </v-col>
       <v-col v-if="tab === 2" class="scrollY" cols="12">
-        <PlayerTabMessage/>
+        <TabLyric/>
       </v-col>
       <v-col v-if="tab === 3" class="scrollY" cols="12">
-        <PlayerTabDownload/>
+        <TabMessage/>
+      </v-col>
+      <v-col v-if="tab === 4" class="scrollY" cols="12">
+        <TabDownload/>
       </v-col>
     </v-row>
 
@@ -164,18 +167,20 @@ import ControlButtons from './ControlButtons'
 import MusicInfo from './MusicInfo'
 
 import PlayerBottomNav from './BottomNav'
-import PlayerTabPlaylist from './TabPlaylist'
-import PlayerTabDownload from './TabDownload'
-import PlayerTabMessage from './TabMessage'
+import TabPlaylist from './TabPlaylist'
+import TabDownload from './TabDownload'
+import TabMessage from './TabMessage'
+import TabLyric from './TabLyric'
 
 export default {
   components: {
     ControlButtons,
     MusicInfo,
     PlayerBottomNav,
-    PlayerTabPlaylist,
-    PlayerTabDownload,
-    PlayerTabMessage
+    TabPlaylist,
+    TabDownload,
+    TabMessage,
+    TabLyric
   },
   data () {
     return {
@@ -196,7 +201,6 @@ export default {
     ...mapGetters({
       currentTrack: 'player/getCurrentTrack',
       paused: 'player/getPaused',
-      // songUrl: 'player/getSong',
       getMusicDetailsList: 'player/getMusicDetailsList',
       getMusicUrlsListById: 'player/getMusicUrlsListById'
     }),
