@@ -1,10 +1,11 @@
 <template>
-  <v-card class="card-hover" color="secondary" v-ripple>
+  <v-card class="card-hover" color="secondary" >
 
     <!-- cover image -->
     <v-img
+      v-ripple
       :src="httpToHttps(item.coverImgUrl)+'?param=300y300'"
-      class="white--text align-end image"
+      class="white--text align-end cursor-pointer image-hover"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="20vh"
       @click.stop="$emit('goToPlaylist',item)"
@@ -57,3 +58,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+.card-hover{
+  transition: .2s ease-in-out;
+}
+.card-hover:hover{
+  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.2);
+}
+.card-hover:hover .image-hover{
+  filter: brightness(1.15)
+}
+</style>

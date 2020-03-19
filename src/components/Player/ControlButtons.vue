@@ -5,7 +5,7 @@
     :class="layout?'mb-8':''"
     @click.stop=""
   >
-    <v-spacer class="d-none d-sm-flex"></v-spacer>
+    <!-- <v-spacer class="d-none d-sm-flex"></v-spacer> -->
     <v-row justify="space-between" no-gutters>
 
       <!-- favorite button -->
