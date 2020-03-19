@@ -8,20 +8,22 @@
     v-if="index < maxItem"
   >
     <v-card
-      class="my-0"
+      class="my-0 cursor-pointer card-hover"
       color="secondary"
     >
       <div class="d-flex flex-no-wrap justify-space-between">
         <div class="d-flex flex-column align-start justify-center">
-          <v-card-title
-            class="subtitle-1 max-ch pt-0"
-            v-text="item.name"
-          ></v-card-title>
 
-          <v-card-subtitle class="caption pb-1" v-text="item.ar[0].name"></v-card-subtitle>
-          <v-btn small outlined depressed rounded class="ml-3" color="primary" @click.stop="$emit('addToPlaylist',item)">
-            <v-icon>{{mdiPlaylistPlus}}</v-icon>add to playlist
-          </v-btn>
+          <!-- music name -->
+          <div class="subtitle-1 ml-4">
+            {{item.name}}
+          </div>
+
+          <!-- music artist -->
+          <div class="caption pb-1 text-truncate ml-4 text--secondary" style="max-width: 170px;">
+            {{item.ar[0].name}}
+          </div>
+
         </div>
 
         <v-avatar
@@ -63,10 +65,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.max-ch{
-  max-width: 26ch;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.card-hover{
+  transition: .1s ease-in-out;
+}
+.card-hover:hover{
+  box-shadow: inset 0 0 0 10em rgba(255, 255, 255, 0.2);
 }
 </style>

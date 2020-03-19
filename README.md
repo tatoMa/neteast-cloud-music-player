@@ -14,7 +14,7 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 
 - [ ] maybe login?
 - [ ] add full PWA support?
-- [ ] Progress Loading? different layout or resources based on device types and network speed
+- [ ] Progressive Loading? different layout or resources based on device types and network speed
 - [ ] large image adaptive loading
 - [ ] download music function
 - [ ] Lyric sync display
@@ -22,6 +22,7 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 - [ ] player loop/random function
 - [ ] UX/UI logic refactor
 - [ ] music progress slider click and jump to time function
+- [ ] add Skeleton loaders
 - [x] fix Chrome security policy don't allow instantiate AudioContext before load audio source 
 - [x] fix music url request 403 error (by adding referrer head into index page)
 - [x] reduce the bundle size and loading size(to homepage 440k total)
