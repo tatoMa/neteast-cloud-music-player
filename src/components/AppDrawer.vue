@@ -46,7 +46,7 @@
     </v-list-item>
     <v-list-item link>
       <v-list-item-action>
-        <v-icon color="grey darken-1">{{mdiAccountSettings}}</v-icon>
+        <v-icon color="grey darken-1">{{mdiFileCog}}</v-icon>
       </v-list-item-action>
       <v-list-item-title class="grey--text text--darken-1">Setting</v-list-item-title>
     </v-list-item>
@@ -55,19 +55,19 @@
 </template>
 
 <script>
-import { mdiPlusCircleOutline, mdiAccountSettings, mdiFire, mdiFormatListBulletedSquare } from '@mdi/js'
+import { mdiPlusCircleOutline, mdiFileCog, mdiFire, mdiPlaylistMusic } from '@mdi/js'
 export default {
   data () {
     return {
       mdiPlusCircleOutline,
-      mdiAccountSettings,
+      mdiFileCog,
       mdiFire,
-      mdiFormatListBulletedSquare,
+      mdiPlaylistMusic,
       item: 2,
       items: [
         { icon: mdiFire, text: 'Top Music', url: '/' },
-        { icon: mdiFormatListBulletedSquare, text: 'Top Playlists', url: 'topplaylists' }
-        // { icon: 'mdi-account-multiple', text: 'Top Artists', url: 'topartist' }
+        { icon: mdiPlaylistMusic, text: 'Top Playlists', url: 'topplaylists' },
+        { icon: mdiFileCog, text: 'Setting', url: 'setting' }
       ]
     }
   }

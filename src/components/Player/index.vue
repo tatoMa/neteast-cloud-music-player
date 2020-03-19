@@ -313,7 +313,7 @@ export default {
   text-overflow: ellipsis;
 }
 .z-index-higher{
-  z-index: 7;
+  z-index: 3;
 }
 .border-top-radius{
   border-top-left-radius: 20px;
