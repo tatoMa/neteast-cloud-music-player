@@ -10,7 +10,26 @@
 
       <!-- Loading progress bar -->
       <loading :loading='getPlayLists.length === 0'/>
-
+       <v-expansion-panels v-show="getPlayLists.length">
+        <v-expansion-panel
+        >
+          <v-expansion-panel-header>
+            Music Type Tags
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-chip
+            v-ripple
+              color="primary"
+              class="mx-1 my-2 cursor-pointer"
+              v-for="(tag, i) in getAllPlayListTags"
+              :key="i"
+              @click.stop="goToPlaylistsByTag(tag.name)"
+            >
+              {{tag.name}}
+            </v-chip>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
       <!-- main container -->
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
@@ -49,16 +68,32 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getPlayLists: 'getPlayLists'
+      getPlayLists: 'getPlayLists',
+      getAllPlayListTags: 'getAllPlayListTags'
     })
   },
   mounted () {
-    this.$store.commit('setPlayLists')
+    console.log(this.$route)
+
+    const query = this.$route.query.tag
+    if (query) {
+      console.log('tag search', query)
+      this.$store.commit('setPlayListByTagName', query)
+    } else {
+      this.$store.commit('setPlayLists')
+    }
+    this.$store.commit('setAllPlayListTags')
   },
   methods: {
     goToPlaylist (item) {
       this.$router.push(`/playlistdetails?id=${item.id}`)
+    },
+    goToPlaylistsByTag (tag) {
+      this.$router.push(`/playlist?tag=${tag}`)
     }
   }
 }
 </script>
+<style scoped>
+
+</style>

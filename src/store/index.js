@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import player from './modules/player'
 import {
   getPlayLists,
+  getAllPlayListTags,
+  getPlayListByTagName,
   getPlayListById,
   getSearchResultByText,
   getNewMusicLists,
@@ -17,6 +19,8 @@ export default new Vuex.Store({
     // appDrawer: false,
     playListById: null,
     playLists: [],
+    allPlayListTags: null,
+    // playListByTagName: null,
     searchResult: null,
     newMusicLists: [],
     comments: null,
@@ -32,7 +36,20 @@ export default new Vuex.Store({
       )
     },
     setPlayLists (state) {
+      state.playLists = []
       getPlayLists().then(res => { state.playLists = res })
+    },
+    setAllPlayListTags (state) {
+      getAllPlayListTags().then(res => {
+        state.allPlayListTags = res
+      })
+    },
+    setPlayListByTagName (state, tagName) {
+      state.playLists = []
+      getPlayListByTagName(tagName).then(res => {
+        console.log(res)
+        state.playLists = res
+      })
     },
     setSearchResult (state, text) {
       state.searchResult = null
@@ -73,6 +90,9 @@ export default new Vuex.Store({
     getPlayLists: (state) => {
       // console.log(state.playLists)
       return state.playLists
+    },
+    getAllPlayListTags: (state) => {
+      return state.allPlayListTags
     },
     getSearchResult: (state) => {
       return state.searchResult

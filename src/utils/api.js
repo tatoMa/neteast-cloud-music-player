@@ -4,6 +4,14 @@ const getPlayLists = () => axios.get(`${process.env.VUE_APP_baseURL}/top/playlis
   .then(response => response.data.playlists)
   .catch(error => console.log(error))
 
+const getAllPlayListTags = () => axios.get(`${process.env.VUE_APP_baseURL}/playlist/catlist`, { withCredentials: true })
+  .then(response => response.data.sub)
+  .catch(error => console.log(error))
+
+const getPlayListByTagName = (name) => axios.get(`${process.env.VUE_APP_baseURL}/top/playlist?cat=${name}`, { withCredentials: true })
+  .then(response => response.data.playlists)
+  .catch(error => console.log(error))
+
 const getNewMusicLists = () => axios.get(`${process.env.VUE_APP_baseURL}/personalized/newsong`, { withCredentials: true })
   .then(response => response.data.result)
   .catch(error => console.log(error))
@@ -46,6 +54,8 @@ const getLyricById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/lyric?id=
 
 export {
   getPlayLists,
+  getAllPlayListTags,
+  getPlayListByTagName,
   getNewMusicLists,
   getTopMusicListsById,
   getPlayListById,

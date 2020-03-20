@@ -46,21 +46,22 @@ export default {
       if (state.musicDetailsList.length > 0) {
         state.musicUrlsList = []
         // console.log(state.musicDetailsList[state.currentTrack].id)
-        getMusicUrlById(state.musicDetailsList[state.currentTrack].id)
-          .then(res => {
+        try {
+          getMusicUrlById(state.musicDetailsList[state.currentTrack].id)
+            .then(res => {
             // console.log(res)
-            state.musicUrlsList.push(res)
-            if (!res.url) {
-              console.log('no url return')
-              store.commit('player/setNextTrack')
-            }
-          })
-          .catch(res => {
-            console.log('error return', res)
-            state.musicUrlsList.push(res)
-            store.commit('player/setNextTrack')
-          })
-        store.commit('player/setLyricById', state.musicDetailsList[state.currentTrack].id)
+              state.musicUrlsList.push(res)
+              if (!res.url) {
+                console.log('no url return')
+                store.commit('player/setNextTrack')
+              }
+              store.commit('player/setLyricById', state.musicDetailsList[state.currentTrack].id)
+            })
+        } catch (error) {
+          error.log('error return', error)
+          // state.musicUrlsList.push(res)
+          store.commit('player/setNextTrack')
+        }
       }
     },
     setMusicUrlsListByPassIdFromMusicList: (state, id) => {
