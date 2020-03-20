@@ -48,34 +48,14 @@
       </v-btn><!-- drawer down button -->
 
       <!-- cover image section -->
-      <v-col
-        :cols="layout?12:3"
+      <CoverImage
+        :currentTrack="getMusicDetailsList[currentTrack]"
+        :layout="layout"
         v-show="tab === 0"
-      >
-        <v-img
-          @click="toggleLayout"
-          v-if="getMusicDetailsList[currentTrack]"
-          class="my-1 pa-0 mx-auto cover-round"
-          :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
-          :src="httpToHttps(this.getMusicDetailsList[this.currentTrack].al.picUrl)+'?param=400y400'"
-          :max-width="layout ? 400 : 94"
-          :max-height="layout ? 400 : 94"
-          contain
-        >
-        </v-img>
-        <v-img
-          @click="toggleLayout"
-          v-else
-          class="my-1 pa-0 mx-auto"
-          src="../../assets/default_cover.png"
-          :max-width="layout ? 400 : 94"
-          :max-height="layout ? 400 : 94"
-          contain
-        >
-        </v-img>
-      </v-col>
+        @toggleLayout="toggleLayout"
+        :paused="paused"
+      /><!-- cover image section -->
 
-      <!-- information and controllers section -->
       <v-col
         :align-self="layout?'end':'center'"
         class="pl-1 pl-sm-5 text-center"
@@ -83,55 +63,59 @@
         :class="layout ? 'mb-4' : ''"
         v-show="tab === 0"
       >
-        <MusicInfo
-          :track=getMusicDetailsList[currentTrack]
-        />
-        <v-row
-          no-gutters
-          align="center"
-          align-content="center"
-          justify="center"
-          class="mt-1 mt-sm-0 mb-0"
-        >
-          <v-slider
-            class="mt-1"
-            v-if="getMusicUrlsListById.length > 0"
-            dense
-            v-model="currentTimeComputed"
-            min="0"
-            :max="duration"
-            color="primary"
-            height="3"
-            background-color="secondary"
-            hide-details
-            @click="sliderClick()"
-          ></v-slider>
-          <v-slider
-            class="mt-1"
-            disabled
-            dense
-            v-else
-            v-model="currentTime"
-            min="0"
-            max="100"
-            color="primary"
-            height="3"
-            background-color="secondary"
-            hide-details
-          ></v-slider>
-          <div class="caption">
-            {{ currentTimeAndDurationLabel }}
-          </div>
-        </v-row>
+        <!-- information and controllers section -->
+        <v-col class="ma-0 pa-0">
+          <MusicInfo
+            :track=getMusicDetailsList[currentTrack]
+          />
+          <v-row
+            no-gutters
+            align="center"
+            align-content="center"
+            justify="center"
+            class="mt-1 mt-sm-0 mb-0"
+          >
+            <v-slider
+              class="mt-1"
+              v-if="getMusicUrlsListById.length > 0"
+              dense
+              v-model="currentTimeComputed"
+              min="0"
+              :max="duration"
+              color="primary"
+              height="3"
+              background-color="secondary"
+              hide-details
+              @click="sliderClick()"
+            ></v-slider>
+            <v-slider
+              class="mt-1"
+              disabled
+              dense
+              v-else
+              v-model="currentTime"
+              min="0"
+              max="100"
+              color="primary"
+              height="3"
+              background-color="secondary"
+              hide-details
+            ></v-slider>
+            <div class="caption">
+              {{ currentTimeAndDurationLabel }}
+            </div>
+          </v-row>
+        </v-col><!-- information and controllers section -->
 
         <!-- buttons section -->
         <ControlButtons
           :layout=layout
           :music=getMusicUrlsListById
           @togglePlaying=togglePlaying
-        />
+        /><!-- buttons section -->
+
       </v-col>
-      <!-- Play List Tab -->
+      <!-- page tabs -->
       <v-col v-if="tab === 1" class="scrollY" cols="12">
         <TabPlaylist/>
       </v-col>
@@ -144,7 +128,7 @@
       <v-col v-if="tab === 4" class="scrollY" cols="12">
         <TabDownload/>
       </v-col>
-    </v-row>
+    </v-row><!-- player -->
 
     <!-- bottom navigation -->
     <PlayerBottomNav
@@ -152,7 +136,7 @@
       @switchTab = "switchTab"
       @toggleLayout = "toggleLayout"
       @toggleVolumeMute=toggleVolumeMute
-    />
+    /><!-- bottom navigation -->
 
   </v-footer>
 </template>
@@ -165,18 +149,16 @@ import { mdiEjectOutline, mdiChevronDown } from '@mdi/js'
 
 import ControlButtons from './ControlButtons'
 import MusicInfo from './MusicInfo'
+import CoverImage from './CoverImage'
 
 import PlayerBottomNav from './BottomNav'
-// import TabPlaylist from './TabPlaylist'
-// import TabDownload from './TabDownload'
-// import TabMessage from './TabMessage'
-// import TabLyric from './TabLyric'
 
 export default {
   components: {
     ControlButtons,
     MusicInfo,
     PlayerBottomNav,
+    CoverImage,
     TabPlaylist: () => import(/* webpackPrefetch: true */ './TabPlaylist'),
     TabDownload: () => import(/* webpackPrefetch: true */ './TabDownload'),
     TabMessage: () => import(/* webpackPrefetch: true */ './TabMessage'),
@@ -326,23 +308,6 @@ export default {
 .full-height-player{
   height:calc(100vh - 112px);
 }
-.cover-round{
-  // position: relative;
-  border-radius: 50%;
-}
-.cover-disk::after{
-  content: '';
-    position: absolute;
-    border-radius: 50%;
-    top: -2%;
-    left: -2%;
-    width: 104%;
-    height: 104%;
-    border: 20px solid black;
-}
-.cover-rotation{
-  animation: rotation 15s infinite linear;
-}
 .eject-button{
   position: absolute;
   top: -17px;
@@ -351,14 +316,5 @@ export default {
 .scrollY{
   overflow:auto;
     height:calc(100vh - 160px);
-
-}
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 </style>

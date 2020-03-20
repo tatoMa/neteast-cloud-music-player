@@ -47,7 +47,7 @@ export default new Vuex.Store({
     setPlayListByTagName (state, tagName) {
       state.playLists = []
       getPlayListByTagName(tagName).then(res => {
-        console.log(res)
+        // console.log(res)
         state.playLists = res
       })
     },

@@ -11,11 +11,14 @@
     </v-navigation-drawer><!-- app drawer -->
 
     <!-- app navbar -->
-    <app-navbar @toggleAppDrawer="toggleAppDrawer"/><!-- app navbar -->
+    <app-navbar
+      @toggleAppDrawer="toggleAppDrawer"
+    /><!-- app navbar -->
 
     <!-- main section -->
     <v-content>
-      <v-scroll-x-transition mode="out-in">
+
+      <v-scroll-x-transition mode="out-in"><!-- transitions -->
 
           <!-- router -->
           <router-view
@@ -40,7 +43,6 @@ import Player from './components/Player/index'
 export default {
   name: 'App',
   components: {
-    // appDrawer,
     appNavbar,
     AppDrawer,
     Player

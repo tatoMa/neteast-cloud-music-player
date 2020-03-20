@@ -10,7 +10,9 @@
 
       <!-- Loading progress bar -->
       <loading :loading='getPlayLists.length === 0'/>
-       <v-expansion-panels v-show="getPlayLists.length">
+
+      <!-- music types tag expension panel -->
+      <v-expansion-panels v-show="getPlayLists.length" focusable>
         <v-expansion-panel
         >
           <v-expansion-panel-header>
@@ -18,7 +20,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-chip
-            v-ripple
+              v-ripple
               color="primary"
               class="mx-1 my-2 cursor-pointer"
               v-for="(tag, i) in getAllPlayListTags"
@@ -29,7 +31,8 @@
             </v-chip>
           </v-expansion-panel-content>
         </v-expansion-panel>
-      </v-expansion-panels>
+      </v-expansion-panels><!-- music types tag expension panel -->
+
       <!-- main container -->
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
@@ -50,7 +53,7 @@
           </v-col><!-- the list -->
 
         </v-row>
-      </v-container>
+      </v-container><!-- main container -->
 
     </v-col>
   </v-container>
@@ -73,11 +76,8 @@ export default {
     })
   },
   mounted () {
-    console.log(this.$route)
-
     const query = this.$route.query.tag
     if (query) {
-      console.log('tag search', query)
       this.$store.commit('setPlayListByTagName', query)
     } else {
       this.$store.commit('setPlayLists')
