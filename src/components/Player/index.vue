@@ -220,6 +220,9 @@ export default {
     this.$refs.player.onplay = () => {
       this.audioAnalyserStart()
     }
+    this.$refs.player.oncanplay = () => {
+      this.$refs.player.play()
+    }
   },
   methods: {
     audioAnalyserStart () {

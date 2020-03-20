@@ -17,6 +17,16 @@
 
     <!-- main section -->
     <v-content>
+      <!-- <v-btn
+      class="mt-3 ml-3"
+      fab
+      small
+      fixed
+      color="primary"
+      @click.stop="goBack"
+      >
+        <v-icon>{{mdiArrowLeft}}</v-icon>
+      </v-btn> -->
 
       <v-scroll-x-transition mode="out-in"><!-- transitions -->
 
@@ -40,6 +50,7 @@
 import AppDrawer from './components/AppDrawer'
 import appNavbar from './components/AppNavbar'
 import Player from './components/Player/index'
+import { mdiArrowLeft } from '@mdi/js'
 export default {
   name: 'App',
   components: {
@@ -49,7 +60,8 @@ export default {
   },
   data () {
     return {
-      appDrawer: false
+      appDrawer: false,
+      mdiArrowLeft
     }
   },
   created () {
@@ -58,6 +70,10 @@ export default {
   methods: {
     toggleAppDrawer () {
       this.appDrawer = !this.appDrawer
+    },
+    goBack () {
+      // console.log(this.$router)
+      this.$router.go(-1)
     }
   }
 }

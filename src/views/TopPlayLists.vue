@@ -16,7 +16,9 @@
         <v-expansion-panel
         >
           <v-expansion-panel-header>
-            Music Type Tags
+            <div>
+              Music Type Tags
+            </div>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-chip
