@@ -89,7 +89,8 @@ export default {
       name: '',
       description: '',
       coverImgUrl: '',
-      tracks: []
+      tracks: [],
+      loadedMusicDetailsList: false
     }
   },
   mounted () {
@@ -106,12 +107,15 @@ export default {
   },
   methods: {
     setMusic (id) {
-      // console.log(tracks)
-      const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
-      // console.log(trackById[0])
-      // this.$store.commit('player/setPaused', true)
-      this.$store.commit('player/setMusicDetailById', trackById[0])
-      this.$store.commit('player/setMusicUrlsListById')
+      // const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
+      // this.$store.commit('player/setMusicDetailById', trackById[0])
+      // this.$store.commit('player/setMusicUrlsListById')
+
+      if (!this.loadedMusicDetailsList) {
+        this.$store.commit('player/setMusicDetailByIdsList', this.getPlayListById.tracks)
+        this.loadedMusicDetailsList = true
+      }
+      this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
     },
     setMusicList () {
       // this.$store.commit('player/setPaused', true)
