@@ -1,30 +1,32 @@
 <template>
   <v-row
-    justify="space-between"
-    no-gutters class="mb-1"
-    :class="layout?'mb-8':''"
-    @click.stop=""
+    no-gutters
+    class="mb-1"
+    :class="layout?'mb-8 justify-space-between':'justify-end row-2'"
   >
-    <v-spacer class="d-none d-sm-flex"></v-spacer>
-    <v-row justify="space-between" no-gutters>
+    <!-- <v-spacer class="d-none d-sm-flex"></v-spacer> -->
+    <!-- <v-row
+      no-gutters
+      :class="layout?'mb-8 justify-space-between':'justify-end'"
+    > -->
 
       <!-- favorite button -->
-      <v-btn icon :disabled="music.length === 0">
+      <v-btn icon :disabled="music.length === 0" v-if="layout">
         <v-icon disabled="">{{mdiHeart}}</v-icon>
       </v-btn>
 
       <!-- previous track button -->
-      <v-btn icon :disabled="music.length === 0" @click.stop="prevTrack">
+      <v-btn icon :disabled="music.length === 0" @click.stop="prevTrack" v-if="layout">
         <v-icon>{{mdiStepBackward}}</v-icon>
       </v-btn>
 
       <!-- play and pause buttons -->
       <v-btn icon v-if="paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
-          <v-icon large color="primary" v-if="music[0].url">{{mdiPlayCircle}}</v-icon>
-          <v-icon large v-else>{{mdiPlayCircle}}</v-icon>
+          <v-icon large color="primary" v-if="music[0].url">{{mdiPlayCircleOutline}}</v-icon>
+          <v-icon large v-else>{{mdiPlayCircleOutline}}</v-icon>
         </div>
-          <v-icon large v-else>{{mdiPlayCircle}}</v-icon>
+          <v-icon large v-else>{{mdiPlayCircleOutline}}</v-icon>
       </v-btn>
       <v-btn icon v-if="!paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
@@ -40,11 +42,11 @@
       </v-btn>
 
       <!-- loop buttons -->
-      <v-btn icon :disabled="music.length === 0">
+      <v-btn icon :disabled="music.length === 0" v-if="layout">
         <v-icon disabled="">{{mdiSync}}</v-icon>
       </v-btn>
-    </v-row>
-    <v-spacer class="d-none d-sm-flex"></v-spacer>
+    <!-- </v-row> -->
+    <!-- <v-spacer class="d-none d-sm-flex"></v-spacer> -->
 
     <!-- volume controller -->
     <!-- <v-col cols="3" class="ma-0 pa-0 d-none d-sm-flex">
@@ -67,7 +69,7 @@
 </template>
 
 <script>
-import { mdiVolumeHigh, mdiSync, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlayCircle, mdiAlertCircle, mdiPauseCircle } from '@mdi/js'
+import { mdiVolumeHigh, mdiSync, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlayCircleOutline, mdiAlertCircle, mdiPauseCircle } from '@mdi/js'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -89,7 +91,7 @@ export default {
       mdiHeart,
       mdiStepBackward,
       mdiStepForward,
-      mdiPlayCircle,
+      mdiPlayCircleOutline,
       mdiAlertCircle,
       mdiPauseCircle
     }

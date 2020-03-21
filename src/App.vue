@@ -40,8 +40,15 @@
     </v-content><!-- main section -->
 
     <!-- bottom player -->
-    <Player/>
+    <Player
+      :layout="layout"
+      @toggleLayout="toggleLayout"
+    />
 
+    <BottomNav
+      :layout="layout"
+      @disableLayout="disableLayout"
+    />
   </v-app>
 </template>
 
@@ -50,18 +57,21 @@
 import AppDrawer from './components/AppDrawer'
 import appNavbar from './components/AppNavbar'
 import Player from './components/Player/index'
+import BottomNav from './components/Player/BottomNav'
 import { mdiArrowLeft } from '@mdi/js'
 export default {
   name: 'App',
   components: {
     appNavbar,
     AppDrawer,
-    Player
+    Player,
+    BottomNav
   },
   data () {
     return {
       appDrawer: false,
-      mdiArrowLeft
+      mdiArrowLeft,
+      layout: false
     }
   },
   created () {
@@ -74,6 +84,12 @@ export default {
     goBack () {
       // console.log(this.$router)
       this.$router.go(-1)
+    },
+    toggleLayout () {
+      this.layout = !this.layout
+    },
+    disableLayout () {
+      this.layout = false
     }
   }
 }

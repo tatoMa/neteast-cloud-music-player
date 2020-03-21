@@ -1,5 +1,5 @@
 <template>
-  <div class="max-ch mx-auto">
+  <div class="mx-auto max-ch">
     <span
       class="subtitle-2 d-sm-block"
       v-if="track"
@@ -26,3 +26,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.max-ch{
+  max-width: 18ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <v-col
-      :cols="layout?12:3"
+      :cols="layout?12:2"
     >
     <v-img
       @click="$emit('toggleLayout')"
@@ -8,8 +8,8 @@
       class="my-1 pa-0 mx-auto cover-round"
       :class="[paused ? '' : 'cover-rotation' , layout ? 'cover-disk' : '']"
       :src="httpToHttps(currentTrack.al.picUrl)+'?param=400y400'"
-      :max-width="layout ? 400 : 94"
-      :max-height="layout ? 400 : 94"
+      :max-width="layout ? 400 : 44"
+      :max-height="layout ? 400 : 44"
       contain
     >
     </v-img>
@@ -18,8 +18,8 @@
       v-else
       class="my-1 pa-0 mx-auto"
       src="../../assets/default_cover.png"
-      :max-width="layout ? 400 : 94"
-      :max-height="layout ? 400 : 94"
+      :max-width="layout ? 400 : 44"
+      :max-height="layout ? 400 : 44"
       contain
     >
     </v-img>

@@ -1,8 +1,8 @@
 <template>
   <v-footer
     fixed
-    class="pa-0 ma-0 z-index-higher border-top-radius"
-    color="secondary"
+    class="pa-0 ma-0 player"
+    color="secondary darken-1"
   >
 
     <!-- audio synchronizer -->
@@ -38,9 +38,10 @@
     >
 
       <!-- eject button -->
-      <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
+      <!-- <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
         <v-icon>{{mdiEjectOutline}}</v-icon>
-      </v-card><!-- eject button -->
+      </v-card> -->
+      <!-- eject button -->
 
       <!-- drawer down button -->
       <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
@@ -64,31 +65,37 @@
         v-show="tab === 0"
       >
         <!-- information and controllers section -->
-        <v-col class="ma-0 pa-0">
+        <div
+          @click="toggleLayout"
+          class="d-flex ma-0 pa-0"
+          :class="!layout? 'flex-row align-center ml-2' : 'flex-column'"
+        >
           <MusicInfo
+            class="pb-1"
             :track=getMusicDetailsList[currentTrack]
           />
-          <v-row
+          <div
             no-gutters
             align="center"
             align-content="center"
             justify="center"
-            class="mt-1 mt-sm-0 mb-0"
+            class="d-flex flex-row align-center align-content-center justify-center mt-1 mt-sm-0 mb-0"
           >
             <v-slider
               class="mt-1"
-              v-if="getMusicUrlsListById.length > 0"
+              :disabled="!getMusicUrlsListById.length > 0"
               dense
+              :readonly="!layout"
               v-model="currentTimeComputed"
               min="0"
               :max="duration"
-              color="primary"
+              color="primary darken-2"
               height="3"
               background-color="secondary"
               hide-details
-              @click="sliderClick()"
+              :class="!layout ? 'slider-top' : ''"
             ></v-slider>
-            <v-slider
+            <!-- <v-slider
               class="mt-1"
               disabled
               dense
@@ -100,19 +107,19 @@
               height="3"
               background-color="secondary"
               hide-details
-            ></v-slider>
-            <div class="caption">
+              :class="!layout ? 'slider-top' : ''"
+            ></v-slider> -->
+            <div class="caption" v-if="layout">
               {{ currentTimeAndDurationLabel }}
             </div>
-          </v-row>
-        </v-col><!-- information and controllers section -->
-
-        <!-- buttons section -->
+          </div>
+          <!-- buttons section -->
         <ControlButtons
           :layout=layout
           :music=getMusicUrlsListById
           @togglePlaying=togglePlaying
         /><!-- buttons section -->
+        </div><!-- information and controllers section -->
 
       </v-col>
       <!-- page tabs -->
@@ -130,13 +137,20 @@
       </v-col>
     </v-row><!-- player -->
 
+    <!-- float menu for switch views -->
+    <FloatMenu
+      :layout="layout"
+      @switchTab = "switchTab"
+    />
+
     <!-- bottom navigation -->
-    <PlayerBottomNav
+    <!-- <BottomNav
       :layout = "layout"
       @switchTab = "switchTab"
       @toggleLayout = "toggleLayout"
       @toggleVolumeMute=toggleVolumeMute
-    /><!-- bottom navigation -->
+    />-->
+    <!-- bottom navigation -->
 
   </v-footer>
 </template>
@@ -145,20 +159,27 @@
 import audioAnalyser from '../../utils/audioAnalyser'
 import { httpToHttps } from '../../utils/helper'
 import { mapGetters } from 'vuex'
-import { mdiEjectOutline, mdiChevronDown } from '@mdi/js'
+import { mdiEjectOutline, mdiChevronDown, mdiDotsVertical, mdiClose, mdiPlaylistMusic, mdiClipboardTextPlay, mdiMessage } from '@mdi/js'
 
 import ControlButtons from './ControlButtons'
 import MusicInfo from './MusicInfo'
 import CoverImage from './CoverImage'
+import FloatMenu from './FloatMenu'
 
-import PlayerBottomNav from './BottomNav'
+// import BottomNav from './BottomNav'
 
 export default {
+  props: {
+    layout: {
+      type: Boolean
+    }
+  },
   components: {
     ControlButtons,
     MusicInfo,
-    PlayerBottomNav,
+    // BottomNav,
     CoverImage,
+    FloatMenu,
     TabPlaylist: () => import(/* webpackPrefetch: true */ './TabPlaylist'),
     TabDownload: () => import(/* webpackPrefetch: true */ './TabDownload'),
     TabMessage: () => import(/* webpackPrefetch: true */ './TabMessage'),
@@ -168,6 +189,11 @@ export default {
     return {
       mdiEjectOutline,
       mdiChevronDown,
+      mdiDotsVertical,
+      mdiClose,
+      mdiPlaylistMusic,
+      mdiClipboardTextPlay,
+      mdiMessage,
       httpToHttps,
       tab: 0,
       ended: false, // for when audio tag is ended
@@ -175,7 +201,7 @@ export default {
       storedLastVolume: 0,
       currentTime: 0,
       duration: 0,
-      layout: false,
+      // layout: false,
       audioAnalyser: false
     }
   },
@@ -271,7 +297,8 @@ export default {
     },
     toggleLayout () {
       if (this.breakpoint) {
-        this.layout = !this.layout
+        // this.layout = !this.layout
+        this.$emit('toggleLayout')
         this.tab = 0
       }
     },
@@ -287,34 +314,35 @@ export default {
     left: 55%;
     margin: 0 0 0 -54.5%;
     position: absolute;
-    bottom: 95px;
+    bottom: 48px;
     width: 100vw;
     z-index: 1;
     transition: 0.4s;
     pointer-events: none;
 }
 .canvas-movedown{
-  bottom: 56px !important
+  bottom: 0px !important
 }
-.max-ch{
-  max-width: 26ch;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.z-index-higher{
+.player{
   z-index: 3;
+  transform: translateY(-48px);
 }
-.border-top-radius{
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+.slider-top {
+  position: absolute;
+  top: -4px;
+  left: 0px;
+  width: 100vw;
 }
+// .border-top-radius{
+//   border-top-left-radius: 20px;
+//   border-top-right-radius: 20px;
+// }
 .normal-player{
-  height: 96px;
+  height: 48px;
   transition: .4s ease-in-out;
 }
 .full-height-player{
-  height:calc(100vh - 112px);
+  height:calc(100vh - 104px);
 }
 .eject-button{
   position: absolute;
@@ -324,5 +352,12 @@ export default {
 .scrollY{
   overflow:auto;
     height:calc(100vh - 160px);
+}
+.v-speed-dial {
+  position: absolute;
+  z-index: 99;
+}
+.v-btn--floating {
+  position: relative;
 }
 </style>
