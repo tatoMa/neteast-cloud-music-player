@@ -30,6 +30,7 @@
         small
         class="mx-1"
         color="primary"
+        @click.stop="$emit('goToPlaylistsByTag', tag)"
       >
         {{tag}}
       </v-chip>

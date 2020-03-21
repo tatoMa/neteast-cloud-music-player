@@ -11,33 +11,35 @@
       <!-- Loading progress bar -->
       <loading :loading='getPlayLists.length === 0'/>
 
-      <!-- music types tag expension panel -->
-      <v-expansion-panels v-show="getPlayLists.length" focusable>
-        <v-expansion-panel
-        >
-          <v-expansion-panel-header>
-            <div>
-              Music Type Tags
-            </div>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <v-chip
-              v-ripple
-              color="primary"
-              class="mx-1 my-2 cursor-pointer"
-              v-for="(tag, i) in getAllPlayListTags"
-              :key="i"
-              @click.stop="goToPlaylistsByTag(tag.name)"
-            >
-              {{tag.name}}
-            </v-chip>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels><!-- music types tag expension panel -->
-
       <!-- main container -->
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
+
+          <p v-show="getPlayLists.length" class="mx-auto my-2 headline text-center">
+            {{this.$route.query.tag ? this.$route.query.tag : 'Hot Playlist'}}
+          </p>
+
+          <!-- music types tag expension panel -->
+          <v-expansion-panels v-show="getPlayLists.length" focusable accordion class="px-2">
+            <v-expansion-panel
+            >
+              <v-expansion-panel-header color="primary" ripple="">
+                  Music Type Tags
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-chip
+                  v-ripple
+                  color="primary"
+                  class="mx-1 my-2 cursor-pointer"
+                  v-for="(tag, i) in getAllPlayListTags"
+                  :key="i"
+                  @click.stop="goToPlaylistsByTag(tag.name)"
+                >
+                  {{tag.name}}
+                </v-chip>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels><!-- music types tag expension panel -->
 
           <!-- the list -->
           <v-col
@@ -51,6 +53,7 @@
             <TopPlayListItem
               :item=item
               @goToPlaylist=goToPlaylist
+              @goToPlaylistsByTag=goToPlaylistsByTag
             />
           </v-col><!-- the list -->
 
