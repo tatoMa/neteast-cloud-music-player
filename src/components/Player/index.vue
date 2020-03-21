@@ -206,22 +206,28 @@ export default {
       }
     }
   },
-  watch: {
-    volume: function (val) {
-      this.$refs.player.volume = val
-      // console.log(this.player)
-    }
-  },
+  // watch: {
+  //   volume: function (val) {
+  //     this.$refs.player.volume = val
+  //     // console.log(this.player)
+  //   }
+  // },
   mounted () {
     audioAnalyser.init()
-    this.$refs.player.onended = () => {
-      this.$store.commit('player/setNextTrack')
+
+    this.$refs.player.oncanplay = () => {
+      this.$refs.player.play()
     }
     this.$refs.player.onplay = () => {
       this.audioAnalyserStart()
+      this.$store.commit('player/setPaused', false)
     }
-    this.$refs.player.oncanplay = () => {
-      this.$refs.player.play()
+    this.$refs.player.onpause = () => {
+      this.$store.commit('player/setPaused', true)
+    }
+    this.$refs.player.onended = () => {
+      this.$store.commit('player/setNextTrack')
+      this.$store.commit('player/setPaused', true)
     }
   },
   methods: {
@@ -239,7 +245,6 @@ export default {
       } else {
         this.$refs.player.pause()
       }
-      this.$store.commit('player/togglePaused', this.$refs.player.paused)
     },
     getMusicInfo (audio) {
       // console.log('audio', audio)

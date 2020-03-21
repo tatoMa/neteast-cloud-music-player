@@ -18,11 +18,8 @@ export default {
     // currentPausedSong: null
   },
   mutations: {
-    togglePaused: (state, payload) => {
-      if (payload) {
-        state.paused = true
-      } else state.paused = false
-      // state.paused = !state.paused
+    setPaused: (state, paused) => {
+      state.paused = paused
     },
     setMusicDetailById: (state, payload) => {
       // console.log(payload)

@@ -35,7 +35,7 @@
           :item="item"
           :index="index"
           :maxItem="maxItem * page"
-          @setMusic="setMusic"
+          @setMusic="setMusic(item)"
           @addToPlaylist="addToPlaylist"
         />
         <v-btn
@@ -73,14 +73,15 @@ export default {
       mdiChevronDown,
       mdiPlayCircleOutline,
       maxItem: 30,
-      page: 1
+      page: 1,
+      loadedMusicDetailsList: false
       // data: [],
       // search: ''
     }
   },
   computed: {
     ...mapGetters({
-      // getNewMusicLists: 'getNewMusicLists',
+      getMusicDetailsList: 'player/getMusicDetailsList',
       getTopMusicListsById: 'getTopMusicListsById'
     })
     // getTopMusicListsById () {
@@ -90,20 +91,23 @@ export default {
   mounted () {
     // this.$store.commit('setNewMusicLists')
     this.$store.commit('setTopMusicListsById', this.id)
+    this.loadedMusicDetailsList = false
   },
   methods: {
     setMusic (item) {
-      this.$store.commit('player/togglePaused', false)
-      this.$store.commit('player/setMusicDetailById', item)
-      this.$store.commit('player/setMusicUrlsListById')
+      if (!this.loadedMusicDetailsList) {
+        this.$store.commit('player/setMusicDetailByIdsList', this.getTopMusicListsById[this.id].tracks)
+        this.loadedMusicDetailsList = true
+      }
+      this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', item.id)
     },
     setMusicList () {
-      this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setPaused', true)
       this.$store.commit('player/setMusicDetailByIdsList', this.getTopMusicListsById[this.id].tracks)
       this.$store.commit('player/setMusicUrlsListById')
     },
     addToPlaylist (item) {
-      this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setPaused', true)
       this.$store.commit('player/addMusicDetailById', item)
       this.$store.commit('player/addMusicUrlsListById')
     }

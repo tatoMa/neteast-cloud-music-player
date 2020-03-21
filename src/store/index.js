@@ -85,6 +85,7 @@ export default new Vuex.Store({
     //   return state.appDrawer
     // },
     getPlayListById: (state) => {
+      // console.log(state.playListById)
       return state.playListById
     },
     getPlayLists: (state) => {

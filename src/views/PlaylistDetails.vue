@@ -19,7 +19,8 @@
             :src="httpToHttps(getPlayListById.coverImgUrl)"
           >
           </v-img>
-          <v-card-title>{{getPlayListById.name}}</v-card-title>
+
+          <v-card-title class="mt-6">{{getPlayListById.name}}</v-card-title>
           <v-expansion-panels accordion>
             <v-expansion-panel class="text-left">
               <v-expansion-panel-header class="body-2 font-weight-light">{{headerTextSliced}}...</v-expansion-panel-header>
@@ -108,12 +109,12 @@ export default {
       // console.log(tracks)
       const trackById = this.getPlayListById.tracks.filter((track) => track.id === id)
       // console.log(trackById[0])
-      this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setPaused', true)
       this.$store.commit('player/setMusicDetailById', trackById[0])
       this.$store.commit('player/setMusicUrlsListById')
     },
     setMusicList () {
-      this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setPaused', true)
       // console.log(this.getPlayListById.tracks)
       this.$store.commit('player/setMusicDetailByIdsList', this.getPlayListById.tracks)
       this.$store.commit('player/setMusicUrlsListById')

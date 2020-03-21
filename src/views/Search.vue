@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     setMusic (id) {
-      this.$store.commit('player/togglePaused', false)
+      // this.$store.commit('player/setPaused', true)
       this.$store.commit('player/setMusicDetailByIdFromSearch', id)
       this.$store.commit('player/setMusicUrlsListById')
     }

@@ -21,17 +21,17 @@
       <!-- play and pause buttons -->
       <v-btn icon v-if="paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
-          <v-icon large color="primary" v-if="music[0].url">{{mdiPlay}}</v-icon>
-          <v-icon large v-else>{{mdiPlay}}</v-icon>
+          <v-icon large color="primary" v-if="music[0].url">{{mdiPlayCircle}}</v-icon>
+          <v-icon large v-else>{{mdiPlayCircle}}</v-icon>
         </div>
-          <v-icon large v-else>{{mdiPlay}}</v-icon>
+          <v-icon large v-else>{{mdiPlayCircle}}</v-icon>
       </v-btn>
       <v-btn icon v-if="!paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
           <v-icon color="primary" v-if="!music[0].url" >{{mdiAlertCircle}}</v-icon>
-          <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
+          <v-icon large color="primary" v-else>{{mdiPauseCircle}}</v-icon>
         </div>
-          <v-icon color="primary" v-else>{{mdiPause}}</v-icon>
+          <v-icon large color="primary" v-else>{{mdiPauseCircle}}</v-icon>
       </v-btn>
 
       <!-- next track button -->
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { mdiVolumeHigh, mdiSync, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlay, mdiAlertCircle, mdiPause } from '@mdi/js'
+import { mdiVolumeHigh, mdiSync, mdiHeart, mdiStepBackward, mdiStepForward, mdiPlayCircle, mdiAlertCircle, mdiPauseCircle } from '@mdi/js'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -89,9 +89,9 @@ export default {
       mdiHeart,
       mdiStepBackward,
       mdiStepForward,
-      mdiPlay,
+      mdiPlayCircle,
       mdiAlertCircle,
-      mdiPause
+      mdiPauseCircle
     }
   },
   computed: {

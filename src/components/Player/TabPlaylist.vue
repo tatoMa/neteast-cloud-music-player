@@ -1,7 +1,7 @@
 <template>
       <v-list
-        class="ma-0 pa-0"
         color="transparent"
+        class="ma-0 pa-0"
       >
         <v-subheader>My playlist</v-subheader>
         <v-list-item-group :value="currentTrack" color="primary">
