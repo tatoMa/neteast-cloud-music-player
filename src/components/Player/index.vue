@@ -215,7 +215,7 @@ export default {
   mounted () {
     audioAnalyser.init()
     this.$refs.player.onended = () => {
-      this.nextTrack()
+      this.$store.commit('player/setNextTrack')
     }
     this.$refs.player.onplay = () => {
       this.audioAnalyserStart()
