@@ -2,7 +2,7 @@
   <v-row
     no-gutters
     class="mb-1"
-    :class="layout?'mb-8 justify-space-between':'justify-end row-2'"
+    :class="layout?'mb-8 justify-space-between': breakpointXs ? 'justify-end row-2' : 'justify-space-around'"
   >
     <!-- <v-spacer class="d-none d-sm-flex"></v-spacer> -->
     <!-- <v-row
@@ -11,12 +11,12 @@
     > -->
 
       <!-- favorite button -->
-      <v-btn icon :disabled="music.length === 0" v-if="layout">
+      <v-btn icon :disabled="music.length === 0" v-if="layout || !breakpointXs">
         <v-icon disabled="">{{mdiHeart}}</v-icon>
       </v-btn>
 
       <!-- previous track button -->
-      <v-btn icon :disabled="music.length === 0" @click.stop="prevTrack" v-if="layout">
+      <v-btn icon :disabled="music.length === 0" @click.stop="prevTrack" v-if="layout || !breakpointXs">
         <v-icon>{{mdiStepBackward}}</v-icon>
       </v-btn>
 
@@ -42,7 +42,7 @@
       </v-btn>
 
       <!-- loop buttons -->
-      <v-btn icon :disabled="music.length === 0" v-if="layout">
+      <v-btn icon :disabled="music.length === 0" v-if="layout || !breakpointXs">
         <v-icon disabled="">{{mdiSync}}</v-icon>
       </v-btn>
     <!-- </v-row> -->
@@ -99,7 +99,10 @@ export default {
   computed: {
     ...mapGetters({
       paused: 'player/getPaused'
-    })
+    }),
+    breakpointXs () {
+      return this.$vuetify.breakpoint.xs
+    }
   },
   watch: {
     volume: function (val) {

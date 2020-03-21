@@ -1,5 +1,6 @@
 <template>
   <v-bottom-navigation
+    v-if="this.$vuetify.breakpoint.xs"
     v-model="bottomNav"
     color="primary"
     app

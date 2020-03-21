@@ -2,13 +2,14 @@
   <v-footer
     fixed
     class="pa-0 ma-0 player"
+    :class="breakpointXs ? 'player-mobile' : ''"
     color="secondary darken-1"
   >
 
     <!-- audio synchronizer -->
     <canvas
       id='canvas'
-      :class="[layout ? 'canvas-movedown' : '']"
+      :class="layout ? 'canvas-movedown' : breakpointXs ? '' : 'canvas-desktop'"
       width="600"
       height="350"
     >
@@ -33,12 +34,12 @@
       justify="center"
       align="start"
       class="px-3 px-sm-10 normal-player"
-      :class="{ 'full-height-player': layout }"
+      :class="!breakpointXs ? 'normal-player-mobile': layout ? 'full-height-player' : ''"
       style="width:100vw; z-index:5"
     >
 
       <!-- eject button -->
-      <!-- <v-card @click="toggleLayout" v-if="!layout && breakpoint" class="eject-button px-5 lighten-1" flat color="secondary">
+      <!-- <v-card @click="toggleLayout" v-if="!layout && breakpointXs" class="eject-button px-5 lighten-1" flat color="secondary">
         <v-icon>{{mdiEjectOutline}}</v-icon>
       </v-card> -->
       <!-- eject button -->
@@ -68,7 +69,7 @@
         <div
           @click="toggleLayout"
           class="d-flex ma-0 pa-0"
-          :class="!layout? 'flex-row align-center ml-2' : 'flex-column'"
+          :class="!layout  && breakpointXs ? 'flex-row align-center ml-2' : 'flex-column'"
         >
           <MusicInfo
             class="pb-1"
@@ -93,7 +94,7 @@
               height="3"
               background-color="secondary"
               hide-details
-              :class="!layout ? 'slider-top' : ''"
+              :class="!layout && breakpointXs ? 'slider-top' : ''"
             ></v-slider>
             <!-- <v-slider
               class="mt-1"
@@ -217,7 +218,7 @@ export default {
         return this.fmtSecToMin(Math.round(this.currentTime)) + '-' + this.fmtSecToMin(Math.round(this.duration))
       } else return '0:00-0:00'
     },
-    breakpoint () {
+    breakpointXs () {
       return this.$vuetify.breakpoint.xs
     },
     currentTimeComputed: {
@@ -296,7 +297,7 @@ export default {
       // this.$refs.player.currentTime = 260
     },
     toggleLayout () {
-      if (this.breakpoint) {
+      if (this.breakpointXs) {
         // this.layout = !this.layout
         this.$emit('toggleLayout')
         this.tab = 0
@@ -320,11 +321,16 @@ export default {
     transition: 0.4s;
     pointer-events: none;
 }
+.canvas-desktop{
+  bottom: 96px !important;
+}
 .canvas-movedown{
   bottom: 0px !important
 }
 .player{
   z-index: 3;
+}
+.player-mobile{
   transform: translateY(-48px);
 }
 .slider-top {
@@ -340,6 +346,9 @@ export default {
 .normal-player{
   height: 48px;
   transition: .4s ease-in-out;
+}
+.normal-player-mobile{
+  height: 96px;
 }
 .full-height-player{
   height:calc(100vh - 104px);
