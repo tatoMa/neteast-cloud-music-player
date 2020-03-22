@@ -72,7 +72,7 @@
           :class="!layout  && breakpointXs ? 'flex-row align-center ml-2' : 'flex-column'"
         >
           <MusicInfo
-            class="pb-1"
+            class="pb-0"
             :track=getMusicDetailsList[currentTrack]
           />
           <div
@@ -87,7 +87,7 @@
               class="mt-1"
               :disabled="!getMusicUrlsListById.length > 0"
               dense
-              :readonly="!layout"
+              :readonly="!layout && breakpointXs"
               :value="currentTime"
               @mousedown.stop="onSliderMouseDown"
               min="0"
@@ -98,21 +98,7 @@
               hide-details
               :class="!layout && breakpointXs ? 'slider-top' : ''"
             ></v-slider>
-            <!-- <v-slider
-              class="mt-1"
-              disabled
-              dense
-              v-else
-              v-model="currentTime"
-              min="0"
-              max="100"
-              color="primary"
-              height="3"
-              background-color="secondary"
-              hide-details
-              :class="!layout ? 'slider-top' : ''"
-            ></v-slider> -->
-            <div class="caption" v-if="layout">
+            <div class="caption" v-if="layout || !breakpointXs">
               {{ currentTimeAndDurationLabel }}
             </div>
           </div>
@@ -274,7 +260,7 @@ export default {
       }
     },
     onSliderMouseDown (event) {
-      this.$refs.player.currentTime = event.offsetX * 0.87
+      this.$refs.player.currentTime = event.offsetX / event.toElement.offsetWidth * this.$refs.player.duration
     },
     getMusicInfo (audio) {
       // console.log('audio', audio)

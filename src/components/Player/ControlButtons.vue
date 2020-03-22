@@ -11,24 +11,24 @@
     > -->
 
       <!-- favorite button -->
-      <v-btn icon :disabled="music.length === 0" v-if="layout || !breakpointXs">
+      <v-btn class="mr-1" icon :disabled="music.length === 0" v-if="layout || !breakpointXs">
         <v-icon disabled="">{{mdiHeart}}</v-icon>
       </v-btn>
 
       <!-- previous track button -->
-      <v-btn icon :disabled="music.length === 0" @click.stop="prevTrack" v-if="layout || !breakpointXs">
+      <v-btn class="mx-1" icon :disabled="music.length === 0" @click.stop="prevTrack" v-if="layout || !breakpointXs">
         <v-icon>{{mdiStepBackward}}</v-icon>
       </v-btn>
 
       <!-- play and pause buttons -->
-      <v-btn icon v-if="paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
+      <v-btn class="mx-1" icon v-if="paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
           <v-icon large color="primary" v-if="music[0].url">{{mdiPlayCircleOutline}}</v-icon>
           <v-icon large v-else>{{mdiPlayCircleOutline}}</v-icon>
         </div>
           <v-icon large v-else>{{mdiPlayCircleOutline}}</v-icon>
       </v-btn>
-      <v-btn icon v-if="!paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
+      <v-btn class="mx-1" icon v-if="!paused" @click.stop="$emit('togglePlaying')" :disabled="music.length === 0">
         <div v-if="music[0]">
           <v-icon color="primary" v-if="!music[0].url" >{{mdiAlertCircle}}</v-icon>
           <v-icon large color="primary" v-else>{{mdiPauseCircle}}</v-icon>
@@ -37,7 +37,7 @@
       </v-btn>
 
       <!-- next track button -->
-      <v-btn icon :disabled="music.length === 0" @click.stop="nextTrack">
+      <v-btn class="mx-1" icon :disabled="music.length === 0" @click.stop="nextTrack">
         <v-icon>{{mdiStepForward}}</v-icon>
       </v-btn>
 
