@@ -1,6 +1,6 @@
 // import mock from '../../utils/mock'
 import { getAllTopArtist } from '../../utils/api'
-// import store from '..'
+import store from '..'
 
 export default {
   namespaced: true,
@@ -13,17 +13,18 @@ export default {
     }
   },
   actions: {
-    fetchTopArtist: (state) => {
+    fetchTopArtist: async (state) => {
       try {
-        getAllTopArtist()
+        const artist = await getAllTopArtist()
+        store.commit('artist/setTopArtist', artist.artists)
       } catch (error) {
         console.log(error)
       }
     }
   },
   getters: {
-    // getPaused: (state) => {
-    //   return state.paused
-    // }
+    getTopArtist: (state) => {
+      return state.topArtist
+    }
   }
 }

@@ -53,7 +53,7 @@ const getLyricById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/lyric?id=
   .catch(error => console.log(error))
 
 const getAllTopArtist = () => axios.get(`${process.env.VUE_APP_baseURL}/top/artists`, { withCredentials: true })
-  .then(response => console.log(response.data))
+  .then(response => response.data)
   .catch(error => console.log(error))
 
 export {
