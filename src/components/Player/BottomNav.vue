@@ -16,7 +16,7 @@
       <v-icon>{{mdiPlaylistMusic}}</v-icon>
     </v-btn>
 
-    <v-btn to="artist" @click.stop="$emit('disableLayout')">
+    <v-btn to="topartist" @click.stop="$emit('disableLayout')">
       <span>Atrist</span>
       <v-icon>{{mdiClipboardTextPlay}}</v-icon>
     </v-btn>
