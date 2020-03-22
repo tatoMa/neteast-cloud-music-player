@@ -44,10 +44,10 @@
       </v-card> -->
       <!-- eject button -->
 
-      <!-- drawer down button -->
+      <!-- full-height mode exit button -->
       <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
         <v-icon>{{mdiChevronDown}}</v-icon>
-      </v-btn><!-- drawer down button -->
+      </v-btn><!-- full-height mode exit button -->
 
       <!-- cover image section -->
       <CoverImage
@@ -76,6 +76,7 @@
             :track=getMusicDetailsList[currentTrack]
           />
           <div
+            @click.stop=""
             no-gutters
             align="center"
             align-content="center"
@@ -87,7 +88,8 @@
               :disabled="!getMusicUrlsListById.length > 0"
               dense
               :readonly="!layout"
-              v-model="currentTimeComputed"
+              :value="currentTime"
+              @mousedown.stop="onSliderMouseDown"
               min="0"
               :max="duration"
               color="primary darken-2"
@@ -197,12 +199,10 @@ export default {
       mdiMessage,
       httpToHttps,
       tab: 0,
-      ended: false, // for when audio tag is ended
       volume: 1,
       storedLastVolume: 0,
       currentTime: 0,
       duration: 0,
-      // layout: false,
       audioAnalyser: false
     }
   },
@@ -272,6 +272,9 @@ export default {
       } else {
         this.$refs.player.pause()
       }
+    },
+    onSliderMouseDown (event) {
+      this.$refs.player.currentTime = event.offsetX * 0.87
     },
     getMusicInfo (audio) {
       // console.log('audio', audio)
