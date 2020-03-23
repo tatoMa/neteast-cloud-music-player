@@ -4,7 +4,7 @@
     v-model="bottomNav"
     color="primary"
     app
-    height="48"
+    height="56"
   >
     <v-btn to="/" @click.stop="$emit('disableLayout')">
       <span>Home</span>

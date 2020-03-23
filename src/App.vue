@@ -57,7 +57,7 @@
 import AppDrawer from './components/AppDrawer'
 import appNavbar from './components/AppNavbar'
 import Player from './components/Player/index'
-import BottomNav from './components/Player/BottomNav'
+import BottomNav from './components/BottomNav'
 import { mdiArrowLeft } from '@mdi/js'
 export default {
   name: 'App',

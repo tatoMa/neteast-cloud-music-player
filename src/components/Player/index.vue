@@ -320,7 +320,7 @@ export default {
   z-index: 3;
 }
 .player-mobile{
-  transform: translateY(-48px);
+  transform: translateY(-56px);
 }
 .slider-top {
   position: absolute;
@@ -340,7 +340,7 @@ export default {
   height: 96px;
 }
 .full-height-player{
-  height:calc(100vh - 104px);
+  height:calc(100vh - 112px);
 }
 .eject-button{
   position: absolute;
