@@ -1,7 +1,5 @@
 <template>
   <v-container
-        class=" pa-0 pa-sm-3 ma-0 mb-12"
-        fluid
   >
     <!-- mobile screen -->
     <v-tabs

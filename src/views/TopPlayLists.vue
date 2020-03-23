@@ -1,7 +1,5 @@
 <template>
   <v-container
-    class="fill-height pa-0 pa-sm-3 ma-0"
-    fluid
   >
     <v-col
       justify="center"

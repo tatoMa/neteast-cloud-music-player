@@ -9,8 +9,6 @@
         <!-- image, name and description of playlist -->
         <v-card
           v-if="getPlayListById"
-          class="mx-auto"
-          max-width="800"
           tile
         >
           <v-img
@@ -34,8 +32,6 @@
         <!-- the list and all items -->
         <v-card
         v-if="getPlayListById"
-        class="mx-auto"
-        max-width="800"
         tile
         >
         <v-btn
@@ -43,7 +39,7 @@
           rounded
           color="primary"
           block
-          class="mt-2 mb-1"
+          class="mt-2 mb-1 font-weight-bold"
         >
           play All {{getPlayListById.tracks.length}} Songs
           <v-icon right>{{mdiPlayCircleOutline}}</v-icon>
