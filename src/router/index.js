@@ -21,14 +21,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "topplaylists" */ '../views/TopPlayLists.vue')
   },
   {
-    path: '/playlistdetails',
-    name: 'PlaylistDetails',
-    component: () => import(/* webpackChunkName: "playlistdetails" */ '../views/PlaylistDetails.vue')
+    path: '/playlistdetail',
+    name: 'PlaylistDetail',
+    component: () => import(/* webpackChunkName: "playlistdetail" */ '../views/PlaylistDetail.vue')
   },
   {
     path: '/topartist',
     name: 'TopArtist',
     component: () => import(/* webpackChunkName: "topartist" */ '../views/TopArtist.vue')
+  },
+  {
+    path: '/artist',
+    name: 'Artist',
+    component: () => import(/* webpackChunkName: "artist" */ '../views/Artist.vue')
   },
   {
     path: '/setting',

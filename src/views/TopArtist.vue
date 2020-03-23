@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <v-row dense>
+    <!-- Loading progress bar -->
+    <Loading :loading='!getTopArtist'/>
+    <v-row dense class="pa-0 pa-sm-2">
       <v-col
         xs="12"
         sm="6"
@@ -9,16 +11,16 @@
         v-for="artist in getTopArtist" :key="artist.id"
       >
         <v-card
-          class="mx-auto my-1"
+          @click="goToArtist(artist.id)"
         >
           <v-img
             class="white--text align-end"
-            max-height="12rem"
+            max-height="10rem"
             :src="artist.picUrl + '?param=400y400'"
             :alt="artist.name"
           >
           </v-img>
-          <v-card-title class="pb-0">
+          <v-card-title class="pb-0 pt-1">
             {{artist.name}}
             <span class="subtitle-2 pl-2">{{artist.alias[0]}}</span>
             </v-card-title>
@@ -32,15 +34,24 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Loading from '../components/Loading'
 
 export default {
+  components: {
+    Loading
+  },
   mounted () {
-    this.$store.dispatch('artist/fetchTopArtist')
+    this.$store.dispatch('artist/fetchTopArtists')
   },
   computed: {
     ...mapGetters({
-      getTopArtist: 'artist/getTopArtist'
+      getTopArtist: 'artist/getTopArtists'
     })
+  },
+  methods: {
+    goToArtist (id) {
+      this.$router.push(`/artist?id=${id}`)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-col
     justify="start"
-    class="pa-1 pa-sm-3"
+    class="pa-0 pa-sm-2"
   >
     <!-- Loading progress bar -->
     <loading :loading='getTopMusicListsById[id].length === 0'/>
@@ -9,7 +9,7 @@
     <!-- main list section -->
     <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0" v-if="getTopMusicListsById[id].length !== 0">
       <div class="headline text-center">{{getTopMusicListsById[id].name}}</div>
-      <v-row dense align-content="start" class="px-2">
+      <v-row dense align-content="start">
 
         <!-- button play the whole list -->
         <v-col
