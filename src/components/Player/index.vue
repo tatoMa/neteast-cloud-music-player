@@ -45,7 +45,7 @@
       <!-- eject button -->
 
       <!-- full-height mode exit button -->
-      <v-btn @click="toggleLayout" icon v-if="layout" class="mt-2 px-5">
+      <v-btn @click="toggleLayout" icon v-if="layout" class="mt-12 px-5">
         <v-icon>{{mdiChevronDown}}</v-icon>
       </v-btn><!-- full-height mode exit button -->
 
@@ -340,7 +340,7 @@ export default {
   height: 96px;
 }
 .full-height-player{
-  height:calc(100vh - 112px);
+  height:calc(100vh - 56px);
 }
 .eject-button{
   position: absolute;

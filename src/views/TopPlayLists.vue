@@ -3,7 +3,7 @@
   >
     <v-col
       justify="center"
-      class="pa-1 pa-sm-3 mb-12"
+      class="pa-0 pa-sm-2"
     >
 
       <!-- Loading progress bar -->
@@ -13,15 +13,15 @@
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
 
-          <p v-show="getPlayLists.length" class="mx-auto my-2 headline text-center">
+          <p v-show="getPlayLists.length" class="mx-auto my-1 headline text-center">
             {{this.$route.query.tag ? this.$route.query.tag : 'Hot Playlist'}}
           </p>
 
           <!-- music types tag expension panel -->
-          <v-expansion-panels v-show="getPlayLists.length" focusable accordion class="px-2">
+          <v-expansion-panels v-show="getPlayLists.length" focusable accordion>
             <v-expansion-panel
             >
-              <v-expansion-panel-header color="primary" ripple="">
+              <v-expansion-panel-header color="primary" ripple>
                   Music Type Tags
               </v-expansion-panel-header>
               <v-expansion-panel-content>
@@ -46,7 +46,7 @@
             cols="12"
             sm="6"
             md="4"
-            class="pa-2 pa-sm-2"
+            class="pa-0 py-1 pa-sm-2"
           >
             <TopPlayListItem
               :item=item
@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     goToPlaylist (item) {
-      this.$router.push(`/playlistdetails?id=${item.id}`)
+      this.$router.push(`/playlistdetail?id=${item.id}`)
     },
     goToPlaylistsByTag (tag) {
       this.$router.push(`/playlist?tag=${tag}`)

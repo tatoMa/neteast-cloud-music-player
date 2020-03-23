@@ -52,7 +52,11 @@ const getLyricById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/lyric?id=
   .then(response => response.data)
   .catch(error => console.log(error))
 
-const getAllTopArtist = () => axios.get(`${process.env.VUE_APP_baseURL}/top/artists`, { withCredentials: true })
+const getAllTopArtists = () => axios.get(`${process.env.VUE_APP_baseURL}/top/artists`, { withCredentials: true })
+  .then(response => response.data)
+  .catch(error => console.log(error))
+
+const getArtistById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/artists?id=${id}`, { withCredentials: true })
   .then(response => response.data)
   .catch(error => console.log(error))
 
@@ -70,5 +74,6 @@ export {
   getSearchResultByText,
   getCommentsById,
   getLyricById,
-  getAllTopArtist
+  getAllTopArtists,
+  getArtistById
 }

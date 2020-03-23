@@ -6,6 +6,7 @@
     right
     direction="bottom"
     transition="slide-y-reverse-transition"
+    style="top:3.1rem"
     @click.stop=""
   >
 

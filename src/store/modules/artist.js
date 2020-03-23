@@ -1,30 +1,46 @@
-// import mock from '../../utils/mock'
-import { getAllTopArtist } from '../../utils/api'
+import { getAllTopArtists, getArtistById } from '../../utils/api'
 import store from '..'
 
 export default {
   namespaced: true,
   state: {
-    topArtist: null
+    topArtists: null,
+    artist: null
   },
   mutations: {
-    setTopArtist: (state, payload) => {
-      state.topArtist = payload
+    setTopArtists: (state, payload) => {
+      state.topArtists = payload
+    },
+    setArtist: (state, payload) => {
+      state.artist = payload
     }
   },
   actions: {
-    fetchTopArtist: async (state) => {
+    fetchTopArtists: async (state) => {
       try {
-        const artist = await getAllTopArtist()
-        store.commit('artist/setTopArtist', artist.artists)
+        const artist = await getAllTopArtists()
+        store.commit('artist/setTopArtists', artist.artists)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    fetchArtistById: async (state, id) => {
+      try {
+        store.commit('artist/setArtist', null)
+        const artist = await getArtistById(id)
+        console.log(artist)
+        store.commit('artist/setArtist', artist)
       } catch (error) {
         console.log(error)
       }
     }
   },
   getters: {
-    getTopArtist: (state) => {
-      return state.topArtist
+    getTopArtists: (state) => {
+      return state.topArtists
+    },
+    getArtist: (state) => {
+      return state.artist
     }
   }
 }
