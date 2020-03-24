@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mdiPlusCircleOutline, mdiFileCog, mdiFire, mdiPlaylistMusic } from '@mdi/js'
+import { mdiPlusCircleOutline, mdiFileCog, mdiFire, mdiPlaylistMusic, mdiAccountMusic } from '@mdi/js'
 export default {
   data () {
     return {
@@ -63,10 +63,12 @@ export default {
       mdiFileCog,
       mdiFire,
       mdiPlaylistMusic,
+      mdiAccountMusic,
       item: 2,
       items: [
         { icon: mdiFire, text: 'Top Music', url: '/' },
         { icon: mdiPlaylistMusic, text: 'Top Playlists', url: 'topplaylists' },
+        { icon: mdiAccountMusic, text: 'Top Artists', url: 'topartist' },
         { icon: mdiFileCog, text: 'Setting', url: 'setting' }
       ]
     }
