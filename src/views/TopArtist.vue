@@ -15,7 +15,7 @@
         >
           <v-img
             class="white--text align-end"
-            height="10rem"
+            max-height="10rem"
             :src="artist.picUrl + '?param=400y400'"
             :alt="artist.name"
           >
