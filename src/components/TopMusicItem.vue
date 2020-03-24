@@ -32,11 +32,13 @@
         <musicItemWithPic
           v-for="(item, index) in getTopMusicListsById[id].tracks"
           :key="item.id"
-          :item="item"
+          :name="item.name"
+          :artist="item.ar[0].name"
+          :imgUrl="item.al.picUrl"
+          :id="item.id"
           :index="index"
           :maxItem="maxItem * page"
-          @setMusic="setMusic(item)"
-          @addToPlaylist="addToPlaylist"
+          @setMusic="setMusic"
         />
         <v-btn
           block rounded outlined color="primary"
@@ -60,7 +62,7 @@ import loading from '../components/Loading'
 import musicItemWithPic from './Common/MusicItemWithPic'
 import { mdiChevronDown, mdiPlayCircleOutline } from '@mdi/js'
 export default {
-  name: 'HotPlayLists',
+  name: 'TopMusicItem',
   props: [
     'id'
   ],
@@ -94,12 +96,14 @@ export default {
     this.loadedMusicDetailsList = false
   },
   methods: {
-    setMusic (item) {
+    setMusic (id) {
+      console.log(id)
+
       if (!this.loadedMusicDetailsList) {
         this.$store.commit('player/setMusicDetailByIdsList', this.getTopMusicListsById[this.id].tracks)
         this.loadedMusicDetailsList = true
       }
-      this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', item.id)
+      this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
     },
     setMusicList () {
       // this.$store.commit('player/setPaused', true)

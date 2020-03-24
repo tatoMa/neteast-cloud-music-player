@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import player from './modules/player'
 import artist from './modules/artist'
+import search from './modules/search'
 import {
   getPlayLists,
   getAllPlayListTags,
@@ -112,6 +113,7 @@ export default new Vuex.Store({
   },
   modules: {
     player,
-    artist
+    artist,
+    search
   }
 })

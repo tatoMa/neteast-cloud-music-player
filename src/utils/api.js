@@ -40,6 +40,10 @@ const getMusicUrlByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song
   .then(response => response.data.data)
   .catch(error => console.log(error))
 
+const getSearchSuggestionByText = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search/suggest?keywords=${text}`, { withCredentials: true })
+  .then(response => response.data.result)
+  .catch(error => console.log(error))
+
 const getSearchResultByText = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search?keywords=${text}`, { withCredentials: true })
   .then(response => response.data.result.songs)
   .catch(error => console.log(error))
@@ -72,6 +76,7 @@ export {
   getMusicUrlById,
   getMusicUrlByIds,
   getSearchResultByText,
+  getSearchSuggestionByText,
   getCommentsById,
   getLyricById,
   getAllTopArtists,

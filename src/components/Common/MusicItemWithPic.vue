@@ -1,10 +1,10 @@
 <template>
   <v-col
     v-ripple
-    :key="item.id"
+    :key="id"
     cols="12"
     class="px-0 py-0 my-1"
-    @click.stop="$emit('setMusic',item)"
+    @click.stop="$emit('setMusic',id)"
     v-if="index < maxItem"
   >
     <v-card
@@ -16,12 +16,12 @@
 
           <!-- music name -->
           <div class="subtitle-1 ml-4">
-            {{item.name}}
+            {{name}}
           </div>
 
           <!-- music artist -->
           <div class="caption pb-1 text-truncate ml-4 text--secondary" style="max-width: 170px;">
-            {{item.ar[0].name}}
+            {{artist}}
           </div>
 
         </div>
@@ -32,7 +32,7 @@
           tile
         >
           <v-img
-          :src="httpToHttps(this.item.al.picUrl) +'?param=100y100'"
+          :src="httpToHttps(imgUrl) +'?param=100y100'"
           ></v-img>
         </v-avatar>
       </div>
@@ -51,14 +51,25 @@ export default {
     }
   },
   props: {
-    item: {
-      type: Object
+    id: {
+      type: Number
+    },
+    name: {
+      type: String
+    },
+    artist: {
+      type: String
+    },
+    imgUrl: {
+      type: String
     },
     index: {
-      type: Number
+      type: Number,
+      default: 0
     },
     maxItem: {
-      type: Number
+      type: Number,
+      default: 9999
     }
   }
 }
