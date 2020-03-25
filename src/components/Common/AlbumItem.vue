@@ -80,6 +80,10 @@ export default {
     },
     size: {
       type: Number
+    },
+    paid: {
+      type: Boolean,
+      default: false
     }
   }
 }

@@ -9,6 +9,7 @@
     >
       <v-img
         aspect-ratio="1.7"
+        max-height="300px"
         :src="artist.artist.picUrl + '?param=400y400'"
       ></v-img>
 

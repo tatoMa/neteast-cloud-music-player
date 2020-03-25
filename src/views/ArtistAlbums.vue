@@ -26,6 +26,8 @@
               :company="album.company"
               :subType="album.subType"
               :type="album.type"
+              :size="album.size"
+              :paid='album.paid'
             />
           </v-col>
         </v-row>
