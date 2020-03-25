@@ -6,7 +6,6 @@
     color="secondary"
     clipped-left
     class="px-xs-0 px-sm-5"
-    :hide-on-scroll="$vuetify.breakpoint.xs"
   >
     <!-- left section -->
     <v-app-bar-nav-icon @click.stop="toggleAppDrawer" />

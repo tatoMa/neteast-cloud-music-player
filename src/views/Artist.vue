@@ -24,6 +24,19 @@
           :class="descWrap ? 'text-truncate' : null"
         >{{artist.artist.briefDesc}}</div>
       </v-card-text>
+
+      <v-card-actions>
+        <v-btn
+          rounded
+          ripple
+          block
+          color="primary"
+          :to="{ path: '/artist/albums', query: { id: artist.artist.id }}"
+        >
+          All Albums
+        </v-btn>
+      </v-card-actions>
+
     </v-card>
     <div v-if="artist">
       <MusicItem

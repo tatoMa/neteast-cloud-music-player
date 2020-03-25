@@ -60,7 +60,19 @@ const getAllTopArtists = () => axios.get(`${process.env.VUE_APP_baseURL}/top/art
   .then(response => response.data)
   .catch(error => console.log(error))
 
+const getNewAlbums = () => axios.get(`${process.env.VUE_APP_baseURL}/album/newest`, { withCredentials: true })
+  .then(response => response.data)
+  .catch(error => console.log(error))
+
+const getAlbumById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/album?id=${id}`, { withCredentials: true })
+  .then(response => response.data)
+  .catch(error => console.log(error))
+
 const getArtistById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/artists?id=${id}`, { withCredentials: true })
+  .then(response => response.data)
+  .catch(error => console.log(error))
+
+const getAlbumsByArtistId = (id) => axios.get(`${process.env.VUE_APP_baseURL}/artist/album?id=${id}&limit=90`, { withCredentials: true })
   .then(response => response.data)
   .catch(error => console.log(error))
 
@@ -80,5 +92,8 @@ export {
   getCommentsById,
   getLyricById,
   getAllTopArtists,
-  getArtistById
+  getNewAlbums,
+  getAlbumById,
+  getArtistById,
+  getAlbumsByArtistId
 }

@@ -31,9 +31,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "topartist" */ '../views/TopArtist.vue')
   },
   {
+    path: '/newalbum',
+    name: 'NewAlbum',
+    component: () => import(/* webpackChunkName: "newalbum" */ '../views/NewAlbum.vue')
+  },
+  {
     path: '/artist',
     name: 'Artist',
     component: () => import(/* webpackChunkName: "artist" */ '../views/Artist.vue')
+  },
+  {
+    path: '/artist/albums',
+    name: 'ArtistAlbums',
+    component: () => import(/* webpackChunkName: "artistalbums" */ '../views/ArtistAlbums.vue')
   },
   {
     path: '/setting',

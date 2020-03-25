@@ -18,19 +18,24 @@
 
     <v-btn to="topartist" @click.stop="$emit('disableLayout')">
       <span>Atrist</span>
-      <v-icon>{{mdiClipboardTextPlay}}</v-icon>
+      <v-icon>{{mdiAccountMusic}}</v-icon>
+    </v-btn>
+
+    <v-btn to="newalbum" @click.stop="$emit('disableLayout')">
+      <span>Album</span>
+      <v-icon>{{mdiAlbum}}</v-icon>
     </v-btn>
 
     <v-btn to="setting" @click.stop="$emit('disableLayout')">
       <span>Setting</span>
-      <v-icon>{{mdiMessage}}</v-icon>
+      <v-icon>{{mdiCogs}}</v-icon>
     </v-btn>
 
   </v-bottom-navigation>
 </template>
 
 <script>
-import { mdiHome, mdiPlaylistMusic, mdiMessage, mdiClipboardTextPlay } from '@mdi/js'
+import { mdiHome, mdiPlaylistMusic, mdiCogs, mdiAccountMusic, mdiAlbum } from '@mdi/js'
 export default {
   name: 'BottomNav',
   props: {
@@ -43,8 +48,9 @@ export default {
     return {
       mdiHome,
       mdiPlaylistMusic,
-      mdiMessage,
-      mdiClipboardTextPlay,
+      mdiCogs,
+      mdiAccountMusic,
+      mdiAlbum,
       bottomNav: 0
     }
   },
