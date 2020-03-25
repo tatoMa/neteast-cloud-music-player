@@ -99,6 +99,8 @@ export default new Vuex.Store({
       return state.allPlayListTags
     },
     getSearchResult: (state) => {
+      console.log(state.searchResult)
+
       return state.searchResult
     },
     getNewMusicLists: (state) => {

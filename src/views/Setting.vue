@@ -1,14 +1,13 @@
 <template>
-  <v-container class="pt-0 mb-12 pb-12">
+  <v-container class="pt-0">
     <v-row class="text-center">
-      <v-col cols="12">
+      <v-col cols="12" class="pt-0">
         <v-card
-          max-width="375"
           class="mx-auto"
         >
           <v-img
             src="../assets/disk_half.png"
-            height="250px"
+            height="200px"
           >
             <v-row class="fill-height">
               <v-card-title class="pt-12 mx-auto">
@@ -21,8 +20,8 @@
 
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title>Theme Color</v-list-item-title>
-                <v-list-item-subtitle>select your favorite color</v-list-item-subtitle>
+                <v-list-item-title>Theme color</v-list-item-title>
+                <v-list-item-subtitle>Select your favorite color</v-list-item-subtitle>
               </v-list-item-content>
                <v-list-item-icon>
                 <v-icon>{{mdiPalette}}</v-icon>
@@ -37,7 +36,7 @@
               <v-btn color="#2f89fc" block @click="setPrimaryColor('#2f89fc')">Sky Blue</v-btn>
             </v-list-item>
             <v-list-item style="min-height:48px">
-              <v-btn color="#107a8b" block @click="setPrimaryColor('#107a8b')">gress green</v-btn>
+              <v-btn color="#107a8b" block @click="setPrimaryColor('#107a8b')">grass green</v-btn>
             </v-list-item>
             <v-list-item style="min-height:48px">
               <v-btn color="#d72323" block @click="setPrimaryColor('#d72323')">blood red</v-btn>
@@ -68,6 +67,7 @@ export default {
   methods: {
     setPrimaryColor (color) {
       this.$vuetify.theme.themes.dark.primary = color
+      this.$vuetify.theme.themes.light.primary = color
     }
   }
 }

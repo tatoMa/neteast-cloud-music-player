@@ -3,7 +3,7 @@
     <v-row class="text-center">
       <v-col>
         <!-- Loading progress bar -->
-        <Loading :loading="!getSearchResult"/>
+        <Loading v-if="!getSearchResult"/>
           <v-list
             v-for="track in getSearchResult"
             :key="track.id"
@@ -51,6 +51,10 @@ export default {
       this.$store.commit('player/setMusicDetailByIdFromSearch', id)
       this.$store.commit('player/setMusicUrlsListById')
     }
+    // setMusic (id) {
+    //   this.$store.commit('player/setMusicDetailByIdsList', this.getSearchSuggestion.songs)
+    //   this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
+    // }
   }
 }
 </script>
