@@ -32,7 +32,7 @@
 
           <!-- router -->
           <router-view
-            class="pb-12"
+            style="padding-bottom:96px"
             :key="$route.fullPath"
           ></router-view> <!-- define key to fullpath of router makes router refresh whenever address changes -->
 

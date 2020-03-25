@@ -4,7 +4,7 @@
       <v-col cols="12">
 
         <!-- Loading progress bar -->
-        <loading :loading='!albumsByArtistId'/>
+        <loading v-if='!albumsByArtistId'/>
 
         <!-- Albums -->
         <v-row no-gutters v-if="albumsByArtistId">

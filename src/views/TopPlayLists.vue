@@ -7,15 +7,15 @@
     >
 
       <!-- Loading progress bar -->
-      <loading :loading='getPlayLists.length === 0'/>
+      <loading v-if='getPlayLists.length === 0'/>
 
       <!-- main container -->
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
 
-          <p v-show="getPlayLists.length" class="mx-auto my-1 headline text-center">
+          <div v-show="getPlayLists.length" class="mx-auto my-1 headline text-center">
             {{this.$route.query.tag ? this.$route.query.tag : 'Hot Playlist'}}
-          </p>
+          </div>
 
           <!-- music types tag expension panel -->
           <v-expansion-panels v-show="getPlayLists.length" focusable accordion>

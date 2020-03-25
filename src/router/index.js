@@ -46,6 +46,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "artistalbums" */ '../views/ArtistAlbums.vue')
   },
   {
+    path: '/album',
+    name: 'AlbumDetail',
+    component: () => import(/* webpackChunkName: "albumdetail" */ '../views/AlbumDetail.vue')
+  },
+  {
     path: '/setting',
     name: 'Setting',
     component: () => import(/* webpackChunkName: "setting" */ '../views/Setting.vue')

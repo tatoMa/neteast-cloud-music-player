@@ -58,7 +58,7 @@ export default {
     getNewAlbums: (state) => {
       return state.newAlbums
     },
-    getAlbumByIds: (state) => {
+    getAlbumById: (state) => {
       return state.albumById
     }
   }

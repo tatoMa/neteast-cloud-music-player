@@ -2,6 +2,8 @@
   <v-card
     class="mx-auto mb-3"
     color="secondary darken-1"
+    :to="{ path: '/album', query: { id: id }}"
+    ripple
   >
     <v-list-item class="px-2">
       <v-list-item-avatar size="48">
@@ -41,7 +43,7 @@
         color="primary"
         block
         rounded
-        @click="test(id)"
+        :to="{ path: '/album', query: { id: id }}"
       >
         Play All <span class="inline-block mx-2 font-weight-bold title">{{size}}</span> Songs
       </v-btn>
@@ -79,14 +81,6 @@ export default {
     size: {
       type: Number
     }
-  },
-  methods: {
-    test (id) {
-      this.$store.dispatch('album/FetchAlbumById', id)
-    }
   }
 }
 </script>
-
-<style scoped>
-</style>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <!-- Loading progress bar -->
-    <Loading :loading='!artist'/>
+    <Loading v-if='!artist'/>
 
     <v-card
       v-if="artist"

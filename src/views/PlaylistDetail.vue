@@ -4,7 +4,7 @@
       <v-col cols="12">
 
         <!-- Loading progress bar -->
-        <loading :loading='!getPlayListById'/>
+        <loading v-if='!getPlayListById'/>
 
         <!-- image, name and description of playlist -->
         <v-card

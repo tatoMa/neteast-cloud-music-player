@@ -4,15 +4,15 @@
       <v-col cols="12">
 
         <!-- Loading progress bar -->
-        <loading :loading='!newAlbums'/>
+        <loading v-if='!newAlbums'/>
 
         <!-- Albums -->
+        <div v-if="newAlbums" class="headline mx-auto mb-2">New Albums</div>
         <v-row no-gutters v-if="newAlbums">
-          <div class="headline mx-auto mb-2">New Albums</div>
           <v-col
-            class="ma-0 py-0 px-0 px-sm-2"
             v-for="album in newAlbums.albums"
             :key="album.id"
+            class="ma-0 py-0 px-0 px-sm-2"
             xs="12"
             sm="6"
             md="4"
