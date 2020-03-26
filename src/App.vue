@@ -32,7 +32,7 @@
 
           <!-- router -->
           <router-view
-            style="padding-bottom:96px"
+            style="margin-bottom:96px"
             :key="$route.fullPath"
           ></router-view> <!-- define key to fullpath of router makes router refresh whenever address changes -->
 
@@ -104,5 +104,11 @@ export default {
 <style>
 .cursor-pointer{
   cursor: pointer;
+}
+.fullheight-desktop{
+  margin-bottom:96px
+}
+.fullheight-mobile{
+  padding-bottom:48px !important
 }
 </style>

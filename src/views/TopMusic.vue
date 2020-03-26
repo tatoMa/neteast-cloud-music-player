@@ -1,5 +1,6 @@
 <template>
   <v-container
+    class="pt-0 mb-8 pb-6 pb-sm-12"
   >
     <!-- mobile screen -->
     <v-tabs

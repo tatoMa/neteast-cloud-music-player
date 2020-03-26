@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pt-0">
+  <v-container class="pt-0 mb-8 pb-sm-12">
     <v-row class="text-center">
       <v-col cols="12" class="pt-0">
         <v-card
@@ -10,7 +10,7 @@
             height="200px"
           >
             <v-row class="fill-height">
-              <v-card-title class="pt-12 mx-auto">
+              <v-card-title class="pt-0 mx-auto">
                 <div class="display-1 pt-8">tato music</div>
               </v-card-title>
             </v-row>
@@ -52,9 +52,11 @@
             </v-list-item>
 
           </v-list>
+          <v-divider></v-divider>
           <v-card-actions>
             <v-btn text block href="https://github.com/tatoMa/neteast-cloud-music-player">Made with all ❤️ by tato</v-btn>
           </v-card-actions>
+          <div class="text-end">v0.9</div>
         </v-card>
       </v-col>
     </v-row>
