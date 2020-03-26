@@ -22,7 +22,7 @@
         :albumSize="artist.albumSize"
       />
     </v-col>
-    <v-divider></v-divider>
+    <v-divider class="col-12"></v-divider>
     <p class="col-12 headline mt-2 mb-1">Albums:</p>
     <v-col
       cols="12"
@@ -45,7 +45,7 @@
         :size="album.size"
       />
     </v-col>
-    <v-divider></v-divider>
+    <v-divider class="col-12"></v-divider>
     <!-- Music Item With Pic Component -->
     <p class="col-12 headline mt-4 mb-1">Music:</p>
     <v-btn
