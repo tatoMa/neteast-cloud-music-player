@@ -1,36 +1,53 @@
 <template>
-  <v-container v-if="getSearchSuggestion">
-    <div class="headline mb-2 text-center">Search Suggestion: </div>
+  <v-container v-if="getSearchSuggestion" class="pt-0 mb-12 pb-4 pb-sm-12">
+    <div class="headline mb-2 text-center">Search Result: </div>
+    <v-row no-gutters>
     <!-- Albums Item With Pic Component -->
-    <p class="headline mt-2 mb-1">Artist:</p>
-    <ArtistItem
+    <p class="col-12 headline mt-2 mb-1">Artist:</p>
+    <v-col
+      cols="12"
+      sm="6"
+      class="mr-4"
       v-for="artist in getSearchSuggestion.artists"
       :key="artist.id"
-      :id="artist.id"
-      :name="artist.name"
-      :picUrl="artist.picUrl"
-      :alias="artist.alias[0]"
-      :musicSize="artist.musicSize"
-      :albumSize="artist.albumSize"
-    />
+    >
+      <ArtistItem
+        v-for="artist in getSearchSuggestion.artists"
+        :key="artist.id"
+        :id="artist.id"
+        :name="artist.name"
+        :picUrl="artist.picUrl"
+        :alias="artist.alias[0]"
+        :musicSize="artist.musicSize"
+        :albumSize="artist.albumSize"
+      />
+    </v-col>
     <v-divider></v-divider>
-    <p class="headline mt-2 mb-1">Albums:</p>
-    <AlbumItem
+    <p class="col-12 headline mt-2 mb-1">Albums:</p>
+    <v-col
+      cols="12"
+      sm="6"
+      md="4"
+      lg="3"
+      class="mr-4"
       v-for="album in getSearchSuggestion.albums"
       :key="album.id"
-      :id="album.id"
-      :ArtistPicUrl="album.artist.picUrl"
-      :name="album.name"
-      :artistName="album.artist.name"
-      :picUrl="album.artist.picUrl"
-      :company="album.company"
-      :subType="album.subType"
-      :type="album.type"
-      :size="album.size"
-    />
+    >
+      <AlbumItem
+        :id="album.id"
+        :ArtistPicUrl="album.artist.picUrl"
+        :name="album.name"
+        :artistName="album.artist.name"
+        :picUrl="album.artist.picUrl"
+        :company="album.company"
+        :subType="album.subType"
+        :type="album.type"
+        :size="album.size"
+      />
+    </v-col>
     <v-divider></v-divider>
     <!-- Music Item With Pic Component -->
-    <p class="headline mt-4 mb-1">Music:</p>
+    <p class="col-12 headline mt-4 mb-1">Music:</p>
     <v-btn
       color="primary"
       block
@@ -45,6 +62,7 @@
       :id="item.id"
       @setMusic="setMusic"
     />
+    </v-row>
   </v-container>
 </template>
 
