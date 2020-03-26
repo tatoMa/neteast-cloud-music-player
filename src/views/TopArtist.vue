@@ -4,7 +4,7 @@
       <v-col cols="12">
 
         <!-- Loading progress bar -->
-        <Loading :loading='!getTopArtist'/>
+        <Loading v-if='!getTopArtist'/>
 
         <!-- artists -->
         <div v-if="getTopArtist" class="headline mb-2 text-center">Hot Artists</div>

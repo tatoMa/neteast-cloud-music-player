@@ -13,6 +13,7 @@
       :musicSize="artist.musicSize"
       :albumSize="artist.albumSize"
     />
+    <v-divider></v-divider>
     <p class="headline mt-2 mb-1">Albums:</p>
     <AlbumItem
       v-for="album in getSearchSuggestion.albums"

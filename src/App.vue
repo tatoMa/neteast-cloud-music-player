@@ -43,6 +43,8 @@
     <Player
       :layout="layout"
       @toggleLayout="toggleLayout"
+      :tab="tab"
+      @switchTab="switchTab"
     />
 
     <BottomNav
@@ -71,7 +73,8 @@ export default {
     return {
       appDrawer: false,
       mdiArrowLeft,
-      layout: false
+      layout: false,
+      tab: 0
     }
   },
   created () {
@@ -90,6 +93,10 @@ export default {
     },
     disableLayout () {
       this.layout = false
+      this.switchTab(0)
+    },
+    switchTab (tab) {
+      this.tab = tab
     }
   }
 }

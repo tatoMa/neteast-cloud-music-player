@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <!-- Loading progress bar -->
-    <Loading :loading='!album'/>
+    <Loading v-if='!album'/>
     <v-col v-if="album" class="pa-0">
       <AlbumItem
         :id="album.album.id"

@@ -13,8 +13,8 @@
       <v-container fluid class="py-0 px-1 pa-sm-2 pt-sm-0">
         <v-row dense>
 
-          <div v-show="getPlayLists.length" class="mx-auto my-1 headline text-center">
-            {{this.$route.query.tag ? this.$route.query.tag : 'Hot Playlist'}}
+          <div v-show="getPlayLists.length" class="mx-auto mb-1 mt-0 headline text-center">
+            {{this.$route.query.tag ? this.$route.query.tag : 'Top Playlist'}}
           </div>
 
           <!-- music types tag expension panel -->
@@ -83,9 +83,13 @@ export default {
     if (query) {
       this.$store.commit('setPlayListByTagName', query)
     } else {
-      this.$store.commit('setPlayLists')
+      if (this.getPlayLists.length === 0) {
+        this.$store.commit('setPlayLists')
+      }
     }
-    this.$store.commit('setAllPlayListTags')
+    if (!this.getAllPlayListTags) {
+      this.$store.commit('setAllPlayListTags')
+    }
   },
   methods: {
     goToPlaylist (item) {

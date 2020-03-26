@@ -59,18 +59,6 @@ export default {
       if (!val) this.bottomNav = 0
     }
   }
-  // methods: {
-  //   toggleBottomNavTab (tab) {
-  //     if (this.bottomNav !== tab) {
-  //       this.$emit('disableLayout')
-  //       this.$emit('switchTab', tab)
-  //       this.bottomNav = tab
-  //     } else {
-  //       // this.$emit('toggleLayout')
-  //       this.bottomNav = 0
-  //     }
-  //   }
-  // }
 }
 </script>
 

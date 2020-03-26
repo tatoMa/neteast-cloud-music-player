@@ -161,6 +161,10 @@ export default {
   props: {
     layout: {
       type: Boolean
+    },
+    tab: {
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -184,7 +188,6 @@ export default {
       mdiClipboardTextPlay,
       mdiMessage,
       httpToHttps,
-      tab: 0,
       volume: 1,
       storedLastVolume: 0,
       currentTime: 0,
@@ -289,11 +292,11 @@ export default {
       if (this.breakpointXs) {
         // this.layout = !this.layout
         this.$emit('toggleLayout')
-        this.tab = 0
+        this.$emit('switchTab', 0)
       }
     },
     switchTab (item) {
-      this.tab = item
+      this.$emit('switchTab', item)
     }
   }
 }

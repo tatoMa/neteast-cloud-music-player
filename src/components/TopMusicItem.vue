@@ -97,8 +97,6 @@ export default {
   },
   methods: {
     setMusic (id) {
-      console.log(id)
-
       if (!this.loadedMusicDetailsList) {
         this.$store.commit('player/setMusicDetailByIdsList', this.getTopMusicListsById[this.id].tracks)
         this.loadedMusicDetailsList = true
