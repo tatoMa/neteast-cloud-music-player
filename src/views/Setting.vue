@@ -36,16 +36,25 @@
               <v-btn color="#2f89fc" block @click="setPrimaryColor('#2f89fc')">Sky Blue</v-btn>
             </v-list-item>
             <v-list-item style="min-height:48px">
+              <v-btn color="#f96d00" block @click="setPrimaryColor('#f96d00')">Cute Orange</v-btn>
+            </v-list-item>
+            <v-list-item style="min-height:48px">
+              <v-btn color="#824c96" block @click="setPrimaryColor('#824c96')">Handsome Purple</v-btn>
+            </v-list-item>
+            <v-list-item style="min-height:48px">
               <v-btn color="#107a8b" block @click="setPrimaryColor('#107a8b')">grass green</v-btn>
             </v-list-item>
             <v-list-item style="min-height:48px">
-              <v-btn color="#d72323" block @click="setPrimaryColor('#d72323')">blood red</v-btn>
+              <v-btn color="#fd0054" block @click="setPrimaryColor('#fd0054')">blood red</v-btn>
             </v-list-item>
             <v-list-item style="min-height:48px">
-              <v-btn color="#f3f169" block @click="setPrimaryColor('#f3f169')">punk yellow</v-btn>
+              <v-btn color="#facf5a" block @click="setPrimaryColor('#facf5a')">punk yellow</v-btn>
             </v-list-item>
 
           </v-list>
+          <v-card-actions>
+            <v-btn text block href="https://github.com/tatoMa/neteast-cloud-music-player">Made with all ❤️ by tato</v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
