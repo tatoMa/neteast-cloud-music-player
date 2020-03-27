@@ -91,6 +91,7 @@ export default {
 }
 </script>
 <style>
+/* html { overflow-y: auto } */
 .cursor-pointer{
   cursor: pointer;
 }
