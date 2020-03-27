@@ -11,23 +11,12 @@
     </v-navigation-drawer><!-- app drawer -->
 
     <!-- app navbar -->
-    <app-navbar
+    <AppNavbar
       @toggleAppDrawer="toggleAppDrawer"
     /><!-- app navbar -->
 
     <!-- main section -->
     <v-content>
-      <!-- <v-btn
-      class="mt-3 ml-3"
-      fab
-      small
-      fixed
-      color="primary"
-      @click.stop="goBack"
-      >
-        <v-icon>{{mdiArrowLeft}}</v-icon>
-      </v-btn> -->
-
       <v-scroll-x-transition mode="out-in"><!-- transitions -->
 
           <!-- router -->
@@ -57,22 +46,22 @@
 <script>
 // import { mapGetters } from 'vuex'
 import AppDrawer from './components/AppDrawer'
-import appNavbar from './components/AppNavbar'
+import AppNavbar from './components/AppNavbar'
 import Player from './components/Player/index'
 import BottomNav from './components/BottomNav'
 import { mdiArrowLeft } from '@mdi/js'
 export default {
   name: 'App',
   components: {
-    appNavbar,
+    AppNavbar,
     AppDrawer,
     Player,
     BottomNav
   },
   data () {
     return {
-      appDrawer: false,
       mdiArrowLeft,
+      appDrawer: false,
       layout: false,
       tab: 0
     }

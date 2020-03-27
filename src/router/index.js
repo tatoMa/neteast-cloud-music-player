@@ -64,6 +64,10 @@ const routes = [
     path: '/search/music',
     name: 'SearchMusic',
     component: () => import(/* webpackChunkName: "search" */ '../views/SearchMusic.vue')
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
