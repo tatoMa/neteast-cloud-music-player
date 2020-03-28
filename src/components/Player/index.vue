@@ -193,6 +193,7 @@ export default {
       currentTime: 0,
       duration: 0,
       audioAnalyser: false
+      // colorTheme: this.$vuetify.theme.themes.dark.primary
     }
   },
   computed: {
@@ -223,9 +224,11 @@ export default {
     }
   },
   // watch: {
-  //   volume: function (val) {
-  //     this.$refs.player.volume = val
-  //     // console.log(this.player)
+  //   colorTheme: function (val) {
+  //     console.log('changed color')
+
+  //     audioAnalyser.stop()
+  //     audioAnalyser.start(this.$vuetify.theme.themes.dark.primary)
   //   }
   // },
   mounted () {
@@ -249,7 +252,7 @@ export default {
   methods: {
     audioAnalyserStart () {
       if (!this.audioAnalyser) {
-        audioAnalyser.start()
+        audioAnalyser.start(this.$vuetify.theme.themes.dark.primary)
         this.audioAnalyser = true
       }
     },
