@@ -263,6 +263,7 @@ export default {
         this.$refs.player.play()
       } else {
         this.$refs.player.pause()
+        // audioAnalyser.stop()
       }
     },
     onSliderMouseDown (event) {

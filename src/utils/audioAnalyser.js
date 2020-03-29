@@ -2,6 +2,7 @@
 
 var audio
 var ctx
+var analyser
 
 var init = () => {
   window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext
@@ -15,7 +16,7 @@ var start = (themeColor) => {
   // init
   audio = document.getElementById('audio')
   ctx = new AudioContext()
-  var analyser = ctx.createAnalyser()
+  analyser = ctx.createAnalyser()
   var audioSrc = ctx.createMediaElementSource(audio)
 
   audioSrc.connect(analyser)
@@ -38,13 +39,14 @@ var start = (themeColor) => {
   ctx = canvas.getContext('2d')
   var gradient = ctx.createLinearGradient(0, 0, 0, 250)
 
-  var colorStop1 = adjust(themeColor, -30)
-  var colorStop2 = adjust(themeColor, +30)
+  var colorBottom = adjust(themeColor, -10)
+  var colorMid = adjust(themeColor, +100)
+  var colorTop = adjust(themeColor, +230)
 
   // gradient.addColorStop(1, '#fe457cde')
-  // gradient.addColorStop(0.5, '#ff91b27c')
-  gradient.addColorStop(1, `${colorStop1}de`)
-  gradient.addColorStop(0, `${colorStop2}de`)
+  gradient.addColorStop(0, `${colorTop}30`)
+  gradient.addColorStop(0.7, `${colorMid}60`)
+  gradient.addColorStop(1, `${colorBottom}D0`)
   // loop
   function renderFrame () {
     // var array = new Uint8Array(analyser.frequencyBinCount)
@@ -73,6 +75,8 @@ var start = (themeColor) => {
   // audio.play();
 }
 var stop = () => {
-  ctx.close()
+  console.log(analyser)
+
+  analyser.close()
 }
 export default { init, start, stop }

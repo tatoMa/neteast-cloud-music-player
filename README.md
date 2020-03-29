@@ -20,14 +20,18 @@ Frontend
 - [ ] maybe login?
 - [ ] add full PWA support?
 - [ ] Progressive Loading? different layout or resources based on device types and network speed
-- [ ] large image adaptive loading
 - [ ] download music function
 - [ ] redo player animation and transaction
 - [ ] player loop/random function
 - [ ] UX/UI logic refactor
-- [ ] music progress slider click and jump to time function
 - [ ] add Skeleton loaders
 - [ ] Lyric sync
+- [x] theme and color settings
+- [x] setting page
+- [x] album page
+- [x] artist page
+- [x] large image adaptive loading
+- [x] music progress slider click and jump to time function
 - [x] Lyric display
 - [x] fix Chrome security policy don't allow instantiate AudioContext before load audio source 
 - [x] fix music url request 403 error (by adding referrer head into index page)
