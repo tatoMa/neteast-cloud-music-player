@@ -44,12 +44,6 @@
       </v-list-item-action>
       <v-list-item-title class="grey--text text--darken-1">Custom Playlist</v-list-item-title>
     </v-list-item>
-    <v-list-item link>
-      <v-list-item-action>
-        <v-icon color="grey darken-1">{{mdiFileCog}}</v-icon>
-      </v-list-item-action>
-      <v-list-item-title class="grey--text text--darken-1">Setting</v-list-item-title>
-    </v-list-item>
     </v-list-item-group>
   </v-list>
 </template>
