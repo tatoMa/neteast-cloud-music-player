@@ -1,6 +1,7 @@
 <template>
   <v-footer
     fixed
+    inset
     class="pa-0 ma-0 player"
     :class="breakpointXs ? 'player-mobile' : ''"
     color="secondary darken-1"

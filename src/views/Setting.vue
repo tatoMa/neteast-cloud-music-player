@@ -20,7 +20,7 @@
 
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title>Theme color</v-list-item-title>
+                <v-list-item-title>Theme color picker</v-list-item-title>
                 <v-list-item-subtitle>Select your favorite color</v-list-item-subtitle>
               </v-list-item-content>
                <v-list-item-icon>
@@ -53,7 +53,24 @@
 
           </v-list>
           <v-divider></v-divider>
-          <v-card-actions>
+          <v-card
+            flat
+          >
+            <v-card-title class="flex justify-space-between py-1 mx-4">
+              <div class="body-1">Connected with my social networks!</div>
+              <v-btn
+                v-for="icon in icons"
+                :key="icon"
+                class="mx-2"
+                dark
+                icon
+              >
+                <v-icon size="24px">{{ icon }}</v-icon>
+              </v-btn>
+            </v-card-title>
+          </v-card>
+          <v-divider></v-divider>
+          <v-card-actions class="py-0">
             <v-btn text block href="https://github.com/tatoMa/neteast-cloud-music-player">Made with all ❤️ by tato</v-btn>
           </v-card-actions>
           <div class="text-end">v0.9</div>
@@ -64,7 +81,7 @@
 </template>
 
 <script>
-import { mdiPalette } from '@mdi/js'
+import { mdiPalette, mdiFacebook, mdiTwitter, mdiGoogle, mdiLinkedin, mdiInstagram } from '@mdi/js'
 export default {
   name: 'Setting',
   components: {
@@ -72,7 +89,10 @@ export default {
   },
   data () {
     return {
-      mdiPalette
+      mdiPalette,
+      icons: [
+        mdiFacebook, mdiTwitter, mdiGoogle, mdiLinkedin, mdiInstagram
+      ]
     }
   },
   methods: {
