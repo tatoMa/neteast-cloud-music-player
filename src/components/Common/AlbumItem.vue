@@ -40,10 +40,21 @@
 
     <v-card-actions class="py-0 pb-2">
       <v-btn
-        color="primary"
+        v-if="!fromAlbumDetailPage"
         block
+        outlined
+        color="primary"
         rounded
         :to="{ path: '/album', query: { id: id }}"
+      >
+        This Album has <span class="inline-block mx-2 font-weight-bold title">{{size}}</span> Songs
+      </v-btn>
+      <v-btn
+        v-else
+        block
+        color="primary"
+        rounded
+        @click.prevent.stop="$emit('setMusic')"
       >
         Play All <span class="inline-block mx-2 font-weight-bold title">{{size}}</span> Songs
       </v-btn>
@@ -82,6 +93,10 @@ export default {
       type: Number
     },
     paid: {
+      type: Boolean,
+      default: false
+    },
+    fromAlbumDetailPage: {
       type: Boolean,
       default: false
     }

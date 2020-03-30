@@ -13,6 +13,8 @@
         :subType="album.album.subType"
         :type="album.album.type"
         :size="album.album.size"
+        @setMusic="setMusic(album.songs[0].id)"
+        :fromAlbumDetailPage="this.$route.path==='/album'"
       />
       <MusicItem
         v-for="track in album.songs"
@@ -54,6 +56,8 @@ export default {
   },
   methods: {
     setMusic (id) {
+      console.log(id)
+
       this.$store.commit('player/setMusicDetailByIdsList', this.album.songs)
       this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
     }
