@@ -56,8 +56,6 @@ export default {
   },
   methods: {
     setMusic (id) {
-      console.log(id)
-
       this.$store.commit('player/setMusicDetailByIdsList', this.album.songs)
       this.$store.commit('player/setMusicUrlsListByPassIdFromMusicList', id)
     }

@@ -60,12 +60,13 @@
               <div class="body-1">Connected with my social networks!</div>
               <v-btn
                 v-for="icon in icons"
-                :key="icon"
+                :key="icon.icon"
                 class="mx-2"
                 dark
                 icon
+                :href="icon.url"
               >
-                <v-icon size="24px">{{ icon }}</v-icon>
+                <v-icon size="24px">{{ icon.icon }}</v-icon>
               </v-btn>
             </v-card-title>
           </v-card>
@@ -81,7 +82,7 @@
 </template>
 
 <script>
-import { mdiPalette, mdiFacebook, mdiTwitter, mdiGoogle, mdiLinkedin, mdiInstagram } from '@mdi/js'
+import { mdiPalette, mdiGithub, mdiFacebook, mdiGoogle, mdiLinkedin, mdiInstagram } from '@mdi/js'
 export default {
   name: 'Setting',
   components: {
@@ -91,7 +92,26 @@ export default {
     return {
       mdiPalette,
       icons: [
-        mdiFacebook, mdiTwitter, mdiGoogle, mdiLinkedin, mdiInstagram
+        {
+          icon: mdiGithub,
+          url: 'https://github.com/tatoMa/neteast-cloud-music-player'
+        },
+        {
+          icon: mdiFacebook,
+          url: ''
+        },
+        {
+          icon: mdiGoogle,
+          url: ''
+        },
+        {
+          icon: mdiLinkedin,
+          url: ''
+        },
+        {
+          icon: mdiInstagram,
+          url: ''
+        }
       ]
     }
   },
