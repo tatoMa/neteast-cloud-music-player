@@ -42,12 +42,11 @@
       <v-btn
         v-if="!fromAlbumDetailPage"
         block
-        outlined
+        text
         color="primary"
-        rounded
         :to="{ path: '/album', query: { id: id }}"
       >
-        This Album has <span class="inline-block mx-2 font-weight-bold title">{{size}}</span> Songs
+        This Album has <span class="inline-block mx-2 font-weight-bold title">{{size}}</span> Song{{size>1?'s':''}}
       </v-btn>
       <v-btn
         v-else
