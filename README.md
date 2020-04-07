@@ -17,15 +17,18 @@ Backend
 - [x] proxy settings
 
 Frontend
+- [ ] maybe net-east account?
 - [ ] maybe login?
 - [ ] add full PWA support?
 - [ ] Progressive Loading? different layout or resources based on device types and network speed
 - [ ] download music function
 - [ ] redo player animation and transaction
-- [ ] player loop/random function
 - [ ] UX/UI logic refactor
 - [ ] add Skeleton loaders
 - [ ] Lyric sync
+- [ ] player loop/random function
+- [ ] Home page desktop view add playlist, player, and lyric page
+- [ ] Home page restructure for desktop view
 - [x] theme and color settings
 - [x] setting page
 - [x] album page
