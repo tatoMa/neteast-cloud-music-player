@@ -15,9 +15,12 @@
       <v-tab>Popular</v-tab>
       <v-tab>International</v-tab>
       <v-tab>UK Top</v-tab>
+      <v-tab>Billboard</v-tab>
+      <v-tab>KTV</v-tab>
+      <v-tab>iTunes</v-tab>
 
       <v-tab-item
-        v-for="n in 6"
+        v-for="n in 9"
         :key="n"
       >
         <TopMusicItem :id='n-1'></TopMusicItem>
@@ -25,13 +28,11 @@
     </v-tabs><!-- mobile screen -->
 
     <!-- desktop and large screen -->
-    <v-row v-else>
+    <v-row v-else class="mb-4">
       <v-col
-        cols="6"
-        sm="6"
-        md="4"
+        cols="12"
         class="pa-0 ma-0"
-        v-for="n in 6"
+        v-for="n in 9"
         :key="n"
       >
         <TopMusicItem :id='n-1'></TopMusicItem>
