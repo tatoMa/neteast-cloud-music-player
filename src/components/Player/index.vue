@@ -1,5 +1,6 @@
 <template>
   <v-footer
+    :style="!this.$vuetify.breakpoint.xs  && 'z-index: 10'"
     fixed
     inset
     class="pa-0 ma-0 player"
