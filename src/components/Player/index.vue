@@ -225,14 +225,14 @@ export default {
       }
     }
   },
-  // watch: {
-  //   colorTheme: function (val) {
-  //     console.log('changed color')
-
-  //     audioAnalyser.stop()
-  //     audioAnalyser.start(this.$vuetify.theme.themes.dark.primary)
-  //   }
-  // },
+  watch: {
+    getMusicUrlsListById: function (val) {
+      this.$refs.player.load()
+      this.$refs.player.oncanplay = () => {
+        this.$refs.player.play()
+      }
+    }
+  },
   mounted () {
     audioAnalyser.init()
 
