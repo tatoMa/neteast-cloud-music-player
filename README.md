@@ -12,6 +12,8 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
 
+![picture 03](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/03.png?raw=true)
+
 Backend
 - [x] compressed api by g-zip
 - [x] proxy settings
@@ -28,7 +30,7 @@ Frontend
 - [ ] Lyric sync
 - [ ] player loop/random function
 - [ ] Home page desktop view add playlist, player, and lyric page
-- [ ] Home page restructure for desktop view
+- [x] Home page restructure for desktop view
 - [x] theme and color settings
 - [x] setting page
 - [x] album page
