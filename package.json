@@ -7,9 +7,16 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "capacitor:build": "vue-cli-service capacitor:build",
+    "capacitor:serve": "vue-cli-service capacitor:serve"
   },
   "dependencies": {
+    "@capacitor/android": "^2.0.0",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0",
+    "@capacitor/ios": "^2.0.0",
+    "capacitor": "^0.5.5",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
@@ -19,6 +26,7 @@
   },
   "devDependencies": {
     "@mdi/js": "^5.0.45",
+    "@nklayman/vue-cli-plugin-capacitor": "~0.3.0",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-e2e-nightwatch": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",

@@ -6,6 +6,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+// import { Plugins } from 'capacitor'
+// const { SplashScreen } = Plugins
+
 Vue.config.productionTip = false
 
 new Vue({
@@ -13,4 +16,7 @@ new Vue({
   store,
   vuetify,
   render: h => h(App)
+  // mounted () {
+  //   SplashScreen.hide()
+  // }
 }).$mount('#app')
