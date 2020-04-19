@@ -30,6 +30,7 @@ Frontend
 - [ ] Lyric sync
 - [ ] player loop/random function
 - [ ] Home page desktop view add playlist, player, and lyric page
+- [x] Fixed safari issue and related issues on IOS platform
 - [x] Fixed desktop safari playing issues
 - [x] Home page restructure for desktop view
 - [x] theme and color settings
