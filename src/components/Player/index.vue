@@ -9,13 +9,14 @@
   >
 
     <!-- audio synchronizer -->
-    <canvas
+    <!-- <canvas
       id='canvas'
       :class="layout ? 'canvas-movedown' : breakpointXs ? '' : 'canvas-desktop'"
       width="600"
       height="350"
     >
-    </canvas><!-- audio synchronizer -->
+    </canvas> -->
+    <!-- audio synchronizer -->
 
     <!-- audio source -->
     <audio
@@ -147,7 +148,7 @@
 </template>
 
 <script>
-import audioAnalyser from '../../utils/audioAnalyser'
+// import audioAnalyser from '../../utils/audioAnalyser'
 import { httpToHttps } from '../../utils/helper'
 import { mapGetters } from 'vuex'
 import { mdiEjectOutline, mdiChevronDown, mdiDotsVertical, mdiClose, mdiPlaylistMusic, mdiClipboardTextPlay, mdiMessage } from '@mdi/js'
@@ -193,8 +194,8 @@ export default {
       volume: 1,
       storedLastVolume: 0,
       currentTime: 0,
-      duration: 0,
-      audioAnalyser: false
+      duration: 0
+      // audioAnalyser: false
       // colorTheme: this.$vuetify.theme.themes.dark.primary
     }
   },
@@ -234,13 +235,13 @@ export default {
     }
   },
   mounted () {
-    audioAnalyser.init()
+    // audioAnalyser.init()
 
     this.$refs.player.oncanplay = () => {
       this.$refs.player.play()
     }
     this.$refs.player.onplay = () => {
-      this.audioAnalyserStart()
+      // this.audioAnalyserStart()
       this.$store.commit('player/setPaused', false)
     }
     this.$refs.player.onpause = () => {
@@ -252,12 +253,12 @@ export default {
     }
   },
   methods: {
-    audioAnalyserStart () {
-      if (!this.audioAnalyser) {
-        audioAnalyser.start(this.$vuetify.theme.themes.dark.primary)
-        this.audioAnalyser = true
-      }
-    },
+    // audioAnalyserStart () {
+    //   if (!this.audioAnalyser) {
+    //     audioAnalyser.start(this.$vuetify.theme.themes.dark.primary)
+    //     this.audioAnalyser = true
+    //   }
+    // },
     togglePlaying () {
       if (this.$refs.player.paused) {
         // audioAnalyser.init()
