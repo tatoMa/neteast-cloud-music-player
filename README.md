@@ -30,6 +30,9 @@ Frontend
 - [ ] Lyric sync
 - [ ] player loop/random function
 - [ ] Home page desktop view add playlist, player, and lyric page
+- [ ] Notification for non-playable music
+- [ ] Right player drawer for desktop view
+- [ ] Dynamic switch IOS and other platform config
 - [x] Fixed safari issue and related issues on IOS platform
 - [x] Fixed desktop safari playing issues
 - [x] Home page restructure for desktop view
