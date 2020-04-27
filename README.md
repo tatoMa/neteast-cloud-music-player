@@ -8,6 +8,13 @@ https://github.com/Binaryify/NeteaseCloudMusicApi
 
 ### The stack is based on Vue, VueX, VueRouter, Vuetify, Axios, PWA, SCSS, Jest, Nightwatch, Eslint, Babel and others.
 
+## need a env file to start this app
+```
+.env
+.env.development
+VUE_APP_baseURL=Your Server URL 
+```
+
 ![picture 01](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/01.jpg?raw=true)
 
 ![picture 02](https://github.com/tatoMa/neteast-cloud-music-player/blob/master/02.jpg?raw=true)
