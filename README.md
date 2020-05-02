@@ -26,8 +26,6 @@ Backend
 - [x] proxy settings
 
 Frontend
-- [ ] maybe net-east account?
-- [ ] maybe login?
 - [ ] add full PWA support?
 - [ ] Progressive Loading? different layout or resources based on device types and network speed
 - [ ] download music function
