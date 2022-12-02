@@ -1,80 +1,156 @@
-import axios from 'axios'
+import axios from "axios";
 
-const getPlayLists = () => axios.get(`${process.env.VUE_APP_baseURL}/top/playlist`, { withCredentials: true })
-  .then(response => response.data.playlists)
-  .catch(error => console.log(error))
+const getPlayLists = () =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/top/playlist`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.playlists)
+    .catch((error) => console.log(error));
 
-const getAllPlayListTags = () => axios.get(`${process.env.VUE_APP_baseURL}/playlist/catlist`, { withCredentials: true })
-  .then(response => response.data.sub)
-  .catch(error => console.log(error))
+const getAllPlayListTags = () =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/playlist/catlist`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.sub)
+    .catch((error) => console.log(error));
 
-const getPlayListByTagName = (name) => axios.get(`${process.env.VUE_APP_baseURL}/top/playlist?cat=${name}`, { withCredentials: true })
-  .then(response => response.data.playlists)
-  .catch(error => console.log(error))
+const getPlayListByTagName = (name) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/top/playlist?cat=${name}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.playlists)
+    .catch((error) => console.log(error));
 
-const getNewMusicLists = () => axios.get(`${process.env.VUE_APP_baseURL}/personalized/newsong`, { withCredentials: true })
-  .then(response => response.data.result)
-  .catch(error => console.log(error))
+const getNewMusicLists = () =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/personalized/newsong`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.result)
+    .catch((error) => console.log(error));
 
-const getTopMusicListsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/top/list?idx=${id}`, { withCredentials: true })
-  .then(response => response.data.playlist)
-  .catch(error => console.log(error))
+const getTopMusicListsById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.playlist)
+    .catch((error) => console.log(error));
 
-const getPlayListById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${id}`, { withCredentials: true })
-  .then(response => response.data.playlist)
-  .catch(error => console.log(error))
+const getPlayListById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.playlist)
+    .catch((error) => console.log(error));
 
-const getMusicDetailById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${id}`, { withCredentials: true })
-  .then(response => response.data.songs[0])
-  .catch(error => console.log(error))
+const getMusicDetailById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.songs[0])
+    .catch((error) => console.log(error));
 
-const getMusicDetailByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${ids}`, { withCredentials: true })
-  .then(response => response.data.songs)
-  .catch(error => console.log(error))
+const getMusicDetailByIds = (ids) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/song/detail?ids=${ids}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.songs)
+    .catch((error) => console.log(error));
 
-const getMusicUrlById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/song/url?id=${id}`, { withCredentials: true })
-  .then(response => response.data.data[0])
-  .catch(error => console.log(error))
+const getMusicUrlById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/song/url?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.data[0])
+    .catch((error) => console.log(error));
 
-const getMusicUrlByIds = (ids) => axios.get(`${process.env.VUE_APP_baseURL}/song/url?id=${ids}`, { withCredentials: true })
-  .then(response => response.data.data)
-  .catch(error => console.log(error))
+const getMusicUrlByIds = (ids) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/song/url?id=${ids}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.data)
+    .catch((error) => console.log(error));
 
-const getSearchSuggestionByText = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search/suggest?keywords=${text}`, { withCredentials: true })
-  .then(response => response.data.result)
-  .catch(error => console.log(error))
+const getSearchSuggestionByText = (text) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/search/suggest?keywords=${text}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.result)
+    .catch((error) => console.log(error));
 
-const getSearchResultByText = (text) => axios.get(`${process.env.VUE_APP_baseURL}/search?keywords=${text}`, { withCredentials: true })
-  .then(response => response.data.result.songs)
-  .catch(error => console.log(error))
+const getSearchResultByText = (text) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/search?keywords=${text}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data.result.songs)
+    .catch((error) => console.log(error));
 
-const getCommentsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/comment/music?id=${id}`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getCommentsById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/comment/music?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getLyricById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/lyric?id=${id}`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getLyricById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/lyric?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getAllTopArtists = () => axios.get(`${process.env.VUE_APP_baseURL}/top/artists`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getAllTopArtists = () =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/top/artists`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getNewAlbums = () => axios.get(`${process.env.VUE_APP_baseURL}/album/newest`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getNewAlbums = () =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/album/newest`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getAlbumById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/album?id=${id}`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getAlbumById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/album?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getArtistById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/artists?id=${id}`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getArtistById = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/artists?id=${id}`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
-const getAlbumsByArtistId = (id) => axios.get(`${process.env.VUE_APP_baseURL}/artist/album?id=${id}&limit=90`, { withCredentials: true })
-  .then(response => response.data)
-  .catch(error => console.log(error))
+const getAlbumsByArtistId = (id) =>
+  axios
+    .get(`${process.env.VUE_APP_baseURL}/artist/album?id=${id}&limit=90`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
 
 export {
   getPlayLists,
@@ -95,5 +171,5 @@ export {
   getNewAlbums,
   getAlbumById,
   getArtistById,
-  getAlbumsByArtistId
-}
+  getAlbumsByArtistId,
+};
