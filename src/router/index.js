@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TopMusic from '../views/TopMusic.vue'
+// import TopMusic from '../views/TopMusic.vue'
 
 Vue.use(VueRouter)
 
