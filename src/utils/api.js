@@ -16,7 +16,7 @@ const getNewMusicLists = () => axios.get(`${process.env.VUE_APP_baseURL}/persona
   .then(response => response.data.result)
   .catch(error => console.log(error))
 
-const getTopMusicListsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/playlist/detail?id=${id}`, { withCredentials: true })
+const getTopMusicListsById = (id) => axios.get(`${process.env.VUE_APP_baseURL}/top/list?idx=${id}`, { withCredentials: true })
   .then(response => response.data.playlist)
   .catch(error => console.log(error))
 
