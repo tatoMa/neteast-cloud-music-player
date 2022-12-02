@@ -5,13 +5,13 @@ import TopMusic from '../views/TopMusic.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'TopMusic',
+  //   component: TopMusic
+  // },
   {
     path: '/',
-    name: 'TopMusic',
-    component: TopMusic
-  },
-  {
-    path: '/topplaylists',
     name: 'TopPlayLists',
     component: () => import(/* webpackChunkName: "topplaylists" */ '../views/TopPlayLists.vue')
   },
